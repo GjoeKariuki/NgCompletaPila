@@ -1,4 +1,5 @@
 # NgCompletaPila
-this contains angular frontend
-nodejs backend
-background services
+this repo contains 
+##  angular frontend
+##  nodejs backend
+##  background services
