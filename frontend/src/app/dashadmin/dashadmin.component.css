@@ -1,0 +1,28 @@
+#selection{
+    margin-top: 13em;    
+}
+#nav-side{
+    position:fixed;
+    top: 15em;
+    left: 3em;
+    background-color: aliceblue;
+    padding-left: 2em;
+    
+}
+#close-nav{
+    top: 40px;
+    left: 10px
+}
+
+#panel {
+    margin-top: 20rem;
+}
+
+#person-avatar{
+    height: 20%;
+    width: 20%;
+}
+
+#inneruser{
+    width: 25vw;
+}

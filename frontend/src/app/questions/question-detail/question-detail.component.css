@@ -1,0 +1,28 @@
+ #dion
+{
+    width: 80vw;
+    margin: auto;
+    margin-top:12em;
+    
+    
+  
+}
+
+#side-content {
+    
+     height: 65%;
+     background-color: rgb(121, 21, 121);
+     opacity: 0.5;
+     margin-top: 3rem;
+    
+}
+#main-content {
+    height: 100%;
+}
+
+/* .main-content {
+    margin-left: 500px;
+    padding: 20px;  
+    text-align: center; 
+    background-color: rgb(221, 151, 47);
+}  */

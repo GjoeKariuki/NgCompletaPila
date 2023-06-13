@@ -1,0 +1,37 @@
+<div class="flex flex-wrap mb-4" id="dion">
+    <div class="w-full md:w-1/4 overflow-auto mx-auto" id="question-div">
+      <details class="p-4 rounded-lg">
+        <summary class="font-semibold bg-blue-200 px-4 py-2 text-lg cursor-pointer">
+          <strong>Title: </strong> <br><i>Is it going to rain today</i>
+        </summary>
+        <div class="bg-blue-100">
+          <p class="leading-6 px-3 py-2 text-gray-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime velit laborum magni numquam veritatis, atque quibusdam aspernatur molestiae aliquam unde et enim, quidem voluptatem commodi sapiente, accusantium doloribus ut minus.</p>
+        </div>
+      </details>
+      <details class="p-4 rounded-lg">
+        <summary class="font-semibold bg-blue-200 px-4 py-2 text-lg cursor-pointer">
+          <strong>Context: </strong><br><i>{{ contextdetails | truncaText: 30 }}</i>
+        </summary>
+        <div class="bg-blue-100">
+          <p class="leading-6 px-3 py-2 text-gray-800">{{ contextdetails }}</p>
+        </div>
+      </details>
+      <details class="p-4 rounded-lg">
+        <summary class="font-semibold bg-blue-200 px-4 py-2 text-lg cursor-pointer">
+          <strong>Tags: </strong><br> <i>Open the question tags</i>
+        </summary>
+        <div class="bg-blue-100">
+          <p class="leading-6 px-3 py-2 text-gray-800">{{ questiontags }}</p>
+        </div>
+      </details>
+    </div>
+  
+    <div class="w-full md:w-3/4 bg-blue-50/40" id="main-content">
+      <div class="mt-7 ml-12">
+        <button (click)="toggleAnswerForm()" class="{{ answerform ? 'bg-green-500' : 'bg-blue-500' }} {{ answerform ? 'hover:bg-green-500' : 'hover:bg-blue-700' }} text-white font-bold py-2 px-4 rounded" type="button">{{ answerform ? 'Close Form' : 'Answer Question' }}</button>
+        <app-answerform *ngIf="answerform"></app-answerform>
+        <app-answerslist></app-answerslist>
+      </div>
+    </div>
+  </div>
+  

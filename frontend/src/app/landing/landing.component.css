@@ -1,0 +1,15 @@
+*{
+   
+    margin-top: 9rem;
+}
+
+#landing {
+    background-image: url('../../assets/Landingpage.gif');
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+
+#navidivs {
+    margin-top: -80px;
+}

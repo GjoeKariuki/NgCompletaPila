@@ -1,0 +1,10 @@
+#bd-div{
+    margin-top: 15rem;
+    margin-left: 400px;
+}
+
+@media(max-width:768px){
+    form{margin-left: 0px;}
+}
+
+

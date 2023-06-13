@@ -1,0 +1,10 @@
+#info-div{
+    margin-top: 15rem;
+}
+
+@media (max-width:381px){
+    #info-div{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
