@@ -1,5 +1,6 @@
 #info-div{
-    margin-top: 15rem;
+    margin-top: 10rem;
+    margin-bottom: 5em;
 }
 
 @media (max-width:381px){

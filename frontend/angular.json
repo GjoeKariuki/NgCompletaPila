@@ -28,6 +28,7 @@
               "src/styles.css",
               {"input": "frontend/src/assets/editores.css"}
               
+              
             ],
             "scripts": [
             

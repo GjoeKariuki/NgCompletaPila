@@ -1,15 +1,15 @@
-*{
-   
-    margin-top: 9rem;
-}
 
 #landing {
-    background-image: url('../../assets/Landingpage.gif');
+    background-image: url('../../assets/2210382.jpg');
+    opacity: 0.9;
     position: relative;
-    height: auto;
+    height: 35rem;
     width: 100%;
+    margin-top: 9.1rem;
 }
 
 #navidivs {
-    margin-top: -80px;
+    position: absolute;
+    bottom: 0;
+    right: 17em;
 }

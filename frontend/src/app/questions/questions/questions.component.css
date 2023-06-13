@@ -1,3 +1,12 @@
 .cont{
     margin-top: 10rem;
 }
+
+#side-contbar {
+    position:fixed;
+    top: 15em;
+    left: 3em;
+    background-color: aliceblue;
+    padding-left: 2em;
+    
+}
