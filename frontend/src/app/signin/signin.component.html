@@ -1,16 +1,23 @@
 <div id="bd-div" class="flex justify-center items-center">
-  <div class="flex flex-col space-y-4 w-full md:w-1/2 p-4 border border-black rounded">
+  <form class="flex flex-col space-y-4 w-full md:w-1/2 p-4 border border-black rounded" [formGroup]="signinForm">
     <!-- <div class="bg-red-500 p-2 text-center text-white">
       <span>{{errorMessage}}</span>
     </div> -->
     <div class="flex">
       <label for="email" class="w-1/4 md:w-1/6">Email:</label>
-      <input type="email" class="w-3/4 border border-black p-2 rounded" placeholder="clarkent@domain.con">
+      <input type="email" class="w-3/4 border border-black p-2 rounded" placeholder="clarkent@domain.com" formControlName="email">
+      <div *ngIf="!signinForm.get('email')?.valid && signinForm.get('email')?.touched" >
+        <span *ngIf="signinForm.get('email')!.errors!['required']" class="text-red-300">email is required</span>
+
+      </div>
     </div>
     <div class="flex">
       <label for="password" class="w-1/4 md:w-1/6">Password:</label>
-      <input type="password" class="w-3/4 border border-black p-2 rounded mb-3" placeholder="******************">
-      <span class="text-green-500 text-xs italic font-bold">Please choose a password that satisfies <p class="text-xl">(a-zA-Z0-9*$)</p> .</span>
+      <input type="password" class="w-3/4 border border-black p-2 rounded mb-3" placeholder="******************" formControlName="password">
+      <span class="text-green-500 text-xs italic font-bold">Please choose a password that satisfies <p class="text-xl">(a-zA-Z0-9*$)</p></span>
+      <div *ngIf="!signinForm.get('password')?.valid && signinForm.get('password')?.touched">
+        <span class="text-red-500" *ngIf="signinForm.get('password')!.errors!['required']">Password is required</span>
+      </div>
     </div>
     <div class="flex">
       <label class="md:w-2/3 block text-gray-500 font-bold">
@@ -20,13 +27,13 @@
     </div>
     <div class="flex justify-start items-center">
       <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
-      <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" [routerLink]="['/forgotpwd']">
+      <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 ml-3" [routerLink]="['/forgotpwd']">
         Forgot Password?
       </a>
     </div>
-    <p>
+    <p class="italic">
       Not a member? 
-      <a [routerLink]="['/signup']">Sign Up</a>
+      <a [routerLink]="['/signup']" class="text-indigo-800">Sign Up</a>
     </p>
-  </div>
+  </form>
 </div>

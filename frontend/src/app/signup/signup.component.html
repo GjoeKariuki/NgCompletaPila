@@ -1,25 +1,32 @@
 <div id="sign-up" class="flex w-full items-center justify-center mt-10 ">
-    <form class="flex flex-col space-y-4 md:w-1/2 p-5 border border-black rounded">
+    <form class="flex flex-col space-y-4 md:w-1/2 p-5 border border-black rounded" [formGroup]="signupForm" >
       <div class="flex">
         <label for="username" class="w-1/4 md:w-1/6">USERNAME:</label>
-        <input type="text" class="w-3/4 border border-black p-2 rounded">
+        <input type="text" class="w-3/4 border border-black p-2 rounded" formControlName="username">
+        <span class="text-red-500" *ngIf="!signupForm.get('username')?.valid && signupForm.get('username')?.touched">user name is required</span>
       </div>
       <div class="flex">
         <label for="email" class="w-1/4 md:w-1/6">EMAIL:</label>
-        <input type="email" class="w-3/4 border border-black p-2 rounded">
+        <input type="email" class="w-3/4 border border-black p-2 rounded" formControlName="email">
+        <div *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">
+            <span class="text-red-500" *ngIf="signupForm.get('email')!.errors!['required']">email is required</span>
+        </div>
       </div>
       <div class="flex">
         <label for="password" class="w-1/4 md:w-1/6">PASSWORD:</label>
-        <input type="password" class="w-3/4 border border-black p-2 rounded">
+        <input type="password" class="w-3/4 border border-black p-2 rounded" formControlName="password">
+        <span class="text-red-500" *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')?.touched">password is required</span>
       </div>
       <div class="flex">
         <label for="confirmpassword" class="w-1/4 md:w-1/6">CONFIRM PASSWORD:</label>
-        <input type="password" class="w-3/4 border border-black p-2 rounded">
+        <input type="password" class="w-3/4 border border-black p-2 rounded" formControlName="confirmpassword">
+        <span class="text-red-500" *ngIf="!signupForm.get('confirmpassword')?.valid && signupForm.get('confirmpassword')?.touched">password is required</span>
+
       </div>
       <div class="flex justify-start items-center">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
       </div>
-      <p>Already registered? <a [routerLink]="['/signin']">Login</a></p>
+      <p class="italic">Already registered??? <a [routerLink]="['/signin']" class="text-indigo-800">Login</a></p>
     </form>
   </div>
   

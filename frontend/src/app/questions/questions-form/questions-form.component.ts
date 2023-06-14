@@ -2,12 +2,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule,DOCUMENT } from '@angular/common';
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-questions-form',
   standalone: true,
-  imports: [CommonModule,CKEditorModule],
+  imports: [CommonModule,CKEditorModule,ReactiveFormsModule],
   templateUrl: './questions-form.component.html',
   styleUrls: ['./questions-form.component.css']
 })
