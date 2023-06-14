@@ -1,6 +1,6 @@
 <!-- class="shadow-sm w-3/4 border border-black w-4/6 p-2 rounded-lg focus:ring-blue-500 focus:border-blue-500" -->
 <div id="forgot" class="flex w-full items-center justify-center mt-10 bg-slate-100 mb-5">
-    <form class="flex flex-col space-y-4 md:w-1/2 mt-5 mb-5 p-5">
+    <form class="flex flex-col space-y-4 md:w-1/2 mt-5 mb-5 p-5" [formGroup]="questionsForm ">
         <div class="items-center">
             <p class="text-2xl font-bold">Asking a good question</p>
             <ul class="list-disc italic">
@@ -14,22 +14,29 @@
             <label for="name" class="text-xl font-semibold ">Question Title</label>
             <p class="italic">Be specific and imagine you’re asking a question to another person</p>
             <input type="text" class="shadow-sm w-full border border-black w-4/6 p-2 rounded-lg focus:ring-blue-500 
-                focus:border-blue-500">
+                focus:border-blue-500" formControlName="qtitle">
+                <span class="text-red-500" *ngIf="!questionsForm.get('qtitle')?.valid && questionsForm.get('qtitle')?.touched">title is required</span>
+
         </div> 
         
         <div class="flex flex-col items-center">
             <div><label for="name" class="w-1/4 md:w-1/6 font-medium">Question Body</label>
                 <p>Include all the information someone would need to answer your question</p>
             </div>
-            <ckeditor [editor]="Editorred" data='<p>Type the content here</p>' tagName="textarea"></ckeditor>
+            <ckeditor [editor]="Editorred" data='<p>Type the content here</p>' tagName="textarea" formControlName="qbody"></ckeditor>
+            <span class="text-red-500" *ngIf="!questionsForm.get('qbody')?.valid && questionsForm.get('qbody')?.touched">context is required</span>
+
         </div>
         <div class="flex flex-col items-center">
             <label for="name" class="text-xl font-semibold">Leave Tags</label>
             <p class="italic">Add up to 5 tags to describe what your question is about</p>
             <div class="tags-input w-full">
                 <input type="text" id="tag-input" placeholder="Add Tags!!" class="shadow-sm w-full border 
-                border-black p-2 rounded-lg">
+                border-black p-2 rounded-lg" formControlName="qtags">
+                <span class="text-red-500" *ngIf="!questionsForm.get('qtags')?.valid && questionsForm.get('qtags')?.touched">tags are required</span>
                 <div class="tags-container text-xl" id="tags-container"></div>
+                
+
             </div>
         </div>
         

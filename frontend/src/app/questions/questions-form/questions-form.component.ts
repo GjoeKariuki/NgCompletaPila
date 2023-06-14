@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule,DOCUMENT } from '@angular/common';
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
@@ -15,7 +15,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class QuestionsFormComponent implements OnInit {
   
 
-
+  questionsForm = new FormGroup({
+    qtitle: new FormControl('', [Validators.required]),
+    qbody: new FormControl('', [Validators.required]),
+    qtags: new FormControl('', [Validators.required])
+  })
   editor!:HTMLTextAreaElement
   tagInput!:HTMLInputElement
   tagsContainer!:HTMLDivElement
