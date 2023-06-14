@@ -13,5 +13,5 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export class AnswerformComponent {
 
   public Editorred = ClassicEditor
-constructor(){}
+  constructor(){}
 }

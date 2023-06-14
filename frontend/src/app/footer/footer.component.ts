@@ -9,5 +9,15 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
+  currenTime?: string
+  currentDate?: string
+  constructor() {
+    this.getTimings()
+  }
 
+  getTimings(){
+    const currently = new Date()
+    this.currenTime = currently.toLocaleTimeString()
+    this.currentDate = currently.toLocaleDateString()
+  }
 }

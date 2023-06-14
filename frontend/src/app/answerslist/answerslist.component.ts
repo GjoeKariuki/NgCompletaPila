@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome'
 import {faCheckDouble, fa8} from '@fortawesome/free-solid-svg-icons'
-// import {} from '@fortawesome/free-brands-svg-icons'
-//import {} from '@fortawesome/free-regular-svg-icons'
-// import {} from '@fortawesome/fontawesome-common-types'
-// import {} from '@fortawesome/fontawesome-svg-core'
+
 
 
 

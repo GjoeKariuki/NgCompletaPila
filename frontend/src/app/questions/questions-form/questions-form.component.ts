@@ -56,32 +56,6 @@ export class QuestionsFormComponent implements OnInit {
     }
     
   }
-  
-  formatText(command:string){
-    
-    const selectedText = this.editor.value.substring(this.editor.selectionStart, this.editor.selectionEnd)
-
-    let  modifiedText:string;
-    switch(command){
-      case 'bold':
-        modifiedText = '**${selectedText}**'
-        break
-      case 'italic':
-        modifiedText = '*${selectedText}*'
-        break
-      case 'underline':
-        modifiedText = '<u>${selectedText}</u>'
-        break
-      
-      default:
-        modifiedText = selectedText
-        break
-    }
-
-    this.editor.value = this.editor.value.substring(0, this.editor.selectionStart) + modifiedText + this.editor.value.substring(this.editor.selectionEnd)
-  }
-
-  
 
 
 }

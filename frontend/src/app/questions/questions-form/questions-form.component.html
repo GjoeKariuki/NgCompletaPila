@@ -1,21 +1,20 @@
 <!-- class="shadow-sm w-3/4 border border-black w-4/6 p-2 rounded-lg focus:ring-blue-500 focus:border-blue-500" -->
-<div id="forgot" class="flex w-full items-center justify-center mt-10 bg-slate-100">
-    <form class="flex flex-col space-y-4 md:w-1/2 mt-5 mb-5">
+<div id="forgot" class="flex w-full items-center justify-center mt-10 bg-slate-100 mb-5">
+    <form class="flex flex-col space-y-4 md:w-1/2 mt-5 mb-5 p-5">
         <div class="items-center">
-            <p>Asking a good question</p>
-            <ul class="list-disc">
+            <p class="text-2xl font-bold">Asking a good question</p>
+            <ul class="list-disc italic">
                 <li>The question should not be ambigous</li>
-                <li>The explanation must produce the desired output</li>                
+                <li>The explanation must very clear and eloborate</li>                
                 <li>The more context you provide the more we can help</li>
-                <li>Summarize the problem</li>
-                <li>Provide details and any research</li>
             </ul>
         </div>
         
         <div class="flex flex-col items-center">
-            <label for="name" class="w-1/4 md:w-1/6 font-semibold">Question Title</label>
+            <label for="name" class="text-xl font-semibold ">Question Title</label>
             <p class="italic">Be specific and imagine you’re asking a question to another person</p>
-            <input type="text" class="shadow-sm w-3/4 border border-black w-4/6 p-2 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+            <input type="text" class="shadow-sm w-full border border-black w-4/6 p-2 rounded-lg focus:ring-blue-500 
+                focus:border-blue-500">
         </div> 
         
         <div class="flex flex-col items-center">
@@ -25,8 +24,8 @@
             <ckeditor [editor]="Editorred" data='<p>Type the content here</p>' tagName="textarea"></ckeditor>
         </div>
         <div class="flex flex-col items-center">
-            <label for="name" class="w-1/4 md:w-1/6 font-medium">Leave Tags</label>
-            <p>Add up to 5 tags to describe what your question is about</p>
+            <label for="name" class="text-xl font-semibold">Leave Tags</label>
+            <p class="italic">Add up to 5 tags to describe what your question is about</p>
             <div class="tags-input w-full">
                 <input type="text" id="tag-input" placeholder="Add Tags!!" class="shadow-sm w-full border 
                 border-black p-2 rounded-lg">
