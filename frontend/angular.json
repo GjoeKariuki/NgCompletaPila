@@ -25,9 +25,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              {"input": "frontend/src/assets/editores.css"}
-              
+              "src/styles.css"       
               
             ],
             "scripts": [

@@ -6,7 +6,15 @@
          class=" w-64 transition-transform transform z-10 mt-10">
          <button id="close-nav" *ngIf="isNavopen" (click)="toggleNav()"
             class="text-red-500 md:hidden text-3xl mb-3">X</button>
-   
+            <div class="m-2">
+               <label for="" class="text-[10] m-1">Filter Questions</label>
+               <select name="" id="">                  
+                  <option value="">My Questions</option>
+                  <option value="">All Questions</option>
+                  <option value="">Most Answers</option>
+               </select>
+            </div>
+
          <div class="relative mt-3 mb-4 mr-3">
             <label for="search" class="sr-only">Search Questions</label>
             <input type="text" id="search" placeholder="Search Questions" class="w-full px-4 py-2 border border-gray-300 rounded-md 
