@@ -1,6 +1,5 @@
-<div id="forgot" class="flex w-full items-center justify-center mt-10 bg-yellow-50">
+<div id="forgot" class="flex w-full items-center justify-center mt-5 bg-yellow-50">
     <form class="flex flex-col space-y-4 md:w-1/2 mb-4 mt-4" [formGroup]="answerForm">
-        <p class="text-center text-3xl">Answering a good answer</p>
         <div class="flex flex-col items-center">
             <label for="name" class="w-1/4 md:w-1/6 font-semibold text-2xl">Answer </label>
             <p class="flex-grow italic">Be specific and imagine you’re asking a question to another person</p>
@@ -11,7 +10,7 @@
         </div> 
         
         <div class="flex flex-col items-center">
-            <div><label for="name" class="w-1/4 md:w-1/6 font-semibold text-2xl">Eloboration Answer</label>
+            <div><label for="name" class="w-1/4 md:w-1/6 font-semibold text-2xl">Elaborate Answer</label>
                 <p class="flex-grow italic">Include all the information someone would need to understand your answer</p>
             </div>                      
             <ckeditor [editor]="Editorred" data='<p>Type the content here</p>' tagName="textarea" formControlName="answertext"></ckeditor>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {faBars, faHamburger} from '@fortawesome/free-solid-svg-icons'
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-dashadmin',
@@ -19,7 +20,11 @@ export class DashadminComponent implements OnInit {
   isNavopen= true
   iSmallScreen = false
   
-  constructor(){}
+  constructor(private store:Store){
+    this.store.subscribe((store) => console.log({store})
+    )
+    
+  }
 
   ngOnInit(): void {
     this.checkScreenSixe()

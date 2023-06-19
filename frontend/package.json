@@ -25,6 +25,13 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@ngrx/component-store": "^16.0.1",
+    "@ngrx/effects": "^16.0.1",
+    "@ngrx/entity": "^16.0.1",
+    "@ngrx/router-store": "^16.0.1",
+    "@ngrx/store": "^16.0.1",
+    "@ngrx/store-devtools": "^16.0.1",
+    "angular-in-memory-web-api": "^0.16.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
