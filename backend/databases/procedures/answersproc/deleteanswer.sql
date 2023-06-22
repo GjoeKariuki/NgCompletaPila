@@ -1,0 +1,5 @@
+CREATE OR ALTER PROCEDURE deleteAnswer(@aid VARCHAR(200))
+AS
+BEGIN
+	UPDATE ANSWERS SET aisDeleted=1 WHERE aid=@aid
+END

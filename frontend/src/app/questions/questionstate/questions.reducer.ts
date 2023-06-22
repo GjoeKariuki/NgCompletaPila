@@ -8,6 +8,10 @@ export interface QuestionsState extends EntityState<Question> {
     askquestionForm:boolean
     loading: boolean
     errorMessage:string
+    updatequestionForm:boolean
+    updateQuestion:Question[]
+    showModal:boolean
+  
 }
 
 export const adapter:EntityAdapter<Question> = createEntityAdapter<Question>({})
@@ -15,23 +19,37 @@ export const adapter:EntityAdapter<Question> = createEntityAdapter<Question>({})
 const initialState:QuestionsState = adapter.getInitialState({
     askquestionForm:false,
     loading:false,
-    errorMessage: ''
+    errorMessage: '',
+    updatequestionForm: false,
+    updateQuestion: [],
+    showModal:false
+
 })
 
 export const questionsReducer = createReducer(
 
     initialState,
+
     // toggling form 
     on(QuestionsPageActions.toggleShowQuestionsForm, (state) => ({
         ...state, askquestionForm:!state.askquestionForm
     })),
+    on(QuestionsPageActions.toggleShowUpdateQuestionsForm, (state, {newvalue}) => (
+        {...state, updatequestionForm:newvalue}
+    )),
+    on(QuestionsPageActions.toggleShowModalView, (state) => (
+        {...state, showModal:!state.showModal}
+    )),
+    on(QuestionsAPIActions.passUpdateData, (state, { updateQuestion }) => ({
+        ...state, updateQuestion:[updateQuestion]
+    }) ),
     // get questions array
     on(QuestionsPageActions.loadQuestions, (state) => 
     ({...state, loading:true, errorMessage:''})),
     // getting
     on(QuestionsAPIActions.questionsLoadedSuccess, (state, {questions}) => 
     adapter.addMany( questions, {...state, loading:false})),
-
+    
     on(QuestionsAPIActions.questionsLoadedFail, (state, {message}) => 
     ({...state, errorMessage:message, loading:false})),
 

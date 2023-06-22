@@ -1,0 +1,5 @@
+CREATE OR ALTER PROCEDURE deleteComment(@cid VARCHAR(200))
+AS
+BEGIN
+	UPDATE COMMENTS SET cisDeleted=1 WHERE cid=@cid
+END

@@ -1,0 +1,21 @@
+CREATE OR ALTER PROCEDURE getAnswersbyQid(@qid VARCHAR(200))
+AS
+BEGIN
+	SELECT * FROM ANSWERS WHERE qid=@qid AND aisDeleted = 0
+END
+
+
+
+CREATE OR ALTER PROCEDURE getAnswersbyId(@aid VARCHAR(200))
+AS
+BEGIN
+	SELECT * FROM ANSWERS WHERE aid=@aid and aisDeleted=0
+END
+exec getAnswersbyId 'ksds223'
+
+
+CREATE OR ALTER PROCEDURE getAllAnswers
+AS
+BEGIN
+	SELECT * FROM ANSWERS WHERE aisDeleted=0
+END

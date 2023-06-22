@@ -1,0 +1,225 @@
+// users endpoints
+#######
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+
+{
+    "uname": "Lionel Messi",
+    "uemail": "barca10@gmail.com"
+}
+
+
+######
+POST http://localhost:8080/users
+Content-Type: application/json
+
+
+{
+    "uname": "Lionel Messi",
+    "uemail": "barca10@gmail.com",
+    "upassword": "@krakenJO32?",
+    "confirmpassword": "@krakenJO32?"
+}
+
+
+#####
+GET http://localhost:8080/users
+
+
+#####
+GET http://localhost:8080/users/id/8c132c4e-b238-481c-9eb5-26c8d578d751
+
+
+
+####
+GET  http://localhost:8080/users/barittos?uzeremail='barca10@gmail.com'
+
+
+
+#####
+PUT http://localhost:8080/users/7ad0e4c2-cefd-4415-a145-61bbb49e635c
+Content-Type: application/json
+
+{    
+    "uname": "Lionel Messi",
+    "uemail": "barca10@gmail.com",
+    "upassword": "@krakenJO32?",
+    "urole": "admin",
+    "uprofPic": "personavatar.jpg"
+    
+}
+
+
+######
+DELETE http://localhost:8080/users/barca10@gmail.com
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwidXByb2ZQaWMiOm51bGwsInVlbWFpbFNlbnQiOjAsInVpc0RlbGV0ZWQiOjAsImlhdCI6MTY4NzMzNjkyNCwiZXhwIjoxNjg3MzQwNTI0fQ.t00ZlNAm1fWZmv49X4LF3o0oHKZEVF5sLQXe8kUd4_M
+
+
+
+/// questions endpoints
+######
+POST http://localhost:8080/questions
+Content-Type: application/json
+
+
+{
+    "uemail": "samuelndambuki401@gmail.com",
+    "qtitle": "How do i create a class in javascript",
+    "qbody": ""
+}
+
+
+#####
+GET http://localhost:8080/questions
+
+
+#####
+GET http://localhost:8080/questions/qq34
+
+
+
+#####
+GET http://localhost:8080/questions/email/samuelndambuki401@gmail.com
+
+
+
+#####
+PUT http://localhost:8080/questions/qq32
+Content-Type: application/json
+
+
+{
+    "qtitle": "How do i style only the inner paragraphs with italics and colors with a nice border",
+    "qbody": "<div><p>loremsdjfbsjdfjsfs</p><p>loremsdjfbsjdfjsfs</p></div>"
+}
+
+
+#####
+DELETE http://localhost:8080/questions/qq34
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwidXByb2ZQaWMiOm51bGwsInVlbWFpbFNlbnQiOjAsInVpc0RlbGV0ZWQiOjAsImlhdCI6MTY4NzMzNjkyNCwiZXhwIjoxNjg3MzQwNTI0fQ.t00ZlNAm1fWZmv49X4LF3o0oHKZEVF5sLQXe8kUd4_M
+
+
+
+/// answer endpoints
+######
+POST http://localhost:8080/answers
+Content-Type: application/json
+
+
+{
+    "qid": "qq32",
+    "atitle": "If only the inner ones try!",
+    "abody": "p{font-style:italics}"
+}
+
+
+######
+GET http://localhost:8080/answers
+
+
+######
+GET http://localhost:8080/answers/aid/ksds223
+
+#####
+GET http://localhost:8080/answers/qid/qq32
+
+
+#####
+PUT http://localhost:8080/answers/ksds223
+Content-Type: application/json
+
+
+{
+    "atitle": "please use css",
+    "abody": "font-style: italics,color:red"
+}
+
+
+
+// tag endpoints
+######
+POST http://localhost:8080/tags
+Content-Type: application/json
+
+
+{
+    "tname": ["html","css"]
+}
+
+
+####
+GET http://localhost:8080/tags
+
+
+####
+GET http://localhost:8080/tags/ttd4
+
+
+
+
+/// comments endpoints
+####
+POST http://localhost:8080/comments
+Content-Type: application/json
+
+
+{
+    "aid": "37e08514-7525-4074-9b90-d515fb2360d3",
+    "cbody": "this is a vague explanation"
+}
+
+
+####
+GET http://localhost:8080/comments/aid/37e08514-7525-4074-9b90-d515fb2360d3
+
+
+#####
+GET http://localhost:8080/comments/cid/1d9f7af2-e485-4b16-a60c-2e2404461fb9
+
+
+#####
+PUT http://localhost:8080/comments/1d9f7af2-e485-4b16-a60c-2e2404461fb9
+Content-Type: application/json
+
+
+{
+
+    "cbody": "this is pure vague. not entirely clear"
+}
+
+
+#####
+POST http://localhost:8080/answer-votes
+Content-Type: application/json
+
+
+{
+    "aid": "aakds223",
+    "aupvotes": 5, 
+    "adownvotes": 2,
+    "apreffered": 1
+}
+
+
+#####
+GET http://localhost:8080/answer-votes
+
+
+#####
+GET http://localhost:8080/answer-votes/aid/aakds223
+
+#####
+GET http://localhost:8080/answer-votes/avid/c3f190df-3485-4315-9d82-f5fd88f8e1b6
+
+
+#####
+PUT http://localhost:8080/answer-votes/c3f190df-3485-4315-9d82-f5fd88f8e1b6
+Content-Type: application/json
+
+{
+    "aid": "aakds223",
+    "aupvotes": 2,
+    "adownvotes": 1,
+    "apreffered": 1
+}

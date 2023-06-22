@@ -1,0 +1,21 @@
+CREATE OR ALTER PROCEDURE getUserecords
+AS
+BEGIN
+	SELECT * FROM USERS WHERE uisDeleted = 0
+END
+
+
+CREATE OR ALTER PROCEDURE getUserbyId(@uid VARCHAR(200))
+AS
+BEGIN
+	SELECT * FROM USERS WHERE uid=@uid AND uisDeleted=0
+END
+
+
+
+
+CREATE OR ALTER PROCEDURE getUserbyEmail(@uemail VARCHAR(150))
+AS
+BEGIN 
+	SELECT * FROM USERS WHERE uemail=@uemail AND uisDeleted=0
+END

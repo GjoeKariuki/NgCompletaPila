@@ -1,0 +1,5 @@
+CREATE OR ALTER PROCEDURE deleteQuestion(@qid VARCHAR(200))
+AS
+BEGIN
+	UPDATE QUESTIONS SET qisDeleted = 1 WHERE qid=@qid
+END

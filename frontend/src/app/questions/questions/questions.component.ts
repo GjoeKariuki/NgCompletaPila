@@ -12,13 +12,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 import { QuestionsPageActions } from '../questionstate/questions.actions';
 import { sequenceEqual } from 'rxjs';
-import { selectErrorMessage, selectQuestionForm, selectQuestions, selectQuestionsLoading } from '../questionstate/questions.selector';
+import { selectErrorMessage, selectQuestionForm, selectQuestions, selectQuestionsLoading, selectShowModalView, selectUpdateQuestionForm } from '../questionstate/questions.selector';
+import { UpdatequestionComponent } from '../updatequestion/updatequestion.component';
 
 
 @Component({
   selector: 'app-questions',
   standalone: true,
-  imports: [CommonModule,QuestionsFormComponent,QuestionsListComponent, FontAwesomeModule],
+  imports: [CommonModule,QuestionsFormComponent,QuestionsListComponent, FontAwesomeModule,UpdatequestionComponent],
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css']
 })
@@ -26,9 +27,12 @@ export class QuestionsComponent implements OnInit {
   
   questions$ = this.store.select(selectQuestions) 
   askquestionform$ = this.store.select(selectQuestionForm)  
+  updatequestionForm$ = this.store.select(selectUpdateQuestionForm)
+  
   errorMessage$ = this.store.select(selectErrorMessage)
   loading$ = this.store.select(selectQuestionsLoading)
-
+  showModal$=this.store.select(selectShowModalView)
+  
   sidebarVisible=true
   faBars = faBars
   isNavopen= true
@@ -75,6 +79,13 @@ export class QuestionsComponent implements OnInit {
 
   toggleQuestionForm(){
     this.store.dispatch(QuestionsPageActions.toggleShowQuestionsForm())
+    this.updatequestionForm$.subscribe((updatequestionform:boolean) => {
+      if(updatequestionform === true){
+        const newvalue = false
+        this.store.dispatch(QuestionsPageActions.toggleShowUpdateQuestionsForm({newvalue}))
+      }
+    })
+    
     //this.askquestionform = !this.askquestionform
   }
 

@@ -1,0 +1,7 @@
+CREATE OR ALTER PROCEDURE postTag(
+	@tid VARCHAR(200), @tname VARCHAR(150)
+)
+AS
+BEGIN
+	INSERT INTO TAGS(tid,tname) VALUES(@tid,@tname)
+END

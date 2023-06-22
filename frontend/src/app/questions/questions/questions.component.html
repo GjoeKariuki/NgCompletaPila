@@ -1,4 +1,4 @@
-<div class="cont flex">
+<div class="cont flex" [ngStyle]="{'backdrop-filter': (showModal$|async) ? 'blur(360px)':'none', 'pointer-events': (showModal$|async) ? 'none':''}">
    <div id="side-contbar" class="w-64">
       <div id="admin-nav" [ngClass]="{'hidden':iSmallScreen && !isNavopen, 'block':!iSmallScreen || isNavopen}"
          class=" w-64 transition-transform transform z-10 mt-10">
@@ -43,9 +43,7 @@
       </button>
    </div>
    <div id="main-contdiv" class="flex flex-col justify-center items-center mx-auto lg:w-2/3 xl:w-3/4 mt-2">
-      <!-- <div class="border-8 border-red-700"   *ngIf="(errorMessage$ | async) !== ''">
-         Error: {{errorMessage$ |async}}
-      </div> -->
+      
       <button (click)="toggleQuestionForm()" class="
     {{ (askquestionform$ |async) ?  'bg-blue-500' : 'bg-green-500' }} 
     {{ (askquestionform$ |async)? 'hover:bg-blue-700':'hover:bg-green-500' }} text-white focus:ring-4 focus:ring-blue-300 
@@ -54,16 +52,16 @@
          {{(askquestionform$ | async )?"Close Form":'Ask Question'}}
       </button>
       <app-questions-form *ngIf="(askquestionform$|async)"></app-questions-form>
-      <!-- <app-questions-list [questions]="questions$|async"> -->
-      <div>
+      
+      <div class="mb-40">
          <div class="text-red" *ngIf="(errorMessage$ |async) !== ''">Error: {{errorMessage$|async}}</div>
          <div *ngIf="(loading$|async) === false; else loadingElement">
             <app-questions-list [questions]="questions$|async">
             </app-questions-list>
          </div>
          <ng-template #loadingElement>Loading...</ng-template>
-      </div>
-      
+      </div>      
    </div>
-
 </div>
+<app-updatequestion *ngIf="showModal$|async"></app-updatequestion>
+

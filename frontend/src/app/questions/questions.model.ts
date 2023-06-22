@@ -1,7 +1,7 @@
 export interface Question {
     id: number
     Title: string
-    Body: [string]
+    Body: string[]
     Tags: string[]
 }
 
