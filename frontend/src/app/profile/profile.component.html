@@ -1,17 +1,17 @@
-<div id="info-div" class="flex flex-wrap justify-center items-center text-base">
-    <div id="info-content" class="bg-gray-100 font-semibold p-5">
-      <h1 class="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">Account Details</h1>
+<div id="info-div" class="flex flex-wrap justify-center items-center text-base ">
+    <div id="info-content" class="w-3/4 bg-gray-100 font-semibold p-6 border-4 shadow-xl shadow-inner">
+      <h1 class="font-mono font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">Account Details</h1>
       <form action="">
         <div class="m-5 w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5">
-          <label class="mb-3" for="username">Username</label>
+          <label class="mb-3 font-mono text-2xl" for="username">Username</label>
           <div class="flex items-center">
-            <input class="p-3 flex-1" type="text" placeholder="Username">
+            <input class="p-3 flex-1 " type="text" placeholder="Username">
             <fa-icon class="px-3" [icon]="faPenToSquare"></fa-icon>
           </div>
         </div>
   
         <div class="m-5 w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5">
-          <label class="mb-3" for="email">Email</label>
+          <label class="mb-3 font-mono text-2xl" for="email">Email</label>
           <div class="flex items-center">
             <input class="p-3 flex-1" type="email" placeholder="email">
             <fa-icon class="px-3" [icon]="faPenToSquare"></fa-icon>
@@ -19,31 +19,31 @@
         </div>
   
         <div class="m-5 w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5">
-          <h1 (click)="togglePwd()" style="cursor: pointer; color: rgb(0, 94, 255);">Change Password??</h1>
+          <h1 (click)="togglePwd()" style="cursor: pointer; color: rgb(0, 94, 255);" class="font-mono text-xl">Change Password??</h1>
           <div *ngIf="changepwd">
             <div class="m-2 p-3">
-              <label class="mb-3">Old Password</label>
+              <label class="mb-3 font-mono text-2xl">Old Password</label>
               <input class="p-3" type="password" placeholder="old password">
             </div>
             <div class="m-2 p-3">
-              <label class="mb-3">New Password</label>
+              <label class="mb-3 font-mono text-2xl">New Password</label>
               <input class="p-3" type="password" placeholder="new password">
             </div>
             <div class="m-2 p-3">
-              <label class="mb-3">Confirm Password</label>
+              <label class="mb-3 font-mono text-2xl">Confirm Password</label>
               <input class="p-3" type="password" placeholder="new password">
             </div>
             
           </div>
         </div>
         <div class="m-5 w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5">
-          <label for="pict" style="color: brown">Upload profile picture</label>
+          <label for="pict" style="color: brown" class="font-mono text-xl">Upload profile picture</label>
           <div class="mt-2">
-            <input type="file" name="pict" id="">
+            <input class="leading-8"  type="file" name="pict" id="">
           </div>
         </div>
         <div class="m-2">
-          <button type="button" class="border border-zinc-800 rounded bg-brown-800 text-2xl p-3 rounded-lg text-green-800">Update Details</button>
+          <button type="button" class="border border-zinc-800 rounded bg-brown-800 text-2xl text-white p-3 rounded-lg bg-green-800">Update Details</button>
         </div>
       </form>
     </div>

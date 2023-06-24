@@ -1,47 +1,30 @@
-<!-- class="shadow-sm w-3/4 border border-black w-4/6 p-2 rounded-lg focus:ring-blue-500 focus:border-blue-500" -->
-<div id="forgot" class="flex w-full items-center justify-center mt-10 bg-slate-100 mb-5">
-    <form class="flex flex-col space-y-4 md:w-1/2 mt-5 mb-5 p-5" [formGroup]="questionsForm ">
-        <div class="items-center">
-            <p class="text-2xl font-bold">Asking a good question</p>
-            <ul class="list-disc italic">
-                <li>The question should not be ambigous</li>
-                <li>The explanation must very clear and eloborate</li>                
-                <li>The more context you provide the more we can help</li>
-            </ul>
+<div class="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-500">
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+        <div>
+            <form action="" [formGroup]="questionsForm">
+                <h2 class="text-2xl font-bold mb-4">Ask Question Here</h2>
+                <div class="m-3">
+                    <label for="" class=" text-xl font-mono font-bold uppercase">Question Title</label>
+                    <input class="shadow-inner p-2 w-full leading-loose border-4 border-sky-400"    type="text" formControlName="qtitle" placeholder="questiontitle">
+                </div>
+                <div  class="m-3">
+                    <label for="" class=" text-xl font-mono font-bold uppercase">Question Body</label>
+                    <div class="border-4 border-sky-400 shadow-inner">
+                        <ckeditor [editor]="Editor" tagName="textarea" formControlName="qbody"></ckeditor>
+                    </div>
+                </div>
+                <div class="m-3">
+                    <label for="" class=" text-xl font-mono font-bold uppercase">Question Tags</label>
+                    <input class="p-2 w-full leading-loose border-4 border-sky-400"  type="text" formControlName="qtags" placeholder="questiontags">
+                </div>
+            </form>
+            
         </div>
         
-        <div class="flex flex-col items-center">
-            <label for="name" class="text-xl font-semibold ">Question Title</label>
-            <p class="italic">Be specific and imagine you’re asking a question to another person</p>
-            <input type="text" class="shadow-sm w-full border border-black w-4/6 p-2 rounded-lg focus:ring-blue-500 
-                focus:border-blue-500" formControlName="qtitle">
-                <span class="text-red-500" *ngIf="!questionsForm.get('qtitle')?.valid && questionsForm.get('qtitle')?.touched">title is required</span>
-
-        </div> 
-        
-        <div class="flex flex-col items-center">
-            <div><label for="name" class="w-1/4 md:w-1/6 font-medium">Question Body</label>
-                <p>Include all the information someone would need to answer your question</p>
-            </div>
-            <ckeditor [editor]="Editorred" data='<p>Type the content here</p>' tagName="textarea" formControlName="qbody"></ckeditor>
-            <span class="text-red-500" *ngIf="!questionsForm.get('qbody')?.valid && questionsForm.get('qbody')?.touched">context is required</span>
+        <div class="flex flex-wrap justify-around">
+            <button class="bg-sky-700 text-white text-lg font-mono px-4 py-2 mt-4 rounded hover:bg-zinc-950" (click)="closequestionModal()">Close</button>
+            <button class="bg-green-700 text-white text-lg font-mono px-4 py-2 mt-4 rounded hover:bg-fuchsia-950">Submit</button>
 
         </div>
-        <div class="flex flex-col items-center">
-            <label for="name" class="text-xl font-semibold">Leave Tags</label>
-            <p class="italic">Add up to 5 tags to describe what your question is about</p>
-            <div class="tags-input w-full">
-                <input type="text" id="tag-input" placeholder="Add Tags!!" class="shadow-sm w-full border 
-                border-black p-2 rounded-lg" formControlName="qtags">
-                <span class="text-red-500" *ngIf="!questionsForm.get('qtags')?.valid && questionsForm.get('qtags')?.touched">tags are required</span>
-                <div class="tags-container text-xl" id="tags-container"></div>
-                
-
-            </div>
-        </div>
-        
-        <div class="flex-flex-justify-start items-center">
-            <button class="bg-green-400 text-dark px-8 py-2 rounded">Ask</button>
-        </div>    
-    </form>
+    </div>
 </div>

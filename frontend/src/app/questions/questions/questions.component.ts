@@ -10,9 +10,9 @@ import {Store} from '@ngrx/store'
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons'
-import { QuestionsPageActions } from '../questionstate/questions.actions';
+import { QuestionsPageActions } from '../../state/questionstate/questions.actions';
 import { sequenceEqual } from 'rxjs';
-import { selectErrorMessage, selectQuestionForm, selectQuestions, selectQuestionsLoading, selectShowModalView, selectUpdateQuestionForm } from '../questionstate/questions.selector';
+import { selectErrorMessage, selectQuestionForm, selectQuestions, selectQuestionsLoading, selectShowModalView, selectUpdateQuestionForm } from '../../state/questionstate/questions.selector';
 import { UpdatequestionComponent } from '../updatequestion/updatequestion.component';
 
 

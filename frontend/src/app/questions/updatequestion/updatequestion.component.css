@@ -5,3 +5,8 @@
     height: 100vh;
     width: 100vw;
 }
+
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 100px;
+
+}

@@ -1,23 +1,25 @@
 import { createReducer, on } from '@ngrx/store'
 import { QuestionsAPIActions, QuestionsPageActions } from './questions.actions'
-import { Question } from '../questions.model'
+import { iQuestion } from '../../questions/questions.model'
 import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity'
 
 
-export interface QuestionsState extends EntityState<Question> {
+export interface QuestionsState extends EntityState<iQuestion> {
     askquestionForm:boolean
+    answerquestionForm:boolean
     loading: boolean
     errorMessage:string
     updatequestionForm:boolean
-    updateQuestion:Question[]
+    updateQuestion:iQuestion[]
     showModal:boolean
   
 }
 
-export const adapter:EntityAdapter<Question> = createEntityAdapter<Question>({})
+export const adapter:EntityAdapter<iQuestion> = createEntityAdapter<iQuestion>({})
 
 const initialState:QuestionsState = adapter.getInitialState({
     askquestionForm:false,
+    answerquestionForm:false,
     loading:false,
     errorMessage: '',
     updatequestionForm: false,
@@ -31,6 +33,9 @@ export const questionsReducer = createReducer(
     initialState,
 
     // toggling form 
+    on(QuestionsPageActions.toggleShowAnswersForm, (state) => (
+        {...state,answerquestionForm:!state.answerquestionForm}
+    )),
     on(QuestionsPageActions.toggleShowQuestionsForm, (state) => ({
         ...state, askquestionForm:!state.askquestionForm
     })),

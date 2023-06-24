@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector, select } from "@ngrx/store";
 import * as fromQuestions from "./questions.reducer";
 import { getRouterSelectors } from "@ngrx/router-store";
 
@@ -12,5 +12,6 @@ export const selectUpdateQuestionForm = createSelector(selectQuestionState, (que
 export const selectErrorMessage = createSelector(selectQuestionState, (questionstate) => questionstate.errorMessage)
 export const selectUpdateQuestiondata = createSelector(selectQuestionState, (questionstate)=>questionstate.updateQuestion)
 export const selectShowModalView = createSelector(selectQuestionState, (questionstate) => questionstate.showModal)
+export const selectShowAnswersForm = createSelector(selectQuestionState, (questionstate) => questionstate.answerquestionForm)
 export const {selectRouteParams} = getRouterSelectors()
 export const selectQuestionById = createSelector(selectQuestionEntitites, selectRouteParams, (questionentities, {id}) => questionentities[id])

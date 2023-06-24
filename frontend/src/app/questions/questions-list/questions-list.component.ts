@@ -1,11 +1,11 @@
 import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Question } from '../questions.model';
+import { iQuestion } from '../questions.model';
 import { Store } from '@ngrx/store';
 import { QuestionsFormComponent } from '../questions-form/questions-form.component';
-import { selectQuestionForm, selectUpdateQuestionForm } from '../questionstate/questions.selector';
-import { QuestionsAPIActions, QuestionsPageActions } from '../questionstate/questions.actions';
+import { selectQuestionForm, selectUpdateQuestionForm } from '../../state/questionstate/questions.selector';
+import { QuestionsAPIActions, QuestionsPageActions } from '../../state/questionstate/questions.actions';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UpdatequestionComponent } from '../updatequestion/updatequestion.component';
 
@@ -17,7 +17,7 @@ import { UpdatequestionComponent } from '../updatequestion/updatequestion.compon
   styleUrls: ['./questions-list.component.css']
 })
 export class QuestionsListComponent implements OnInit{
-  @Input() questions:Question[]|null = []
+  @Input() questions:iQuestion[]|null = []
 
   askquestionForm$ = this.store.select(selectQuestionForm)
   updatequestionForm$ = this.store.select(selectUpdateQuestionForm)

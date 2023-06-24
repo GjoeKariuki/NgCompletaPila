@@ -3,10 +3,11 @@ import { CommonModule,DOCUMENT } from '@angular/common';
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Question } from '../questions.model';
+import { iQuestion } from '../questions.model';
 
 import { Store } from '@ngrx/store';
-import { selectUpdateQuestionForm, selectUpdateQuestiondata } from '../questionstate/questions.selector';
+import { selectUpdateQuestionForm, selectUpdateQuestiondata } from '../../state/questionstate/questions.selector';
+import { QuestionsPageActions } from '../../state/questionstate/questions.actions';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class QuestionsFormComponent implements OnInit {
   editor!:HTMLTextAreaElement
   tagInput!:HTMLInputElement
   tagsContainer!:HTMLDivElement
-  public Editorred = ClassicEditor
+  public Editor = ClassicEditor
 
   constructor(private store:Store,@Inject(DOCUMENT) private _document:Document) {}
 
@@ -40,9 +41,9 @@ export class QuestionsFormComponent implements OnInit {
             objdata => {
             if (objdata) {
               this.questionsForm.patchValue({
-                qtitle: objdata[0].Title,
-                qbody: objdata[0].Body,
-                qtags: objdata[0].Tags
+                qtitle: objdata[0].qtitle,
+                qbody: objdata[0].qbody,
+                qtags: 'my tags'
               })
               console.log('form values', this.questionsForm);
               
@@ -103,6 +104,10 @@ export class QuestionsFormComponent implements OnInit {
       this.tagsContainer.removeChild(tagged)
     }
     
+  }
+
+  closequestionModal(){
+    this.store.dispatch(QuestionsPageActions.toggleShowQuestionsForm())
   }
 
 

@@ -1,32 +1,32 @@
 <div id="sign-up" class="flex w-full items-center justify-center mt-10  bg-center bg-no-repeat bg-blend-multiply">
-    <form class="flex flex-col space-y-4 md:w-1/2 p-5 border border-black rounded" [formGroup]="signupForm" >
+    <form class="flex flex-col space-y-4 md:w-1/2 p-8 border border-black rounded-lg shadow-inner shadow-2xl" [formGroup]="signupForm" >
       <div class="flex">
-        <label for="username" class="w-1/4 md:w-1/6">USERNAME:</label>
-        <input type="text" class="w-3/4 border border-black p-2 rounded" formControlName="username">
-        <span class="text-red-500" *ngIf="!signupForm.get('username')?.valid && signupForm.get('username')?.touched">user name is required</span>
+        <label for="username" class="font-mono  w-1/4 md:w-1/6 text-2xl font-bold mr-6">USERNAME:</label>
+        <input type="text" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="username">
+        <span class="ml-2 font-bold text-red-500" *ngIf="!signupForm.get('username')?.valid && signupForm.get('username')?.touched">*user name is required</span>
       </div>
       <div class="flex">
-        <label for="email" class="w-1/4 md:w-1/6">EMAIL:</label>
-        <input type="email" class="w-3/4 border border-black p-2 rounded" formControlName="email">
-        <div *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">
-            <span class="text-red-500" *ngIf="signupForm.get('email')!.errors!['required']">email is required</span>
+        <label for="email" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">EMAIL:</label>
+        <input type="email" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="email">
+        <div class="ml-2" *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">
+            <span class="font-mono font-bold text-red-500 " *ngIf="signupForm.get('email')!.errors!['required']">*email is required</span>
         </div>
       </div>
       <div class="flex">
-        <label for="password" class="w-1/4 md:w-1/6">PASSWORD:</label>
-        <input type="password" class="w-3/4 border border-black p-2 rounded" formControlName="password">
-        <span class="text-red-500" *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')?.touched">password is required</span>
+        <label for="password" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">PASSWORD:</label>
+        <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="password">
+        <span class="font-mono  ml-2 font-bold text-red-500" *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')?.touched">*password is required</span>
       </div>
       <div class="flex">
-        <label for="confirmpassword" class="w-1/4 md:w-1/6">CONFIRM PASSWORD:</label>
-        <input type="password" class="w-3/4 border border-black p-2 rounded" formControlName="confirmpassword">
-        <span class="text-red-500" *ngIf="!signupForm.get('confirmpassword')?.valid && signupForm.get('confirmpassword')?.touched">password is required</span>
+        <label for="confirmpassword" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">CONFIRM PASSWORD:</label>
+        <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="confirmpassword">
+        <span class="font-mono ml-2 font-bold text-red-500" *ngIf="!signupForm.get('confirmpassword')?.valid && signupForm.get('confirmpassword')?.touched">*password is required</span>
 
       </div>
       <div class="flex justify-start items-center">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
+        <button class="font-mono bg-blue-500 hover:bg-blue-700 text-xl text-white font-bold py-2 px-4 rounded-lg shadow-sm focus:outline-none focus:shadow-outline">Sign Up</button>
       </div>
-      <p class="italic">Already registered??? <a [routerLink]="['/signin']" class="text-indigo-800">Login</a></p>
+      <p class="italic"><a [routerLink]="['/signin']" class="font-mono text-green-700 italic text-xl">Already registered??? Login</a></p>
     </form>
   </div>
   

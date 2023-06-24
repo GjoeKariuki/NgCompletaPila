@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { QuestionService } from "../question.service";
+import { QuestionService } from "../../questions/question.service";
 import { QuestionsAPIActions, QuestionsPageActions } from "./questions.actions";
 import { catchError, concatMap, map, mergeMap, of, tap } from "rxjs";
 import { Router } from "@angular/router";
@@ -30,7 +30,7 @@ export class QuestionEffects {
     updatequestion$ = createEffect(() => 
     this.action$.pipe( ofType(QuestionsPageActions.updateQuestion),
         concatMap(({question}) => this.questionservice.updateQuestion(question).pipe(
-            map(() => QuestionsAPIActions.questionUpdatedSuccess({update: {id:question.id, changes:question}})),
+            map(() => QuestionsAPIActions.questionUpdatedSuccess({update: {id:question.qid, changes:question}})),
             catchError((error) => of(QuestionsAPIActions.questionUpdatedFail({message:error})))
         ))))
     

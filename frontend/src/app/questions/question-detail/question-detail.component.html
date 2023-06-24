@@ -1,7 +1,12 @@
 
 <div class="flex flex-wrap mb-4" id="dion">
-  <div class="w-full md:w-1/4 overflow-auto bg-white" id="question-div">
-    <h4 class="text-4xl font-semibold text-cyan-800 mt-9 underline mb-4"> Question</h4>
+  <div class="w-full md:w-1/4 overflow-auto bg-white border-4 border-green-700 p-3" id="question-div">
+    <div class="flex flex-wrap">
+      <h4 class="text-4xl font-semibold text-cyan-800 mt-9 mb-4"> Question</h4>
+      <button (click)="toggleAnswerForm()"
+      class="{{ (answerform$|async) ? 'bg-green-500' : 'bg-blue-500' }} {{ (answerform$|async) ? 'hover:bg-green-500' : 'hover:bg-blue-700' }} text-white text-lg font-mono font-bold py-2 px-4 rounded-md"
+      type="button">{{ (answerform$|async) ? 'Close Form' : 'Answer Question' }}</button>
+    </div>
     <details class="p-4 rounded-lg">
       <summary class="font-semibold bg-blue-200 px-4 py-2 text-lg cursor-pointer">
         <strong>Title: </strong> <br><i>Is it going to rain today</i>
@@ -32,10 +37,7 @@
 
   <div class="w-full lg:w-2/3 xl:w-3/4 bg-blue-50/40 ml-auto" id="main-content">
     <div class="mt-7 ml-12">
-      <button (click)="toggleAnswerForm()"
-        class="{{ answerform ? 'bg-green-500' : 'bg-blue-500' }} {{ answerform ? 'hover:bg-green-500' : 'hover:bg-blue-700' }} text-white font-bold py-2 px-4 rounded"
-        type="button">{{ answerform ? 'Close Form' : 'Answer Question' }}</button>
-      <app-answerform *ngIf="answerform"></app-answerform>
+      <app-answerform *ngIf="(answerform$|async)"></app-answerform>
       <app-answerslist></app-answerslist>
     </div>
   </div>

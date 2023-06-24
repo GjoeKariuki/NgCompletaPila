@@ -1,43 +1,45 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Question } from './questions.model';
-import { Observable, catchError, throwError } from 'rxjs';
+import { addQuestion, iMessage, iQuestion } from './questions.model';
+import { Observable, Subject, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
   
-  private questionsUrl = 'api/questions'
+  //private questionsUrl = 'api/questions'
+  private questionsdburl = 'http://localhost:8080/questions'
   constructor(private _httpclient:HttpClient) { }
+  question$ = new Subject<iQuestion[]>()
 
-  getallQuestions(){
-    return this._httpclient.get<Question[]>(this.questionsUrl).pipe(
+  getallQuestions():Observable<iQuestion[]>{
+    return this._httpclient.get<iQuestion[]>(this.questionsdburl).pipe(
       catchError(this.handlError)
     )
   }
 
-  getquestionId(id:number){
-    return this._httpclient.get<Question>(`${this.questionsUrl}/${id}`).pipe(
+  getquestionId(id:string):Observable<iQuestion>{
+    return this._httpclient.get<iQuestion>(`${this.questionsdburl}/${id}`).pipe(
+      catchError(this.handlError)
+    )
+  }
+ 
+  createquestion(question:addQuestion):Observable<iMessage>{
+    return this._httpclient.post<iMessage>(this.questionsdburl,question).pipe(
       catchError(this.handlError)
     )
   }
 
-  createquestion({Title,Body,Tags}:Question):Observable<Question>{
-    return this._httpclient.post<Question>(this.questionsUrl,{Title,Body,Tags}).pipe(
+  updateQuestion(id:string, question:addQuestion):Observable<iQuestion> {
+    return this._httpclient.put<iQuestion>(`${this.questionsdburl}/${id}`, question).pipe(
       catchError(this.handlError)
     )
   }
 
-  updateQuestion(question:Question):Observable<Question> {
-    return this._httpclient.put<Question>(this.questionsUrl, question).pipe(
-      catchError(this.handlError)
-    )
-  }
-
-  deleteQuestion(id:number):Observable<unknown>{
-    const url = `${this.questionsUrl}/${id}`
-    return this._httpclient.delete(url).pipe(
+  deleteQuestion(id:string):Observable<iMessage>{
+  
+    return this._httpclient.delete<iMessage>(`${this.questionsdburl}/${id}`).pipe(
       catchError(this.handlError)
     )
   }
