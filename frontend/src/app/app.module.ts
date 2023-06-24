@@ -9,12 +9,13 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { IndbMemoryService } from './indb-mem.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment.development';
+import { InterceptokenService } from './services/interceptoken.service';
 
 
 
@@ -39,7 +40,7 @@ import { environment } from 'src/environments/environment.development';
     StoreRouterConnectingModule.forRoot(),
     
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS, useClass:InterceptokenService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -57,8 +57,16 @@ export interface iTag {
     tid:string
     tname:string
 }
+export interface addTag {
+    tname:string
+}
 
 export interface iQuesTag {
+    qid:string
+    tid:string
+}
+
+export interface addQuesTag {
     qid:string
     tid:string
 }
