@@ -12,12 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteQuestion = exports.updateQuestion = exports.getquestionByEmail = exports.getquestionByQid = exports.getallQuestions = exports.createQuestion = void 0;
 const uuid_1 = require("uuid");
 const dbhelper_1 = require("../dbhelper");
+const validations_1 = require("../helpers/validations");
 // post question
 const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (true) {
             let qid = (0, uuid_1.v4)();
-            const { uemail, qtitle, qbody } = req.body;
+            const { uemail } = req.info;
+            const { qtitle, qbody } = req.body;
+            const { error } = validations_1.questionSchema.validate(req.body);
+            if (error) {
+                return res.status(422).json(error.details[0].message);
+            }
             yield dbhelper_1.DbControllerHelpers.exec('postQuestion', { qid, uemail, qtitle, qbody });
             return res.status(201).json({ message: "question successfully created" });
         }

@@ -15,30 +15,30 @@ export class QuestionEffects {
     
     loadquestions$ = createEffect(() => 
     this.action$.pipe( ofType(QuestionsPageActions.loadQuestions),
-        concatMap(() => this.questionservice.getallQuestions().pipe(
+        mergeMap(() => this.questionservice.getallQuestions().pipe(
             map((questions) => QuestionsAPIActions.questionsLoadedSuccess({questions})),
-            catchError((error) => of(QuestionsAPIActions.questionsLoadedFail({message:error})))
+            catchError((error) => of(QuestionsAPIActions.questionsLoadedFail({error:error})))
         ))))
     
     addquestion$ = createEffect(() => 
     this.action$.pipe( ofType(QuestionsPageActions.addQuestion),
-        concatMap(({question}) => this.questionservice.createquestion(question).pipe(
-            map((newquestion) => QuestionsAPIActions.questionAddedSuccess({question:newquestion})),
-            catchError((error) => of(QuestionsAPIActions.questionAddedFail({message:error})))
+        mergeMap((action) => this.questionservice.createquestion(action.question).pipe(
+            map((response) => QuestionsAPIActions.questionAddedSuccess({message:response})),
+            catchError((error) => of(QuestionsAPIActions.questionAddedFail({error:error})))
         ))))
     
     updatequestion$ = createEffect(() => 
     this.action$.pipe( ofType(QuestionsPageActions.updateQuestion),
-        concatMap(({question}) => this.questionservice.updateQuestion(question).pipe(
-            map(() => QuestionsAPIActions.questionUpdatedSuccess({update: {id:question.qid, changes:question}})),
-            catchError((error) => of(QuestionsAPIActions.questionUpdatedFail({message:error})))
+        concatMap((action) => this.questionservice.updateQuestion(action.id, action.question).pipe(
+            map((response) => QuestionsAPIActions.questionUpdatedSuccess({question:response})),
+            catchError((error) => of(QuestionsAPIActions.questionUpdatedFail({error:error})))
         ))))
     
     deletequestion$ = createEffect(() => 
     this.action$.pipe( ofType(QuestionsPageActions.deleteQuestion),
-        mergeMap(({id}) => this.questionservice.deleteQuestion(id).pipe(
-            map(() => QuestionsAPIActions.questionDeletedSuccess({id})),
-            catchError((error) => of(QuestionsAPIActions.questionDeletedFail({message:error})))
+        concatMap((action) => this.questionservice.deleteQuestion(action.id).pipe(
+            map((response) => QuestionsAPIActions.questionDeletedSuccess({message:response})),
+            catchError((error) => of(QuestionsAPIActions.questionDeletedFail({error:error})))
         ))))
     
     redirectToQuestionsPage = createEffect(

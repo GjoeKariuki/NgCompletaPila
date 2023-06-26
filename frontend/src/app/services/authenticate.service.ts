@@ -8,13 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticateService {
 
+  private usersdburl = 'http://localhost:8080/users'
+ 
   constructor(private httpClient:HttpClient) { }
 
   register(user:iUser):Observable<iMessage>{
-    return this.httpClient.post<iMessage>('',user)
+    return this.httpClient.post<iMessage>(this.usersdburl,user)
   }
 
   login(user:iUser):Observable<iLoginSuccess>{
-    return this.httpClient.post<iLoginSuccess>('', user)
+    //console.log(user);    
+    return this.httpClient.post<iLoginSuccess>(this.usersdburl + '/login', user)
   }
 }

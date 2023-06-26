@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular"
 import { StoreModule } from "@ngrx/store";
 
-import { questionsReducer } from "../state/questionstate/questions.reducer";
+import { questionReducer } from "../state/questionstate/question.reducer";
 import { EffectsModule } from "@ngrx/effects";
 import { QuestionEffects } from "../state/questionstate/questions.effects";
 
@@ -16,7 +16,7 @@ import { QuestionEffects } from "../state/questionstate/questions.effects";
     imports: [
         QuestionsRoutingModule,
         CKEditorModule,
-        StoreModule.forFeature('questions', questionsReducer),
+        StoreModule.forFeature('questions', questionReducer),
         EffectsModule.forFeature([QuestionEffects])        
     ],
     

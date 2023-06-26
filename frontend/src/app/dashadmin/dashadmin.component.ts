@@ -4,29 +4,38 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {faBars, faHamburger} from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngrx/store';
+import {  selectQuestions } from '../state/questionstate/questions.selector';
+import { QuestionsAPIActions, QuestionsPageActions } from '../state/questionstate/questions.actions';
+import { Router, RouterModule } from '@angular/router';
+import { iQuestion } from '../questions/questions.model';
+import { selectAdminLatestView, selectAdminPreviousView } from '../state/admindashstate/adminview.selectors';
+import { AdminViewActions } from '../state/admindashstate/adminview.actions';
 
 @Component({
   selector: 'app-dashadmin',
   standalone: true,
-  imports: [CommonModule,FormsModule,FontAwesomeModule],
+  imports: [CommonModule,FormsModule,FontAwesomeModule,RouterModule],
   templateUrl: './dashadmin.component.html',
   styleUrls: ['./dashadmin.component.css']
 })
 export class DashadminComponent implements OnInit {
-  chk1=false
-  chk2=false
+  chk1$=this.store.select(selectAdminLatestView)
+  chk2$=this.store.select(selectAdminPreviousView)
+  questions$ = this.store.select(selectQuestions) 
   faHamburger = faHamburger
   faBars = faBars
   isNavopen= true
   iSmallScreen = false
   
-  constructor(private store:Store){
+  constructor(private store:Store,private router:Router){
     this.store.subscribe((store) => console.log({store})
     )
     
   }
 
   ngOnInit(): void {
+    
+  
     this.checkScreenSixe()
     window.addEventListener('resize', () => this.checkScreenSixe())
   }
@@ -41,10 +50,23 @@ export class DashadminComponent implements OnInit {
     }
   }
 
+  toggleThis(){ 
+    this.store.dispatch(AdminViewActions.toggleAdminLatestView())
+    this.store.dispatch(AdminViewActions.toggleAdminPreviousView())
+  }
+  toggleThat(){ 
+    this.store.dispatch(AdminViewActions.toggleAdminPreviousView())
+    this.store.dispatch(AdminViewActions.toggleAdminLatestView())
+  }
 
   toggleNav() {
     this.isNavopen = !this.isNavopen
   }
   
+  deleteQuestion(ones:iQuestion){
+    alert("are you sure")
+    this.store.dispatch(QuestionsPageActions.deleteQuestion({id:ones.qid}))
+    this.router.navigate(['dash-view'])
+  }
 
 }

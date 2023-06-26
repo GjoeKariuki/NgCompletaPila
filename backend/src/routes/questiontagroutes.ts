@@ -1,12 +1,15 @@
 import {Router} from 'express'
 import { createQuestionTag, getQuestiontagsbyId, getallQuestionsTags } from '../controllers/questagcontroller'
+import {tokenize} from '../middlewares/tokenizing'
+
+
 
 const questiontagRoutes = Router()
 
 
-questiontagRoutes.post('', createQuestionTag)
-questiontagRoutes.get('', getallQuestionsTags)
-questiontagRoutes.get('/:id', getQuestiontagsbyId)
+questiontagRoutes.post('', tokenize, createQuestionTag)
+questiontagRoutes.get('', tokenize, getallQuestionsTags)
+questiontagRoutes.get('/:id', tokenize, getQuestiontagsbyId)
 
 
 

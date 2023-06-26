@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const answercontroller_1 = require("../controllers/answercontroller");
+const tokenizing_1 = require("../middlewares/tokenizing");
 const answerRoutes = (0, express_1.Router)();
-answerRoutes.post('', answercontroller_1.createAnswer);
-answerRoutes.get('', answercontroller_1.getallAnswers);
-answerRoutes.get('/qid/:id', answercontroller_1.getanswerByQid);
-answerRoutes.get('/aid/:id', answercontroller_1.getAnswersbyId);
-answerRoutes.put('/:id', answercontroller_1.updateAnswer);
+answerRoutes.post('', tokenizing_1.tokenize, answercontroller_1.createAnswer);
+answerRoutes.get('', tokenizing_1.tokenize, answercontroller_1.getallAnswers);
+answerRoutes.get('/qid/:id', tokenizing_1.tokenize, answercontroller_1.getanswerByQid);
+answerRoutes.get('/aid/:id', tokenizing_1.tokenize, answercontroller_1.getAnswersbyId);
+answerRoutes.put('/:id', tokenizing_1.tokenize, answercontroller_1.updateAnswer);
 exports.default = answerRoutes;

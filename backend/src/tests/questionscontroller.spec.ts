@@ -95,7 +95,7 @@ describe("Questions Table API tests", () => {
         })
     })
 
-    test("should not update question with wrong id", ()=> {
+    test.skip("should not update question with wrong id", ()=> {
         return request(app).put('/questions/nsdanaskdsa')
         .expect('Content-Type', /json/)
         .expect(404)

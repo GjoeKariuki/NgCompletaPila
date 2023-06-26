@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { iQuestion, iQuestionExtended } from "../interfaces";
 import { v4 as uid } from 'uuid'
 import { DbControllerHelpers } from "../dbhelper";
+import { questionSchema } from "../helpers/validations";
 
 
 
@@ -16,7 +17,12 @@ export const createQuestion = async(req:iQuestionExtended, res:Response) => {
     try {
         if(true){
             let qid = uid()
-            const {uemail,qtitle,qbody} = req.body
+            const {uemail} = req.info as {uemail:string}
+            const {qtitle,qbody} = req.body
+            const {error} = questionSchema.validate(req.body)
+            if(error){
+                return res.status(422).json(error.details[0].message)
+            }
             await DbControllerHelpers.exec('postQuestion', {qid, uemail, qtitle, qbody})
             return res.status(201).json({message: "question successfully created"})
         }

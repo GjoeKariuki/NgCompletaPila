@@ -4,9 +4,9 @@
   "description": "",
 
   "scripts": {
-    "start:build": "tsc -w",
-    "start:run": "nodemon dist/index.js",
-    "start": "concurrently npm:start"
+    "start:build": "tsc --w",
+    "start:run": "nodemon dist/server.js",
+    "start": "concurrently npm:start:*"
   },
   "keywords": [],
   "author": "",

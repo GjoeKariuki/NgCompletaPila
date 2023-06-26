@@ -2,12 +2,12 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule,DOCUMENT } from '@angular/common';
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { iQuestion } from '../questions.model';
 
 import { Store } from '@ngrx/store';
 import { selectUpdateQuestionForm, selectUpdateQuestiondata } from '../../state/questionstate/questions.selector';
-import { QuestionsPageActions } from '../../state/questionstate/questions.actions';
+import { QuestionsAPIActions, QuestionsPageActions } from '../../state/questionstate/questions.actions';
 
 
 @Component({
@@ -26,49 +26,68 @@ export class QuestionsFormComponent implements OnInit {
   tagInput!:HTMLInputElement
   tagsContainer!:HTMLDivElement
   public Editor = ClassicEditor
+  tags:string[] = []
+  newTag:string = ''
 
-  constructor(private store:Store,@Inject(DOCUMENT) private _document:Document) {}
+  constructor(private fb:FormBuilder,private store:Store,@Inject(DOCUMENT) private _document:Document) {}
 
   ngOnInit(): void {
-      this.questionsForm = new FormGroup({
-        qtitle: new FormControl('', [Validators.required]),
-        qbody: new FormControl('', [Validators.required]),
-        qtags: new FormControl('', [Validators.required])
+      this.questionsForm = this.fb.group({
+        qtitle: ['', [Validators.required]],
+        qbody: ['', [Validators.required]],
+        qtags: ['', [Validators.required]]        
       }) 
-      this.updatequestionForm$.subscribe((val: boolean) => {
-        if (val === true) {
-          this.updateQuestion$.subscribe(
-            objdata => {
-            if (objdata) {
-              this.questionsForm.patchValue({
-                qtitle: objdata[0].qtitle,
-                qbody: objdata[0].qbody,
-                qtags: 'my tags'
-              })
-              console.log('form values', this.questionsForm);
+      // this.updatequestionForm$.subscribe((val: boolean) => {
+      //   if (val === true) {
+      //     this.updateQuestion$.subscribe(
+      //       objdata => {
+      //       if (objdata) {
+      //         this.questionsForm.patchValue({
+      //           qtitle: objdata[0].qtitle,
+      //           qbody: objdata[0].qbody,
+      //           qtags: 'my tags'
+      //         })
+      //         console.log('form values', this.questionsForm);
               
-            }
-          })
-        } else {
-          // this.questionsForm.reset()
-        }
-      })
-    
+      //       }
+      //     })
+      //   } else {
+      //     // this.questionsForm.reset()
+      //   }
+      // })    
   }
-  operateTags(){
-    this.editor = this._document.getElementById('editor') as HTMLTextAreaElement
-    this.tagInput = this._document.getElementById('tag-input') as HTMLInputElement
-    this.tagsContainer = this._document.getElementById('tags-container') as HTMLDivElement
-    this.tagInput.addEventListener('keydown', (event)=>{
-      if(event.key == 'Enter' || event.key === ','){
-          event.preventDefault()
-          let tagText = this.tagInput.value.trim()
-          if(tagText){
-            this.createTag(tagText)
-          }
-          this.tagInput.value = ''
-      }
-    })
+
+  addTag(){
+    if(this.newTag.trim() !== ''){
+      this.tags.push(this.newTag.trim())
+      this.newTag = ''
+    }
+  }
+
+  removeTag(tag:string){
+    const index = this.tags.indexOf(tag)
+    if(index !== -1){
+      this.tags.splice(index,1)
+    }
+  }
+ 
+  submitForm(){
+    console.log(this.questionsForm.value)
+    
+    const {qtitle,qbody} = this.questionsForm.value
+    const {qtags} = this.questionsForm.value
+    console.log(qtitle)
+    console.log(qbody)
+    console.log(qtags)
+    
+    
+    
+    this.store.dispatch(QuestionsPageActions.addQuestion({question:{qtitle,qbody}}))
+    
+    
+    
+    // this.store.dispatch(QuestionsPageActions.addQuestion(this.questionsForm.value))
+    // this.store.dispatch(QuestionsAPIActions.loadQuestions())
   }
   // populateform(){
   //   this.updatequestionForm$.subscribe((val: boolean) => {
@@ -88,24 +107,7 @@ export class QuestionsFormComponent implements OnInit {
   //     }
   //   })
   // }
-  createTag(tagText:string){
-    const tag = this._document.createElement('div')
-    tag.classList.add('tag')
-    tag.innerHTML = `
-    <span>${tagText}</span>
-    <span class="remove-tag" onclick="removeTag(event)">X</span>
-    `
-    this.tagsContainer.appendChild(tag)
-  }
-
-  removeTag(event:MouseEvent){
-    const tagged = (event.target as HTMLElement).parentNode
-    if(tagged instanceof Node){
-      this.tagsContainer.removeChild(tagged)
-    }
-    
-  }
-
+  
   closequestionModal(){
     this.store.dispatch(QuestionsPageActions.toggleShowQuestionsForm())
   }

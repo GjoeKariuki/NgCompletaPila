@@ -57,7 +57,7 @@
       
       <div class="mb-40">
          <div class="text-xl" [ngStyle]="{'color':'red'}" *ngIf="(errorMessage$ |async) !== ''">Error: {{errorMessage$|async}}</div>
-         <div *ngIf="(loading$|async) === false; else loadingElement">
+         <div *ngIf="(questions$|async); else loadingElement">
             <app-questions-list [questions]="questions$|async">
             </app-questions-list>
          </div>

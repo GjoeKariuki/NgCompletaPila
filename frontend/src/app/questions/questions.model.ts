@@ -58,7 +58,7 @@ export interface iTag {
     tname:string
 }
 export interface addTag {
-    tname:string
+    tname:string|string[]
 }
 
 export interface iQuesTag {

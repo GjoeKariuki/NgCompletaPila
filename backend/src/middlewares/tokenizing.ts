@@ -21,7 +21,7 @@ export const tokenize = (req:TokenRequest, res:Response, next:NextFunction) => {
         req.info = dedatoken
     } 
     catch (error:any) {
-        return res.status(403).json(error.message)
+        return res.status(403).json({message:error.message})
     }
     next()
 }

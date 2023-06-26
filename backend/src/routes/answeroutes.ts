@@ -1,14 +1,17 @@
 import {Router} from 'express'
 import { createAnswer, getAnswersbyId, getallAnswers, getanswerByQid, updateAnswer } from '../controllers/answercontroller'
+import {tokenize} from '../middlewares/tokenizing'
+
+
 
 const answerRoutes = Router()
 
 
-answerRoutes.post('', createAnswer)
-answerRoutes.get('', getallAnswers)
-answerRoutes.get('/qid/:id', getanswerByQid)
-answerRoutes.get('/aid/:id', getAnswersbyId)
-answerRoutes.put('/:id', updateAnswer)
+answerRoutes.post('', tokenize, createAnswer)
+answerRoutes.get('', tokenize, getallAnswers)
+answerRoutes.get('/qid/:id', tokenize, getanswerByQid)
+answerRoutes.get('/aid/:id', tokenize, getAnswersbyId)
+answerRoutes.put('/:id', tokenize, updateAnswer)
 
 
 

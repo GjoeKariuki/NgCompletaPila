@@ -1,22 +1,22 @@
-<div id="bd-div" class="flex justify-center items-center bg-center bg-no-repeat bg-blend-multiply ">
-  <form class="flex flex-col space-y-4 w-full md:w-1/2 p-8 border border-black rounded-lg shadow-inner shadow-2xl" [formGroup]="signinForm">
+<div id="bd-div" class="flex justify-center items-center bg-center bg-no-repeat bg-blend-multiply "> 
+  <form class="flex flex-col space-y-4 w-full md:w-1/2 p-8 border border-black rounded-lg shadow-inner shadow-2xl" [formGroup]="siginForm" (ngSubmit)="submitForm()">
     <!-- <div class="bg-red-500 p-2 text-center text-white">
       <span>{{errorMessage}}</span>
     </div> -->
     <div class="flex">
       <label for="email" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold">Email:</label>
-      <input type="email" class="w-3/4 leading-8 border-2 border-black p-2 rounded" placeholder="clarkent@domain.com" formControlName="email">
-      <div class="ml-2 " *ngIf="!signinForm.get('email')?.valid && signinForm.get('email')?.touched" >
-        <span *ngIf="signinForm.get('email')!.errors!['required']" class="font-mono  font-bold text-red-500">*email is required</span>
-
+      <input type="email" class="w-3/4 leading-8 border-2 border-black p-2 rounded" placeholder="clarkent@domain.com" formControlName="uemail">
+      <div class="ml-2 " *ngIf="!siginForm.get('uemail')?.valid && siginForm.get('uemail')?.touched" >
+        <span *ngIf="siginForm.get('uemail')!.errors!['required']" class="font-mono  font-bold text-red-500">*email is required</span>
+        <span *ngIf="siginForm.get('uemail')!.errors!['uemail']" class="font-mono  font-bold text-red-500">*this is not a valid email</span>
       </div>
     </div>
     <div class="flex">
       <label for="password" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-8">Password:</label>
-      <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded mb-3" placeholder="******************" formControlName="password">
+      <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded mb-3" placeholder="******************" formControlName="upassword">
       <span class="font-mono text-green-500 text-xs italic font-bold">Please choose a password that satisfies <p class="text-xl">(a-zA-Z0-9*$)</p></span>
-      <div *ngIf="!signinForm.get('password')?.valid && signinForm.get('password')?.touched">
-        <span class="font-mono ml-2 font-bold text-red-500" *ngIf="signinForm.get('password')!.errors!['required']">*Password is required</span>
+      <div *ngIf="!siginForm.get('upassword')?.valid && siginForm.get('upassword')?.touched">
+        <span class="font-mono ml-2 font-bold text-red-500" *ngIf="siginForm.get('upassword')!.errors!['required']">*Password is required</span>
       </div>
     </div>
     <div class="flex">
@@ -26,7 +26,7 @@
       </label>
     </div>
     <div class="flex justify-start items-center">
-      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-xl text-white font-bold py-3 px-5 rounded-lg shadow-sm focus:outline-none focus:shadow-outline">Login</button>
+      <button type="submit" [disabled]="!this.siginForm.valid" class="bg-blue-500 hover:bg-blue-700 text-xl text-white font-bold py-3 px-5 rounded-lg shadow-sm focus:outline-none focus:shadow-outline">Login</button>
       <a class=" font-mono inline-block align-baseline font-bold text-md  italic text-blue-500 hover:text-blue-800 ml-3" [routerLink]="['/forgotpwd']">
         Forgot Password?
       </a>
@@ -36,3 +36,5 @@
     </p>
   </form>
 </div>
+
+<app-showerror *ngIf="error" [errorMessage]="error" (close)="Close()"></app-showerror>

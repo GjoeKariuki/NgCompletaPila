@@ -6,11 +6,11 @@ import {tokenize} from '../middlewares/tokenizing'
 const questionRoutes = Router()
 
 
-questionRoutes.post('', createQuestion)
-questionRoutes.get('', getallQuestions )
-questionRoutes.get('/:id', getquestionByQid)
-questionRoutes.get('/email/:email', getquestionByEmail)
-questionRoutes.put('/:id', updateQuestion)
+questionRoutes.post('', tokenize, createQuestion)
+questionRoutes.get('', tokenize, getallQuestions )
+questionRoutes.get('/:id', tokenize, getquestionByQid)
+questionRoutes.get('/email/:email', tokenize, getquestionByEmail)
+questionRoutes.put('/:id', tokenize, updateQuestion)
 questionRoutes.delete('/:id', tokenize, deleteQuestion)
 
 

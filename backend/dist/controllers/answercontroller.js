@@ -12,11 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateAnswer = exports.getanswerByQid = exports.getAnswersbyId = exports.getallAnswers = exports.createAnswer = void 0;
 const uuid_1 = require("uuid");
 const dbhelper_1 = require("../dbhelper");
+const validations_1 = require("../helpers/validations");
 // post answer
 const createAnswer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let aid = (0, uuid_1.v4)();
         const { qid, atitle, abody } = req.body;
+        const { error } = validations_1.answerSchema.validate(req.body);
+        if (error) {
+            return res.status(422).json(error.details[0].message);
+        }
         yield dbhelper_1.DbControllerHelpers.exec('postAnswer', { aid, qid, atitle, abody });
         return res.status(201).json({ message: "answer successfully created" });
     }
@@ -40,7 +45,10 @@ const getAnswersbyId = (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const { id } = req.params;
         let answer = (yield dbhelper_1.DbControllerHelpers.exec('getAnswersbyId', { aid: id })).recordset[0];
-        return res.status(200).json(answer);
+        if (answer) {
+            return res.status(200).json(answer);
+        }
+        return res.status(404).json({ message: "answer id is invalid" });
     }
     catch (error) {
         return res.status(500).json({ message: error.message });

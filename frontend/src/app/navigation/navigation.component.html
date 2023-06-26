@@ -11,17 +11,21 @@
                 </div>
 
                 <div class="hidden md:flex items-center space-x-4 ml-20 mr-55">
-                    <a href="#" class=" text-xl py-4 px-2 dark:text-white border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Home</a>
+                    <a [routerLink]="['/']" class=" text-xl py-4 px-2 dark:text-white border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Home</a>
            
-                    <a [routerLink]="['questioneos']" class=" text-xl py-4 px-2 dark:text-white  border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Questions</a>
+                    <a *ngIf="auth.getAuthorizeStatus()" [routerLink]="['questioneos']" class=" text-xl py-4 px-2 dark:text-white  border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Questions</a>
                     
 
-                    <a [routerLink]="['profile-info']" class=" text-xl py-4 px-2 dark:text-white  border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Profile</a>
-                    <a [routerLink]="['dash-view']" class=" text-xl py-4 px-2 dark:text-white  border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Admin</a>
+                    <a *ngIf="auth.getAuthorizeStatus()" [routerLink]="['profile-info']" class=" text-xl py-4 px-2 dark:text-white  border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Profile</a>
+                    <a *ngIf="auth.getAuthorizeStatus()"  [routerLink]="['dash-view']" class=" text-xl py-4 px-2 dark:text-white  border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Admin</a>
+                </div>
+                <div class="hidden md:flex items-center text-white space-x-3">
+                    <p *ngIf="auth.getAuthorizeStatus()">Welcome: {{username}}</p>
+                    <a *ngIf="auth.getAuthorizeStatus()" (click)="logoutUser()" [ngStyle]="{'cursor':'pointer'}" class="border-8 border-green-600 shadow-inner p-1"><p>log-out</p></a>
                 </div>
                 <div class="hidden md:flex items-center space-x-3 ml-40">
-                    <a [routerLink]="['signin']" class="text-2xl py-4 px-3 font-bold dark:text-white bg-green-700 rounded-lg hover:bg-green-500 hover:text-white transition duration-300">Login</a>
-                    <a [routerLink]="['signup']" class="text-2xl py-4 px-3 font-bold dark:text-white bg-green-600 rounded-lg hover:bg-green-400 transition duration-300">Register</a>
+                    <a *ngIf="!auth.getAuthorizeStatus()" [routerLink]="['signin']" class="text-2xl py-4 px-3 font-bold dark:text-white bg-green-700 rounded-lg hover:bg-green-500 hover:text-white transition duration-300">Login</a>
+                    <a *ngIf="!auth.getAuthorizeStatus()" [routerLink]="['signup']" class="text-2xl py-4 px-3 font-bold dark:text-white bg-green-600 rounded-lg hover:bg-green-400 transition duration-300 ">Register</a>
                 </div>
             </div>
             
@@ -48,20 +52,26 @@
                 <a href="#" class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">Home</a>
             </li>
             <li>
-                <a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Questions</a>
+                <a *ngIf="auth.getAuthorizeStatus()" [routerLink]="['questioneos']" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Questions</a>
             </li>
             
             <li>
-                <a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Admin</a>
+                <a *ngIf="auth.getAuthorizeStatus()"  [routerLink]="['dash-view']" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Admin</a>
             </li>
             <li>
-                <a href="#" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Profile</a>
+                <a *ngIf="auth.getAuthorizeStatus()" [routerLink]="['profile-info']" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Profile</a>
             </li>
             <li>
-                <a [routerLink]="['signin']" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Login</a>
+                <a *ngIf="!auth.getAuthorizeStatus()" [routerLink]="['signin']" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Login</a>
             </li>
             <li>
-                <a [routerLink]="['signup']" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Login</a>
+                <a *ngIf="!auth.getAuthorizeStatus()" [routerLink]="['signup']" class="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Register</a>
+            </li>
+            <li>
+                <p>Welcome: {{username}}</p>
+            </li>
+            <li>
+                <a *ngIf="auth.getAuthorizeStatus()" (click)="logoutUser()" routerLink="">Logout</a>
             </li>
         </ul>
     </div>

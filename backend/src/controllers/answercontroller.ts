@@ -2,6 +2,7 @@ import {Request,Response} from 'express'
 import { iAnswer, iAnswerExtended } from "../interfaces";
 import { v4 as uid } from 'uuid'
 import { DbControllerHelpers } from '../dbhelper';
+import { answerSchema } from '../helpers/validations';
 
 
 
@@ -11,6 +12,10 @@ export const createAnswer = async(req:iAnswerExtended, res:Response) => {
     try {
         let aid = uid()
         const {qid,atitle,abody} = req.body
+        const {error} = answerSchema.validate(req.body)
+        if(error){
+            return res.status(422).json(error.details[0].message)
+        }
         await DbControllerHelpers.exec('postAnswer',{aid,qid,atitle,abody})
         return res.status(201).json({message:"answer successfully created"})
     } catch (error:any) {

@@ -31,7 +31,7 @@ export const signinUser = async(req:iUserExtended, res:Response) => {
             return rest
         })  
         
-        const token = jwt.sign(payload[0], <string>process.env.SECRET_KEY, {expiresIn:'3600s'})
+        const token = jwt.sign(payload[0], <string>process.env.SECRET_KEY, {expiresIn:'28800s'})
         return res.status(200).json({message:"login successful!!", token, role:user[0].urole, name:user[0].uname, email:user[0].uemail})
 
     } catch (error:any) {
@@ -90,7 +90,7 @@ export const getuserByemail:RequestHandler = async(req,res) => {
     try {
         const {uzeremail} = req.query as {uzeremail:string}
         // console.log(uzeremail)
-        let user = await (await DbControllerHelpers.query(`SELECT * FROM USERS WHERE uemail=${uzeremail}`)).recordset
+        let user:iUSER = await (await DbControllerHelpers.query(`SELECT * FROM USERS WHERE uemail=${uzeremail}`)).recordset[0]
     
         // let user:iUSER = (await DbControllerHelpers.exec('getUserbyEmail', {uemail:email})).recordset[0]
         if(user){

@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginSchema = exports.signupSchema = void 0;
+exports.tagSchema = exports.questionSchema = exports.answerSchema = exports.loginSchema = exports.signupSchema = void 0;
 const joi_1 = __importStar(require("joi"));
 exports.signupSchema = joi_1.default.object({
     uname: joi_1.default.string().required().min(4),
@@ -39,5 +39,19 @@ exports.loginSchema = joi_1.default.object({
         'string.empty': "please add an email",
         'string.email': "this is not a valid email"
     }),
-    upassword: joi_1.default.string().required()
+    upassword: joi_1.default.string().required().pattern((new RegExp(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$`))).messages({
+        'string.password': "the password is wrong"
+    }),
+});
+exports.answerSchema = joi_1.default.object({
+    qid: joi_1.default.string().required().min(2),
+    atitle: joi_1.default.string().required().min(2),
+    abody: joi_1.default.string().required().min(2)
+});
+exports.questionSchema = joi_1.default.object({
+    qtitle: joi_1.default.string().required().min(2),
+    qbody: joi_1.default.string().required().min(2)
+});
+exports.tagSchema = joi_1.default.object({
+    tname: joi_1.default.object().required()
 });

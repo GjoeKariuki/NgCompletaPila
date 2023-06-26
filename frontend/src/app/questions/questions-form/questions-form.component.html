@@ -1,7 +1,7 @@
 <div class="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-500">
     <div class="bg-white p-8 rounded-lg shadow-lg">
         <div>
-            <form action="" [formGroup]="questionsForm">
+            <form action="" [formGroup]="questionsForm" (ngSubmit)="submitForm()">
                 <h2 class="text-2xl font-bold mb-4">Ask Question Here</h2>
                 <div class="m-3">
                     <label for="" class=" text-xl font-mono font-bold uppercase">Question Title</label>
@@ -10,21 +10,28 @@
                 <div  class="m-3">
                     <label for="" class=" text-xl font-mono font-bold uppercase">Question Body</label>
                     <div class="border-4 border-sky-400 shadow-inner">
-                        <ckeditor [editor]="Editor" tagName="textarea" formControlName="qbody"></ckeditor>
+                        <ckeditor [editor]="Editor" formControlName="qbody"></ckeditor>
                     </div>
                 </div>
                 <div class="m-3">
                     <label for="" class=" text-xl font-mono font-bold uppercase">Question Tags</label>
-                    <input class="p-2 w-full leading-loose border-4 border-sky-400"  type="text" formControlName="qtags" placeholder="questiontags">
+                    <input class="p-2 w-full leading-loose border-4 border-sky-400" type="text" formControlName="qtags" placeholder="questiontags">
+
+                    <!-- <input class="p-2 w-full leading-loose border-4 border-sky-400" [(ngModel)]="newTag" (keydown.enter)="addTag()" (blur)="addTag()" type="text" formControlName="qtags" placeholder="questiontags">
+                    <div *ngFor="let tag of tags">
+                        <p>{{tag}}</p>
+                        <button (click)="removeTag(tag)">X</button>
+                    </div> -->
+                </div>
+                <div class="flex flex-wrap justify-around">
+                    <button class="bg-sky-700 text-white text-lg font-mono px-4 py-2 mt-4 rounded hover:bg-zinc-950" (click)="closequestionModal()">Close</button>
+                    <button type="submit" class="bg-green-700 text-white text-lg font-mono px-4 py-2 mt-4 rounded hover:bg-fuchsia-950">Submit</button>
+        
                 </div>
             </form>
             
         </div>
         
-        <div class="flex flex-wrap justify-around">
-            <button class="bg-sky-700 text-white text-lg font-mono px-4 py-2 mt-4 rounded hover:bg-zinc-950" (click)="closequestionModal()">Close</button>
-            <button class="bg-green-700 text-white text-lg font-mono px-4 py-2 mt-4 rounded hover:bg-fuchsia-950">Submit</button>
-
-        </div>
+        
     </div>
 </div>

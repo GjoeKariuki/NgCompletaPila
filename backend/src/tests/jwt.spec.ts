@@ -10,11 +10,11 @@ describe("JWT Tokenizer tests", ()=>{
         return request(app).delete('/users/caribean@gmail.com')
         .expect(403)
         .expect('Content-Type', /json/)
-        .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1ZTBhM2ExLWYxYTctNGJhOS05MzY1LTg2NjIyOGYzMzM5ZSIsIm5hbWUiOiJKb2huIERvZSIsImVtYWlsIjoiam5kYW1idWtpdGVzdEBnbWFpbC5jb20iLCJpYXQiOjE2ODM3OTc5MDcsImV4cCI6MTY4NDE1NzkwN30.hUS5mpfgMaBvUehVSOBbzT4lVtXysoiOl6zW5L8n9bw')
+        .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxZGMyZWMxYi1mMWZkLTQ2ZjQtOThhYi1hMTZhNjcyMGZkNzUiLCJ1bmFtZSI6IkNwdCBCYXJib3NhIiwidWVtYWlsIjoiY2FyaWJlYW40QGdtYWlsLmNvbSIsInVyb2xlIjoidXNlciIsImlhdCI6MTY4NzUxNzQ5NCwiZXhwIjoxNjg3NTE3NDk2fQ.Pdiq5UWkopq1fk1f2YA50ET1kV9s-m0-UIN-2_XJLVw')
         .then((response:request.Response) => {
             expect(response.body).toEqual(
                 expect.objectContaining(
-                    {message:expect.stringMatching('')}
+                    {message:expect.stringMatching('jwt expired')}
                 )
             )
         })

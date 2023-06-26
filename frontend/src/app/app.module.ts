@@ -15,7 +15,9 @@ import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment.development';
-import { InterceptokenService } from './services/interceptoken.service';
+// import { InterceptokenService } from './services/interceptoken.service';
+import { adminViewreducer } from './state/admindashstate/adminview.reducers';
+import { questionReducer } from './state/questionstate/question.reducer';
 
 
 
@@ -34,13 +36,13 @@ import { InterceptokenService } from './services/interceptoken.service';
     
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(IndbMemoryService),
-    StoreModule.forRoot({router:routerReducer}),     
+    StoreModule.forRoot({router:routerReducer, questions:questionReducer, adminview:adminViewreducer}),     
     StoreDevtoolsModule.instrument({name:"Ngfrontend",maxAge:25,logOnly:environment.production}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     
   ],
-  providers: [{provide:HTTP_INTERCEPTORS, useClass:InterceptokenService, multi:true}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,8 +16,19 @@ const dbhelper_1 = require("../dbhelper");
 const createTag = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { tname } = req.body;
-        for (let tn of tname) {
+        //const {error} = tagSchema.validate(req.body)
+        // if(error){
+        //     return res.status(422).json(error.details[0].message)
+        // }
+        if (typeof (tname) == 'object') {
+            for (let tn of tname) {
+                let tid = (0, uuid_1.v4)();
+                yield dbhelper_1.DbControllerHelpers.exec('postTag', { tid, tn });
+            }
+        }
+        else if (typeof (tname) == 'string') {
             let tid = (0, uuid_1.v4)();
+            let tn = tname;
             yield dbhelper_1.DbControllerHelpers.exec('postTag', { tid, tn });
         }
         return res.status(201).json({ message: "tag successfully created" });
@@ -45,6 +56,7 @@ const getagById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(200).json(tag);
     }
     catch (error) {
+        return res.status(500).json({ message: error.message });
     }
 });
 exports.getagById = getagById;

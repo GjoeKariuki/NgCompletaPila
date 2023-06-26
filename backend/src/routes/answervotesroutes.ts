@@ -1,14 +1,16 @@
 import {Router} from 'express'
 import { postAnswervotes, getAnswerVotes, getAnswerVotesbyAid, getAnswerVotesbyid, updateAnswerVotes } from '../controllers/answervotecontroller'
+import { tokenize } from '../middlewares/tokenizing'
+
 
 const answervotesRoutes = Router()
 
 
-answervotesRoutes.post('',postAnswervotes)
-answervotesRoutes.get('', getAnswerVotes)
-answervotesRoutes.get('/aid/:id', getAnswerVotesbyAid )
-answervotesRoutes.get('/avid/:id', getAnswerVotesbyid)
-answervotesRoutes.put('/:id', updateAnswerVotes)
+answervotesRoutes.post('', tokenize, postAnswervotes)
+answervotesRoutes.get('',  tokenize, getAnswerVotes)
+answervotesRoutes.get('/aid/:id',  tokenize, getAnswerVotesbyAid )
+answervotesRoutes.get('/avid/:id',  tokenize, getAnswerVotesbyid)
+answervotesRoutes.put('/:id',  tokenize, updateAnswerVotes)
 // answervotesRoutes.get('', )
 
 

@@ -49,7 +49,7 @@ const signinUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             const { upassword, uisDeleted, uemailSent, uprofPic } = usr, rest = __rest(usr, ["upassword", "uisDeleted", "uemailSent", "uprofPic"]);
             return rest;
         });
-        const token = jsonwebtoken_1.default.sign(payload[0], process.env.SECRET_KEY, { expiresIn: '3600s' });
+        const token = jsonwebtoken_1.default.sign(payload[0], process.env.SECRET_KEY, { expiresIn: '28800s' });
         return res.status(200).json({ message: "login successful!!", token, role: user[0].urole, name: user[0].uname, email: user[0].uemail });
     }
     catch (error) {
@@ -103,7 +103,7 @@ const getuserByemail = (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const { uzeremail } = req.query;
         // console.log(uzeremail)
-        let user = yield (yield dbhelper_1.DbControllerHelpers.query(`SELECT * FROM USERS WHERE uemail=${uzeremail}`)).recordset;
+        let user = yield (yield dbhelper_1.DbControllerHelpers.query(`SELECT * FROM USERS WHERE uemail=${uzeremail}`)).recordset[0];
         // let user:iUSER = (await DbControllerHelpers.exec('getUserbyEmail', {uemail:email})).recordset[0]
         if (user) {
             return res.status(200).json(user);

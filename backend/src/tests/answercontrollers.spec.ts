@@ -6,7 +6,7 @@ import app from '../server'
 
 describe("Answer table API tests", ()=> {
     
-    test.skip("should create an answer", () => {
+    test("should create an answer", () => {
         return request(app).post('/answers')
         .expect('Content-Type', /json/)
         .expect(201)
@@ -24,7 +24,7 @@ describe("Answer table API tests", ()=> {
         })
     })
 
-    test.skip("should get all answers", () => {
+    test("should get all answers", () => {
         return request(app).get('/answers')
         .expect('Content-Type', /json/)
         .expect(200)
@@ -46,7 +46,7 @@ describe("Answer table API tests", ()=> {
         })
     })
 
-    test.skip("should get answer by answerid", ()=> {
+    test("should get answer by answerid", ()=> {
         return request(app).get('/answers/aid/19cca528-5dbc-4765-93ed-a4ae0f68a8f4')
         .expect('Content-Type', /json/)
         .expect(200)
@@ -66,7 +66,7 @@ describe("Answer table API tests", ()=> {
         })
     })
 
-    test.skip("should get answer by questionid", ()=> {
+    test("should get answer by questionid", ()=> {
         return request(app).get('/answers/qid/fc8d2b2a-ccbd-4f37-bafe-0a24db0d2027')
         .expect('Content-Type', /json/)
         .expect(200)

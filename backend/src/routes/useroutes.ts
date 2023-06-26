@@ -8,10 +8,10 @@ const userOutes = Router()
 
 userOutes.post('/login',signinUser)
 userOutes.post('', registerUser)
-userOutes.get('', getallUsers)
-userOutes.get('/id/:id', getuserByid)
-userOutes.get('/barittos', getuserByemail)
-userOutes.put('/:id', updateUser)
+userOutes.get('', tokenize, getallUsers)
+userOutes.get('/id/:id', tokenize,getuserByid)
+userOutes.get('/barittos', tokenize,getuserByemail)
+userOutes.put('/:id', tokenize,updateUser)
 userOutes.delete('/:email', tokenize,deleteUserecords)
 
 

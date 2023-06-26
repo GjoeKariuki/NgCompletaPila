@@ -12,7 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 import { QuestionsPageActions } from '../../state/questionstate/questions.actions';
 import { sequenceEqual } from 'rxjs';
-import { selectErrorMessage, selectQuestionForm, selectQuestions, selectQuestionsLoading, selectShowModalView, selectUpdateQuestionForm } from '../../state/questionstate/questions.selector';
+import {  selectErrorMessage, selectQuestionForm, selectQuestions,   selectShowModalView, selectUpdateQuestionForm } from '../../state/questionstate/questions.selector';
 import { UpdatequestionComponent } from '../updatequestion/updatequestion.component';
 
 
@@ -26,13 +26,13 @@ import { UpdatequestionComponent } from '../updatequestion/updatequestion.compon
 export class QuestionsComponent implements OnInit {
   
   questions$ = this.store.select(selectQuestions) 
+  
   askquestionform$ = this.store.select(selectQuestionForm)  
   updatequestionForm$ = this.store.select(selectUpdateQuestionForm)
   
   errorMessage$ = this.store.select(selectErrorMessage)
-  loading$ = this.store.select(selectQuestionsLoading)
+  // loading$ = this.store.select(selectQuestionsLoading)
   showModal$=this.store.select(selectShowModalView)
-  
   sidebarVisible=true
   faBars = faBars
   isNavopen= true
@@ -57,12 +57,12 @@ export class QuestionsComponent implements OnInit {
 
   
 
-  checkScreenSixe(){
+  checkScreenSixe() {
     this.iSmallScreen = window.innerWidth < 768
-    if(this.iSmallScreen){
+    if (this.iSmallScreen) {
       this.isNavopen = false
     }
-    else{
+    else {
       this.isNavopen = true
     }
   }

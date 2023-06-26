@@ -2,9 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const commentscontroller_1 = require("../controllers/commentscontroller");
+const tokenizing_1 = require("../middlewares/tokenizing");
 const commentRoutes = (0, express_1.Router)();
-commentRoutes.post('', commentscontroller_1.createComments);
-commentRoutes.get('/aid/:id', commentscontroller_1.getcommentsByAnswer);
-commentRoutes.get('/cid/:id', commentscontroller_1.getCommentsById);
-commentRoutes.put('/:id', commentscontroller_1.updateComment);
+commentRoutes.post('', tokenizing_1.tokenize, commentscontroller_1.createComments);
+commentRoutes.get('/aid/:id', tokenizing_1.tokenize, commentscontroller_1.getcommentsByAnswer);
+commentRoutes.get('/cid/:id', tokenizing_1.tokenize, commentscontroller_1.getCommentsById);
+commentRoutes.put('/:id', tokenizing_1.tokenize, commentscontroller_1.updateComment);
 exports.default = commentRoutes;

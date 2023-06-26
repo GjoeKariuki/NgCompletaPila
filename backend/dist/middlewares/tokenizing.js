@@ -18,7 +18,7 @@ const tokenize = (req, res, next) => {
         req.info = dedatoken;
     }
     catch (error) {
-        return res.status(403).json(error.message);
+        return res.status(403).json({ message: error.message });
     }
     next();
 };

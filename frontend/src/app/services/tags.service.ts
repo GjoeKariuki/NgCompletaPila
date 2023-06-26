@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { addTag, iMessage, iTag } from '../questions/questions.model';
 import { Observable, Subject, catchError, throwError } from 'rxjs';
@@ -8,24 +8,33 @@ import { Observable, Subject, catchError, throwError } from 'rxjs';
 })
 export class TagsService {
 
-  private tagsdburl = ''
+  private tagsdburl = 'http://localhost:8080/tags'
   constructor(private _httpClient:HttpClient) { }
-  answer$ = new Subject<iTag[]>()
+  tags$ = new Subject<iTag[]>()
 
   getallTags(): Observable<iTag[]> {
-    return this._httpClient.get<iTag[]>(this.tagsdburl).pipe(
+    let token = localStorage.getItem('token') as string
+    return this._httpClient.get<iTag[]>(this.tagsdburl, {
+      headers: new HttpHeaders().set('token',token)
+    }).pipe(
       catchError(this.handlError)
     )
   }
 
-  getanswerId(id:string): Observable<iTag> {
-    return this._httpClient.get<iTag>(`${this.tagsdburl}/${id}`).pipe(
+  getagById(id:string): Observable<iTag> {
+    let token = localStorage.getItem('token') as string
+    return this._httpClient.get<iTag>(`${this.tagsdburl}/${id}`,{
+      headers: new HttpHeaders().set('token',token)
+    }).pipe(
       catchError(this.handlError)
     )
   }
 
-  createanswer(answer: addTag): Observable<iMessage> {
-    return this._httpClient.post<iMessage>(this.tagsdburl, answer).pipe(
+  createTag(tag: addTag): Observable<iMessage> {
+    let token = localStorage.getItem('token') as string
+    return this._httpClient.post<iMessage>(this.tagsdburl, tag,{
+      headers: new HttpHeaders().set('token',token)
+    }).pipe(
       catchError(this.handlError)
     )
   }
