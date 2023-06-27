@@ -24,7 +24,7 @@ export interface QuestionsState{
     answerquestionForm:boolean    
     updatequestionForm:boolean
     loading:boolean
-    errorMessage:''
+    errorMessage:string
     updateQuestion:iQuestion[]
     showModal:boolean  
     error:string

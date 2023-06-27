@@ -191,6 +191,10 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxZGMyZWMxYi1mMWZkLTQ2ZjQt
 }
 
 
+#####
+GET http://localhost:8080/comments
+
+
 ####
 GET http://localhost:8080/comments/aid/19cca528-5dbc-4765-93ed-a4ae0f68a8f4
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxZGMyZWMxYi1mMWZkLTQ2ZjQtOThhYi1hMTZhNjcyMGZkNzUiLCJ1bmFtZSI6IkNwdCBCYXJib3NhIiwidWVtYWlsIjoiY2FyaWJlYW40QGdtYWlsLmNvbSIsInVyb2xlIjoidXNlciIsImlhdCI6MTY4NzQyODUyNCwiZXhwIjoxNjg3NDMyMTI0fQ.mAitK4e2bZlGAWLhMQnn8fSxNS87kSkMMLORlhobluU

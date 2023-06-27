@@ -23,6 +23,16 @@ export interface iUser {
     uisDeleted:number
 }
 
+
+
+export interface addUser {
+    uname:string
+    uemail:string
+    upassword:string
+    urole:string
+    uprofPic:string
+}
+
 export interface iMessage {
     message:string
 }

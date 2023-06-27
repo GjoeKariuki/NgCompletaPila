@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { iLoginSuccess, iMessage, iUser } from '../questions/questions.model';
-import { Observable } from 'rxjs';
+import { addUser, iLoginSuccess, iLoginUser, iMessage, iUser } from '../questions/questions.model';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +12,20 @@ export class AuthenticateService {
  
   constructor(private httpClient:HttpClient) { }
 
-  register(user:iUser):Observable<iMessage>{
-    return this.httpClient.post<iMessage>(this.usersdburl,user)
+  register(user:addUser):Observable<iMessage>{
+    return this.httpClient.post<iMessage>(this.usersdburl,user).pipe(
+      catchError(this.handlError)
+    )
   }
 
-  login(user:iUser):Observable<iLoginSuccess>{
+  login(user:iLoginUser):Observable<iLoginSuccess>{
     //console.log(user);    
-    return this.httpClient.post<iLoginSuccess>(this.usersdburl + '/login', user)
+    return this.httpClient.post<iLoginSuccess>(this.usersdburl + '/login', user).pipe(
+      catchError(this.handlError)
+    )
+  }
+
+  private handlError({status}:HttpErrorResponse){
+    return throwError(() => `${status}: something happened registering/login users`)
   }
 }

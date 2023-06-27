@@ -8,7 +8,7 @@ import { iQuestion } from '../questions.model';
 import { Store } from '@ngrx/store';
 import { selectUpdateQuestionForm, selectUpdateQuestiondata } from '../../state/questionstate/questions.selector';
 import { QuestionsAPIActions, QuestionsPageActions } from '../../state/questionstate/questions.actions';
-
+import {addTags, getTags} from '../../state/tagstate/tags.action'
 
 @Component({
   selector: 'app-questions-form',
@@ -71,23 +71,15 @@ export class QuestionsFormComponent implements OnInit {
     }
   }
  
-  submitForm(){
-    console.log(this.questionsForm.value)
-    
+  submitForm(){    
+    console.log(this.questionsForm.value);
     const {qtitle,qbody} = this.questionsForm.value
-    const {qtags} = this.questionsForm.value
-    console.log(qtitle)
-    console.log(qbody)
-    console.log(qtags)
-    
-    
-    
+    const {qtags} = this.questionsForm.value  
     this.store.dispatch(QuestionsPageActions.addQuestion({question:{qtitle,qbody}}))
-    
-    
-    
-    // this.store.dispatch(QuestionsPageActions.addQuestion(this.questionsForm.value))
-    // this.store.dispatch(QuestionsAPIActions.loadQuestions())
+    this.store.dispatch(addTags({tag:{tname:[qtags]}}))
+    this.store.dispatch(QuestionsAPIActions.loadQuestions())
+    this.store.dispatch(getTags())  
+    this.closequestionModal()   
   }
   // populateform(){
   //   this.updatequestionForm$.subscribe((val: boolean) => {

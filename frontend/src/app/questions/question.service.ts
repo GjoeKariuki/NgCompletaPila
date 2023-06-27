@@ -33,15 +33,15 @@ export class QuestionService {
   }
 
   // append the url (queryType--or which way??)
-  getquestionsEmail():Observable<iQuestion[]>{
-    let token = localStorage.getItem('token') as string
-    return this._httpclient.get<iQuestion[]>(``,
-    {
-      headers:new HttpHeaders().set('token',token)
-    }).pipe(
-      catchError(this.handlError)
-    )
-  }
+  // getquestionsEmail():Observable<iQuestion[]>{
+  //   let token = localStorage.getItem('token') as string
+  //   return this._httpclient.get<iQuestion[]>(``,
+  //   {
+  //     headers:new HttpHeaders().set('token',token)
+  //   }).pipe(
+  //     catchError(this.handlError)
+  //   )
+  // }
  
   createquestion(question:addQuestion):Observable<iMessage>{
     let token = localStorage.getItem('token') as string

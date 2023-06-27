@@ -18,6 +18,9 @@ import { environment } from 'src/environments/environment.development';
 // import { InterceptokenService } from './services/interceptoken.service';
 import { adminViewreducer } from './state/admindashstate/adminview.reducers';
 import { questionReducer } from './state/questionstate/question.reducer';
+import { tagsReducer } from './state/tagstate/tags.reducers';
+import { QuestionEffects } from './state/questionstate/questions.effects';
+import { TagsEffects } from './state/tagstate/tags.effects';
 
 
 
@@ -36,9 +39,9 @@ import { questionReducer } from './state/questionstate/question.reducer';
     
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(IndbMemoryService),
-    StoreModule.forRoot({router:routerReducer, questions:questionReducer, adminview:adminViewreducer}),     
+    StoreModule.forRoot({router:routerReducer, questions:questionReducer, adminview:adminViewreducer,tags:tagsReducer}),     
     StoreDevtoolsModule.instrument({name:"Ngfrontend",maxAge:25,logOnly:environment.production}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([QuestionEffects,TagsEffects]),
     StoreRouterConnectingModule.forRoot(),
     
   ],

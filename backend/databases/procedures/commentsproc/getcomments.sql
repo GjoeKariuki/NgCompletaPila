@@ -19,3 +19,12 @@ AS
 BEGIN
 	SELECT * FROM COMMENTS WHERE cid=@cid AND cisDeleted=0
 END
+
+
+CREATE OR ALTER PROCEDURE getallComments
+AS
+BEGIN
+	SELECT * FROM COMMENTS WHERE cisDeleted = 0
+END
+
+exec getallComments

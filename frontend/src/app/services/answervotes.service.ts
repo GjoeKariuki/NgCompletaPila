@@ -43,7 +43,7 @@ export class AnswervotesService {
   }
 
   private handlError({ status }: HttpErrorResponse) {
-    return throwError(() => `${status}: somezing happened..`)
+    return throwError(() => `${status}: somezing happened..with answers votes db`)
   }
 
 

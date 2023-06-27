@@ -17,7 +17,7 @@ export class QuestionEffects {
     this.action$.pipe( ofType(QuestionsPageActions.loadQuestions),
         mergeMap(() => this.questionservice.getallQuestions().pipe(
             map((questions) => QuestionsAPIActions.questionsLoadedSuccess({questions})),
-            catchError((error) => of(QuestionsAPIActions.questionsLoadedFail({error:error})))
+            catchError((error) => of(QuestionsAPIActions.questionsLoadedFail({error})))
         ))))
     
     addquestion$ = createEffect(() => 

@@ -10,13 +10,3 @@ export const addTagsSuccess = createAction('[TAGS] - addtagsSuccess', props<{mes
 export const addTagsFail = createAction('[TAGS] - addtagsFail', props<{error:string}>())
 export const getSingleTag = createAction('[TAGS] - getsingletag', props<{id:string}>())
 
-
-// export const TagsAPIActions = createActionGroup(
-//     {
-//         source: 'Tags Page',
-//         events: {
-//             "gettags":emptyProps(),
-//             ""
-//         }
-//     }
-// )

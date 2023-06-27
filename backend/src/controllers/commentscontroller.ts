@@ -16,6 +16,17 @@ export const createComments = async(req:iCommentsExtended, res:Response) => {
     }
 }
 
+export const getallComments = async (req:iCommentsExtended, res:Response) => {
+    try {
+        if(true){
+            let comments: iComments[] = await (await DbControllerHelpers.exec('getallComments')).recordset
+            return res.status(200).json(comments)
+        }
+    } catch (error:any) {
+        return res.status(500).json({message:error.message})
+    }
+}
+
 
 // get comments
 export const getcommentsByAnswer = async(req:iCommentsExtended, res:Response) => {
