@@ -1,13 +1,15 @@
 import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { iQuestion } from '../questions.model';
+import { iQuestion, iTag } from '../questions.model';
 import { Store } from '@ngrx/store';
 import { QuestionsFormComponent } from '../questions-form/questions-form.component';
 import { selectQuestionForm, selectUpdateQuestionForm } from '../../state/questionstate/questions.selector';
 import { QuestionsAPIActions, QuestionsPageActions } from '../../state/questionstate/questions.actions';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UpdatequestionComponent } from '../updatequestion/updatequestion.component';
+import { getTags } from 'src/app/state/tagstate/tags.action';
+import { selectTags } from 'src/app/state/tagstate/tags.selector';
 
 @Component({
   selector: 'app-questions-list',
@@ -21,13 +23,21 @@ export class QuestionsListComponent implements OnInit{
 
   askquestionForm$ = this.store.select(selectQuestionForm)
   updatequestionForm$ = this.store.select(selectUpdateQuestionForm)
-  
+  questiontags:iTag[] = []
+  tags$!:iTag[]
 
   
   constructor(private store:Store, private renderer:Renderer2){}
 
   ngOnInit(): void {
-    
+    this.store.dispatch(getTags())
+    this.store.select(selectTags).subscribe(res => {
+      if(res) {
+        this.tags$ = res
+        console.log(this.tags$)        
+      }
+    }, error => {console.log(error);
+    })
   }
   editQuestion(){
     this.store.dispatch(QuestionsPageActions.toggleShowModalView())
@@ -52,6 +62,10 @@ export class QuestionsListComponent implements OnInit{
       this.renderer.setProperty(document.documentElement, 'scrollTop', 0)
       this.renderer.setProperty(document.body, 'scrollTop', 0)
       window.scrollTo(oppts)
+  }
+
+  getTagsforQuestion(qid:string){
+    return this.tags$.filter(tg => tg.qid === qid)
   }
 
  

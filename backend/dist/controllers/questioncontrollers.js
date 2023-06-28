@@ -19,15 +19,34 @@ const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function*
         if (true) {
             let qid = (0, uuid_1.v4)();
             const { uemail } = req.info;
-            const { qtitle, qbody } = req.body;
+            const { qtitle, qbody, tname } = req.body;
             const { error } = validations_1.questionSchema.validate(req.body);
             if (error) {
                 return res.status(422).json(error.details[0].message);
             }
-            yield dbhelper_1.DbControllerHelpers.exec('postQuestion', { qid, uemail, qtitle, qbody });
-            return res.status(201).json({ message: "question successfully created" });
+            else {
+                yield dbhelper_1.DbControllerHelpers.exec('postQuestion', { qid, uemail, qtitle, qbody });
+                // add to tags table(generated qid, new tid, tname)
+                if (typeof (tname) == 'object') {
+                    for (let tn of tname) {
+                        let tid = (0, uuid_1.v4)();
+                        yield dbhelper_1.DbControllerHelpers.exec('postTag', { tid, tn, qid });
+                        //console.log();
+                    }
+                }
+                if (typeof (tname) == 'string') {
+                    let tnamearr = tname;
+                    let tnamearray = tnamearr.split(',');
+                    for (let tnobj of tnamearray) {
+                        if (tnobj !== '') {
+                            let tid = (0, uuid_1.v4)();
+                            yield dbhelper_1.DbControllerHelpers.exec('postTag', { tid, tn: tnobj, qid });
+                        }
+                    }
+                }
+            }
+            return res.status(201).json({ message: "question  and tags successfully created" });
         }
-        //return res.status(404).json({message: "cannot create question"})
     }
     catch (error) {
         return res.status(500).json({ message: error.message });

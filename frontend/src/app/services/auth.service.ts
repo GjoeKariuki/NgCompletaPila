@@ -54,6 +54,7 @@ export class AuthService {
     localStorage.setItem('token',res.token)
     localStorage.setItem('role',res.role)
     localStorage.setItem('name', res.name)
+    localStorage.setItem('email', res.email)
   }
   logoutUser() {
     //this.isuserLoggedin = false

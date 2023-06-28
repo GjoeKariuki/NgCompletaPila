@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { addAnswerVotes, iAnswerVotes, iMessage } from '../questions/questions.model';
 import { Observable, Subject, catchError, throwError } from 'rxjs';
@@ -8,21 +8,25 @@ import { Observable, Subject, catchError, throwError } from 'rxjs';
 })
 export class AnswervotesService {
 
-  private answervotesdburl = ''
+  private answervotesdburl = 'http://localhost:8080/answer-votes'
   constructor(private _httpClient:HttpClient) { }
   answervotes$ = new Subject<iAnswerVotes[]>()
 
   getallAnswervotes(): Observable<iAnswerVotes[]> {
-    return this._httpClient.get<iAnswerVotes[]>(this.answervotesdburl).pipe(
+    let token = localStorage.getItem('token') as string
+    return this._httpClient.get<iAnswerVotes[]>(this.answervotesdburl,
+      {
+        headers: new HttpHeaders().set('token',token)
+      }).pipe(
       catchError(this.handlError)
     )
   }
 
-  getanswervotesId(id:string): Observable<iAnswerVotes> {
-    return this._httpClient.get<iAnswerVotes>(`${this.answervotesdburl}/${id}`).pipe(
-      catchError(this.handlError)
-    )
-  }
+  // getanswervotesId(id:string): Observable<iAnswerVotes> {
+  //   return this._httpClient.get<iAnswerVotes>(`${this.answervotesdburl}/${id}`).pipe(
+  //     catchError(this.handlError)
+  //   )
+  // }
 
   createanswer(answer: addAnswerVotes): Observable<iMessage> {
     return this._httpClient.post<iMessage>(this.answervotesdburl, answer).pipe(

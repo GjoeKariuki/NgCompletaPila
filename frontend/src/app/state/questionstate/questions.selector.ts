@@ -5,8 +5,8 @@ import { getRouterSelectors } from "@ngrx/router-store";
 
 export const selectQuestionState = createFeatureSelector<fromQuestions.QuestionsState>('questions')
 export const selectQuestions = createSelector(selectQuestionState, (questionstate) => questionstate.questions)
-const questionId = createSelector(selectQuestionState, (questionstate) => questionstate.questionId)
-export const selectSingleQuestion = createSelector(selectQuestions, questionId, (questionstate, id) => {
+export const selectquestionsId = createSelector(selectQuestionState, (questionstate) => questionstate.questionId)
+export const selectSingleQuestion = createSelector(selectQuestions, selectquestionsId, (questionstate, id) => {
     return questionstate.find(x => x.qid === id)
 }
 )

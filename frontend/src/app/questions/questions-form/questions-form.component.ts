@@ -35,7 +35,7 @@ export class QuestionsFormComponent implements OnInit {
       this.questionsForm = this.fb.group({
         qtitle: ['', [Validators.required]],
         qbody: ['', [Validators.required]],
-        qtags: ['', [Validators.required]]        
+        tname: ['', [Validators.required]]        
       }) 
       // this.updatequestionForm$.subscribe((val: boolean) => {
       //   if (val === true) {
@@ -73,13 +73,14 @@ export class QuestionsFormComponent implements OnInit {
  
   submitForm(){    
     console.log(this.questionsForm.value);
-    const {qtitle,qbody} = this.questionsForm.value
-    const {qtags} = this.questionsForm.value  
-    this.store.dispatch(QuestionsPageActions.addQuestion({question:{qtitle,qbody}}))
-    this.store.dispatch(addTags({tag:{tname:[qtags]}}))
+    const {qtitle,qbody,tname} = this.questionsForm.value
+    //const {qtags} = this.questionsForm.value  
+    this.store.dispatch(QuestionsPageActions.addQuestion({question:{qtitle,qbody,tname}}))
+    //this.store.dispatch(addTags({tag:{tname:[qtags]}}))
     this.store.dispatch(QuestionsAPIActions.loadQuestions())
-    this.store.dispatch(getTags())  
-    this.closequestionModal()   
+    //this.store.dispatch(getTags())  
+    this.closequestionModal()  
+    this.store.dispatch(QuestionsPageActions.loadQuestions()) 
   }
   // populateform(){
   //   this.updatequestionForm$.subscribe((val: boolean) => {

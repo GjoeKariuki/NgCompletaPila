@@ -5,11 +5,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {faBars, faHamburger} from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngrx/store';
 import {  selectQuestions } from '../state/questionstate/questions.selector';
-import { QuestionsAPIActions, QuestionsPageActions } from '../state/questionstate/questions.actions';
+import { QuestionsPageActions } from '../state/questionstate/questions.actions';
 import { Router, RouterModule } from '@angular/router';
-import { iQuestion } from '../questions/questions.model';
+import { iQuestion, iUser } from '../questions/questions.model';
 import { selectAdminLatestView, selectAdminPreviousView } from '../state/admindashstate/adminview.selectors';
 import { AdminViewActions } from '../state/admindashstate/adminview.actions';
+import { selectUsers } from '../state/userstate/users.selector';
+import {UsersActionApI} from '../state/userstate/users.action'
+
 
 @Component({
   selector: 'app-dashadmin',
@@ -22,6 +25,7 @@ export class DashadminComponent implements OnInit {
   chk1$=this.store.select(selectAdminLatestView)
   chk2$=this.store.select(selectAdminPreviousView)
   questions$ = this.store.select(selectQuestions) 
+  users$ = this.store.select(selectUsers)
   faHamburger = faHamburger
   faBars = faBars
   isNavopen= true
@@ -33,8 +37,7 @@ export class DashadminComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void { 
   
     this.checkScreenSixe()
     window.addEventListener('resize', () => this.checkScreenSixe())
@@ -63,6 +66,11 @@ export class DashadminComponent implements OnInit {
     this.isNavopen = !this.isNavopen
   }
   
+  deleteUser(user:iUser){
+    alert("are you sure")
+    this.store.dispatch(UsersActionApI.deleteUser({id:user.uemail}))
+    this.router.navigate(['dash-view'])
+  }
   deleteQuestion(ones:iQuestion){
     alert("are you sure")
     this.store.dispatch(QuestionsPageActions.deleteQuestion({id:ones.qid}))

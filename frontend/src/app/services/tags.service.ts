@@ -21,6 +21,15 @@ export class TagsService {
     )
   }
 
+  gettagsbyQid(id:string):Observable<iTag[]> {
+    let token = localStorage.getItem('token') as string
+    return this._httpClient.get<iTag[]>(`${this.tagsdburl + '/qid'}/${id}`, {
+      headers: new HttpHeaders().set('token',token)
+    }).pipe(
+      catchError(this.handlError)
+    )
+  }
+
   getagById(id:string): Observable<iTag> {
     let token = localStorage.getItem('token') as string
     return this._httpClient.get<iTag>(`${this.tagsdburl}/${id}`,{

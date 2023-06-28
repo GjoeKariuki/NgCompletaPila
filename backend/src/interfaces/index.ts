@@ -54,6 +54,7 @@ export interface iQuestionExtended extends Request {
         uemail:string
         qtitle:string
         qbody:string
+        tname:string[]
     }
     info?:iDecodedData
     params: {

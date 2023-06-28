@@ -2,16 +2,16 @@
 <div class="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-500">
     <div class="bg-white p-8 rounded-lg shadow-lg">
         <div>
-            <form action="" [formGroup]="answerForm">
+            <form action="" [formGroup]="answersForm" (ngSubmit)="submitForm()">
                 <h2 class="text-2xl font-mono font-bold mb-4">Answer Question</h2>
                 <div class="m-3">
                     <label for="" class=" text-xl font-mono font-bold uppercase">Answer</label>
-                    <input class="shadow-inner p-2 w-full leading-loose border-4 border-lime-500 border-opacity-75" type="text"  placeholder="questiontitle">
+                    <input class="shadow-inner p-2 w-full leading-loose border-4 border-lime-500 border-opacity-75" type="text" formControlName="atitle" placeholder="answer title" >
                 </div>
                 <div class="m-3">
                     <label for="" class=" text-xl font-mono font-bold uppercase">Answer Explanation</label>
                     <div class="border-4 border-lime-500 border-opacity-75 shadow-inner">
-                        <ckeditor [editor]="Editor" tagName="textarea"></ckeditor>
+                        <ckeditor [editor]="Editor" tagName="textarea" formControlName="abody"></ckeditor>
                     </div>                    
                 </div>
                 <div class="flex flex-wrap justify-around">

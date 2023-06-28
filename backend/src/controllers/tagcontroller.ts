@@ -41,6 +41,15 @@ export const getallTags = async(req:Request, res:Response) => {
     }
 }
 
+export const getTagsbyQid = async(req:iTagExtended, res:Response) => {
+    try {
+        const {id} = req.params
+        let tags:iTag[] = (await DbControllerHelpers.exec('gettagByQid', {qid:id})).recordset
+        return res.status(200).json(tags)
+    } catch (error:any) {
+        return res.status(500).json({message:error.message})
+    }
+}
 export const getagById = async(req:iTagExtended,res:Response) => {
     try {
         const {id} = req.params

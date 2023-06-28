@@ -5,7 +5,7 @@ Content-Type: application/json
 
 
 {
-    "uemail": "caribean5@gmail.com",
+    "uemail": "githaigageorge12@gmail.com",
     "upassword": "@krakenJO32?"
 }
 
@@ -63,12 +63,13 @@ token: eyJzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZ
 ######
 POST http://localhost:8080/questions
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NzAzOTAzLCJleHAiOjE2ODc3MDc1MDN9.0qlxusEo3WPuT396VjCqy4LMh5-UJr0TzbNjiyM_1nw
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4NjAyOTE1NS1iYmFiLTQ2N2YtOTc0Mi1lZDEzNDQ2MjkyMzYiLCJ1bmFtZSI6IkpvbmVzIiwidWVtYWlsIjoiY2FyaWJlYW41QGdtYWlsLmNvbSIsInVyb2xlIjoidXNlciIsImlhdCI6MTY4Nzg3NzcxNSwiZXhwIjoxNjg3OTA2NTE1fQ.pmYewsavyG4XygIL4TsRyXX797K0SzTPT8LMwIJSwWM
 
 {
     
-    "qtitle": "iufwifhwf",
-    "qbody": "'<p>kikiko</p>'"
+    "qtitle": "this is a simple question again",
+    "qbody": "<p>&lt;p&gt;the questions is not as simple as it is because of many becauses&lt;/p&gt;</p>",
+    "tname": ""
 }
 
 
@@ -174,6 +175,9 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4NjAyOTE1NS1iYmFiLTQ2N2Yt
 GET http://localhost:8080/tags/0b3a91ae-3cfe-4e37-9eef-860d84e5501a
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4NjAyOTE1NS1iYmFiLTQ2N2YtOTc0Mi1lZDEzNDQ2MjkyMzYiLCJ1bmFtZSI6IkpvbmVzIiwidWVtYWlsIjoiY2FyaWJlYW41QGdtYWlsLmNvbSIsInVyb2xlIjoidXNlciIsImlhdCI6MTY4Nzc4Nzc2NywiZXhwIjoxNjg3ODE2NTY3fQ.U-MxWJ2aF9uWIq0_OVryTdA5HTt2RLZqZx7GWAgcmQo
 
+######
+GET http://localhost:8080/tags/qid/74d75ed0-7bb1-45e6-ad10-8e13841a588e
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4NjAyOTE1NS1iYmFiLTQ2N2YtOTc0Mi1lZDEzNDQ2MjkyMzYiLCJ1bmFtZSI6IkpvbmVzIiwidWVtYWlsIjoiY2FyaWJlYW41QGdtYWlsLmNvbSIsInVyb2xlIjoidXNlciIsImlhdCI6MTY4Nzg3NzcxNSwiZXhwIjoxNjg3OTA2NTE1fQ.pmYewsavyG4XygIL4TsRyXX797K0SzTPT8LMwIJSwWM
 
 
 
@@ -181,7 +185,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4NjAyOTE1NS1iYmFiLTQ2N2Yt
 ####
 POST http://localhost:8080/comments
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxZGMyZWMxYi1mMWZkLTQ2ZjQtOThhYi1hMTZhNjcyMGZkNzUiLCJ1bmFtZSI6IkNwdCBCYXJib3NhIiwidWVtYWlsIjoiY2FyaWJlYW40QGdtYWlsLmNvbSIsInVyb2xlIjoidXNlciIsImlhdCI6MTY4NzQyODUyNCwiZXhwIjoxNjg3NDMyMTI0fQ.mAitK4e2bZlGAWLhMQnn8fSxNS87kSkMMLORlhobluU
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3OTQ4NjU2LCJleHAiOjE2ODc5Nzc0NTZ9.fOO40U1ucX80Zn0U772dwIxJ4YBhPnVOFfk1Ays_m0w
 
 
 

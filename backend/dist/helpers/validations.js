@@ -50,7 +50,8 @@ exports.answerSchema = joi_1.default.object({
 });
 exports.questionSchema = joi_1.default.object({
     qtitle: joi_1.default.string().required().min(2),
-    qbody: joi_1.default.string().required().min(2)
+    qbody: joi_1.default.string().required().min(2),
+    tname: joi_1.default.string().required()
 });
 exports.tagSchema = joi_1.default.object({
     tname: joi_1.default.object().required()

@@ -3,7 +3,7 @@ import * as fromTagAction from './tags.action'
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { TagsService } from "src/app/services/tags.service";
 import { Router } from "@angular/router";
-import { catchError, map, mergeMap, of } from "rxjs";
+import { catchError, concat, concatMap, map, mergeMap, of } from "rxjs";
 
 @Injectable()
 export class TagsEffects {
@@ -20,6 +20,13 @@ export class TagsEffects {
             ))
         )
     )
+
+    loadtagsbyEmail$ = createEffect(() => 
+    this.action$.pipe(ofType(fromTagAction.getTagsbyQ),
+    concatMap((action) => this.tagservice.gettagsbyQid(action.id).pipe(
+        map((tags) => fromTagAction.getTagsbyQSuccess({tags_question:tags})),
+        catchError((error) => of(fromTagAction.getTagsbyQFail({error:error})))
+    ))))
 
     addtags$ = createEffect(() => 
     this.action$.pipe(ofType(fromTagAction.addTags),

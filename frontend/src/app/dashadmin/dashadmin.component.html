@@ -39,16 +39,21 @@
     </div>
     <div id="panel" class="flex justify-center items-center">
         <div *ngIf="(chk1$|async)"  id="user-content" class="flex flex-col">
-            <div class="mb-4 border p-4 bg-teal-50/90 rounded-md" id="inneruser">
-                <div><img src="../../assets/personavatar.jpg" alt="" id="person-avatar"></div>
-                <div class="flex justify-between">
-                    <p class="font-semibold text-xl">Johhny Wick</p>
+            <div *ngIf="(users$ |async ); else nousers">
+                <div *ngFor="let user of (users$|async)">
+                    <div class="w-3/4 mb-4 border p-4 bg-teal-50/90 rounded-md" id="inneruser">
+                        <div><img src="../../assets/personavatar.jpg" alt="" id="person-avatar"></div>
+                        <div class="flex justify-between">
+                            <p class="font-semibold text-xl">{{user.uname}}</p>
+                        </div>
+                        <div class="flex justify-between">
+                            <p class="font-semibold text-xl">{{user.uemail}}</p>
+                        </div>
+                        <div><button type="button" class="border py-2 px-4 rounded-lg bg-sky-400" (click)="deleteUser(user)">Delete</button></div>
+                    </div>
                 </div>
-                <div class="flex justify-between">
-                    <p class="font-semibold text-xl">reidi@osd.com</p>
-                </div>
-                <div><button type="button" class="border py-2 px-4 rounded-lg bg-sky-400">Delete</button></div>
             </div>
+            <ng-template #nousers>no users found</ng-template>      
             
         </div>
         <div *ngIf="(chk2$|async)" id="question-content" class="flex flex-col">

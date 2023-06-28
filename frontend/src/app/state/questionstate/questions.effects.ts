@@ -4,6 +4,7 @@ import { QuestionService } from "../../questions/question.service";
 import { QuestionsAPIActions, QuestionsPageActions } from "./questions.actions";
 import { catchError, concatMap, map, mergeMap, of, tap } from "rxjs";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 
 
 @Injectable()
@@ -25,7 +26,8 @@ export class QuestionEffects {
         mergeMap((action) => this.questionservice.createquestion(action.question).pipe(
             map((response) => QuestionsAPIActions.questionAddedSuccess({message:response})),
             catchError((error) => of(QuestionsAPIActions.questionAddedFail({error:error})))
-        ))))
+        )),
+        tap(() => {this.store.dispatch(QuestionsAPIActions.loadQuestions())})))
     
     updatequestion$ = createEffect(() => 
     this.action$.pipe( ofType(QuestionsPageActions.updateQuestion),
@@ -55,6 +57,7 @@ export class QuestionEffects {
     constructor(
         private action$:Actions, 
         private questionservice:QuestionService,
-        private router:Router){}    
+        private router:Router,
+        private store:Store){}    
     
 }

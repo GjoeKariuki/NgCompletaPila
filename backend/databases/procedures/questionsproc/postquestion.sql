@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE postQuestion(
-	@qid VARCHAR(200), @uemail VARCHAR(150), @qtitle VARCHAR(400), @qbody TEXT
+	@qid VARCHAR(200), @uemail VARCHAR(150), @qtitle VARCHAR(400), @qbody TEXT, @tname
 )
 AS
 BEGIN

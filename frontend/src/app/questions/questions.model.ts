@@ -10,6 +10,7 @@ export interface iQuestion {
 export interface addQuestion {
     qtitle:string
     qbody:string
+    tname:string|string[]
 }
 
 export interface iUser {
@@ -47,14 +48,17 @@ export interface iLoginSuccess {
     token:string
     role:string
     name:string
+    email:string
 }
 export interface iAnswer {
     aid:string
     qid:string
+    uid:string
     atitle:string
     abody:string
     aisDeleted:number
     adatecreated:string
+    isPreffered:number
 }
 
 export interface addAnswer {
@@ -66,6 +70,7 @@ export interface addAnswer {
 export interface iTag {
     tid:string
     tname:string
+    qid:string
 }
 export interface addTag {
     tname:string|string[]
@@ -98,6 +103,7 @@ export interface addComments {
 export interface iAnswerVotes {
     aid:string
     uid:string
+    avid:string
     aupvotes:number
     adownvotes:number
     apreffered:number

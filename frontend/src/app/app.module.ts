@@ -21,6 +21,14 @@ import { questionReducer } from './state/questionstate/question.reducer';
 import { tagsReducer } from './state/tagstate/tags.reducers';
 import { QuestionEffects } from './state/questionstate/questions.effects';
 import { TagsEffects } from './state/tagstate/tags.effects';
+import { usersReducer } from './state/userstate/users.reducer';
+import { AnswersReducer } from './state/answerstate/answers.reducer';
+import { UsersEffects } from './state/userstate/users.effects';
+import { AnswersEffect } from './state/answerstate/answers.effects';
+import { CommentsReducer } from './state/commentstate/comments.reducer';
+import { CommentsEffects } from './state/commentstate/comments.effects';
+import { AnswerVotesReducer } from './state/answervotes/answervotes.reducer';
+import { AnswerVotesEffects } from './state/answervotes/answervotes.effects';
 
 
 
@@ -39,9 +47,14 @@ import { TagsEffects } from './state/tagstate/tags.effects';
     
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(IndbMemoryService),
-    StoreModule.forRoot({router:routerReducer, questions:questionReducer, adminview:adminViewreducer,tags:tagsReducer}),     
+    StoreModule.forRoot({
+      router:routerReducer, questions:questionReducer, 
+      adminview:adminViewreducer,tags:tagsReducer, 
+      users:usersReducer, answers:AnswersReducer,
+      comments:CommentsReducer, answervotes:AnswerVotesReducer}),    
     StoreDevtoolsModule.instrument({name:"Ngfrontend",maxAge:25,logOnly:environment.production}),
-    EffectsModule.forRoot([QuestionEffects,TagsEffects]),
+    EffectsModule.forRoot([QuestionEffects,TagsEffects, UsersEffects, 
+      AnswersEffect, CommentsEffects, AnswerVotesEffects]),
     StoreRouterConnectingModule.forRoot(),
     
   ],

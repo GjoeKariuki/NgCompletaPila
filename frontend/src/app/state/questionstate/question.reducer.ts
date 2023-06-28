@@ -92,8 +92,8 @@ export const questionReducer=createReducer<QuestionsState>(
     {return {...state,error:actions.error,questions:[]} }       
      ),
 
-     on(QuestionsAPIActions.loadSingleQuestionId,(state,actions)=>{
-        return {...state,questionId:actions.id}}
+     on(QuestionsAPIActions.loadSingleQuestionId,(state,action)=>{
+        return {...state,questionId:action.id}}
     ),
 
     //  on(QuestionsPageActions.updateQuestion, (state,action) => 

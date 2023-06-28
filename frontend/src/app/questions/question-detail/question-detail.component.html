@@ -9,36 +9,34 @@
     </div>
     <details class="p-4 rounded-lg">
       <summary class="font-semibold bg-blue-200 px-4 py-2 text-lg cursor-pointer">
-        <strong>Title: </strong> <br><i>Is it going to rain today</i>
+        <strong><i>Open the question title</i></strong> <br><i>{{ question.qtitle | truncaText:8}}</i>
       </summary>
       <div class="bg-blue-100">
-        <p class="leading-6 px-3 py-2 text-gray-800">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-          velit laborum magni numquam veritatis, atque quibusdam aspernatur molestiae aliquam unde et enim, quidem
-          voluptatem commodi sapiente, accusantium doloribus ut minus.</p>
+        <p class="leading-6 px-3 py-2 text-gray-800">{{question.qtitle}}</p>
       </div>
     </details>
     <details class="p-4 rounded-lg">
       <summary class="font-semibold bg-blue-200 px-4 py-2 text-lg cursor-pointer">
-        <strong>Context: </strong><br><i>{{ contextdetails | truncaText: 30 }}</i>
+        <strong><i>Open the question body</i> </strong><br><i>{{ question.qbody | truncaText: 10 }}</i>
       </summary>
       <div class="bg-blue-100">
-        <p class="leading-6 px-3 py-2 text-gray-800">{{ contextdetails }}</p>
+        <p class="leading-6 px-3 py-2 text-gray-800">{{ question.qbody }}</p>
       </div>
     </details>
     <details class="p-4 rounded-lg">
       <summary class="font-semibold bg-blue-200 px-4 py-2 text-lg cursor-pointer">
-        <strong>Tags: </strong><br> <i>Open the question tags</i>
+        <strong><i>Open the question tags</i></strong><br> 
       </summary>
       <div class="bg-blue-100">
-        <p class="leading-6 px-3 py-2 text-gray-800">{{ questiontags }}</p>
+        <p *ngFor="let ones of questiontags" class="leading-6 px-3 py-2 text-gray-800">{{ ones.tname }}</p>
       </div>
     </details>
   </div>
 
   <div class="w-full lg:w-2/3 xl:w-3/4 bg-blue-50/40 ml-auto" id="main-content">
     <div class="mt-7 ml-12">
-      <app-answerform *ngIf="(answerform$|async)"></app-answerform>
-      <app-answerslist></app-answerslist>
+      <app-answerform *ngIf="(answerform$|async)" [questionID]="id"></app-answerform>
+      <app-answerslist [answersID]="id"></app-answerslist>
     </div>
   </div>
 </div>

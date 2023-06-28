@@ -14,3 +14,4 @@ export const addnewAnswerFail = createAction('[Answers] - add new answer fail', 
 export const updateAnswer = createAction('[Answers] - update answer',props<{updateanswer:addAnswer, id:string}>())
 export const updateAnswerSuccess = createAction('[Answers] - update answer success', props<{answer:iAnswer}>())
 export const updateAnswerFail = createAction('[Answers] - update answer fail', props<{error:string}>())
+

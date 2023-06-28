@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { addComments, iComments, iMessage } from '../questions/questions.model';
 import { Observable, Subject, catchError, throwError } from 'rxjs';
@@ -13,31 +13,50 @@ export class CommentsService {
   comments$ = new Subject<iComments[]>()
 
   getallComments():Observable<iComments[]> {
-    return this._httpclient.get<iComments[]>(this.commentsdburl).pipe(
+        let token = localStorage.getItem('token') as string
+    return this._httpclient.get<iComments[]>(this.commentsdburl, 
+      {
+        headers: new HttpHeaders().set('token',token)
+      }).pipe(
       catchError(this.handlError)
     )
-
   }
   getCommentsbyAnswer(id:string):Observable<iComments[]>{
-    return this._httpclient.get<iComments[]>(`${this.commentsdburl + '/aid'}/${id}`).pipe(
+        let token = localStorage.getItem('token') as string
+    return this._httpclient.get<iComments[]>(`${this.commentsdburl + '/aid'}/${id}`, 
+    {
+      headers: new HttpHeaders().set('token',token)
+    }).pipe(
       catchError(this.handlError)
     )
   }
 
   getcommentsById(id:string):Observable<iComments>{
-    return this._httpclient.get<iComments>(`${this.commentsdburl + '/cid'}/${id}`).pipe(
+        let token = localStorage.getItem('token') as string
+    return this._httpclient.get<iComments>(`${this.commentsdburl + '/cid'}/${id}`, 
+    {
+      headers: new HttpHeaders().set('token',token)
+    }).pipe(
       catchError(this.handlError)
     )
   }
 
   createcomments(comment:addComments):Observable<iMessage>{
-    return this._httpclient.post<iMessage>(this.commentsdburl,comment).pipe(
+        let token = localStorage.getItem('token') as string
+    return this._httpclient.post<iMessage>(this.commentsdburl,comment,
+      {
+        headers: new HttpHeaders().set('token',token)
+      }).pipe(
       catchError(this.handlError)
     )
   }
 
   updatecomment(id:string, comment:addComments):Observable<iComments> {
-    return this._httpclient.put<iComments>(`${this.commentsdburl}/${id}`, comment).pipe(
+        let token = localStorage.getItem('token') as string
+    return this._httpclient.put<iComments>(`${this.commentsdburl}/${id}`, comment, 
+    {
+      headers: new HttpHeaders().set('token',token)
+    }).pipe(
       catchError(this.handlError)
     )
   }
@@ -48,6 +67,8 @@ export class CommentsService {
     return throwError(() => `${status}: somezing happened.. with comments db`)
   }
 }
+
+
 
 
 

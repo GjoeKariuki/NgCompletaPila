@@ -3,11 +3,14 @@ import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AnswersService } from "src/app/services/answers.service";
 import * as fromActions from './answers.actions'
-import { catchError, concatMap, map, mergeMap, of } from "rxjs";
+import { catchError, concatMap, map, mergeMap, of, tap } from "rxjs";
 
 @Injectable()
 export class AnswersEffect {
     
+    ngrxOnInitEffects() {
+        return fromActions.getAnswers()
+    }
     loadanswer$ = createEffect(()=> {
         return this.action$.pipe(
             ofType(fromActions.getAnswers),
@@ -18,7 +21,8 @@ export class AnswersEffect {
                     }),
                     catchError(error => of(fromActions.getAnswersFail({error:error.message})))
                 )
-            })
+            }),
+
         )
     })
 
@@ -32,7 +36,8 @@ export class AnswersEffect {
                     }),
                     catchError(error => of(fromActions.addnewAnswerFail({error:error.message})))
                 )
-            })
+            }),
+            tap(() => {fromActions.getAnswers()})
         )
     })
 

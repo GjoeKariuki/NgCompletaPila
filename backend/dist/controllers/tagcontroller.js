@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getagById = exports.getallTags = exports.createTag = void 0;
+exports.getagById = exports.getTagsbyQid = exports.getallTags = exports.createTag = void 0;
 const uuid_1 = require("uuid");
 const dbhelper_1 = require("../dbhelper");
 // post tag
@@ -49,6 +49,17 @@ const getallTags = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.getallTags = getallTags;
+const getTagsbyQid = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        let tags = (yield dbhelper_1.DbControllerHelpers.exec('gettagByQid', { qid: id })).recordset;
+        return res.status(200).json(tags);
+    }
+    catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
+exports.getTagsbyQid = getTagsbyQid;
 const getagById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;

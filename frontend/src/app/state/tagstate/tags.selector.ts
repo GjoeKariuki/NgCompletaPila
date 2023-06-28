@@ -8,6 +8,7 @@ const tagid = createSelector(selectTagState, (tagstate) => tagstate.tagId)
 export const selectSingleTag = createSelector(selectTags, tagid, (tagstate, id) => 
 {   return tagstate.find(x => x.tid===id)})
 
+export const selectTagsForSpecificQuestionid = createSelector(selectTagState, (tagstate)=> tagstate.tags_question)
 
 
 export const {selectRouteParams} = getRouterSelectors()

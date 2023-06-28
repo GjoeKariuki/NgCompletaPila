@@ -3,7 +3,7 @@ import * as fromActions from './comments.actions'
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { CommentsService } from "src/app/services/comments.service";
 import { Router } from "@angular/router";
-import { catchError, concatMap, map, mergeMap, of } from "rxjs";
+import { catchError, concatMap, map, mergeMap, of, tap } from "rxjs";
 
 
 
@@ -28,7 +28,9 @@ export class CommentsEffects {
     mergeMap((action) => this.commentservice.createcomments(action.newcomment).pipe(
         map((response) => fromActions.CommentsAPIActions.addCommentSuccess({message:response})),
         catchError((error) => of(fromActions.CommentsAPIActions.addCommentFail({error:error})))
-    ))))
+    )),
+    tap(() => {fromActions.CommentsAPIActions.getComments()})
+    ))
 
     updatecomment$ = createEffect(() => 
     this.action$.pipe(ofType(fromActions.CommentsAPIActions.updateComment),

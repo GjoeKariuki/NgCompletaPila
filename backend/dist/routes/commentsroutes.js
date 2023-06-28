@@ -5,6 +5,7 @@ const commentscontroller_1 = require("../controllers/commentscontroller");
 const tokenizing_1 = require("../middlewares/tokenizing");
 const commentRoutes = (0, express_1.Router)();
 commentRoutes.post('', tokenizing_1.tokenize, commentscontroller_1.createComments);
+commentRoutes.get('', tokenizing_1.tokenize, commentscontroller_1.getallComments);
 commentRoutes.get('/aid/:id', tokenizing_1.tokenize, commentscontroller_1.getcommentsByAnswer);
 commentRoutes.get('/cid/:id', tokenizing_1.tokenize, commentscontroller_1.getCommentsById);
 commentRoutes.put('/:id', tokenizing_1.tokenize, commentscontroller_1.updateComment);

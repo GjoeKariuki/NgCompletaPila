@@ -7,4 +7,5 @@ const tagRoutes = (0, express_1.Router)();
 tagRoutes.post('', tokenizing_1.tokenize, tagcontroller_1.createTag);
 tagRoutes.get('', tokenizing_1.tokenize, tagcontroller_1.getallTags);
 tagRoutes.get('/:id', tokenizing_1.tokenize, tagcontroller_1.getagById);
+tagRoutes.get('/qid/:id', tokenizing_1.tokenize, tagcontroller_1.getTagsbyQid);
 exports.default = tagRoutes;

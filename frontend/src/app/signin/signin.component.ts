@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { AuthenticateService } from '../services/authenticate.service';
 import { AuthService } from '../services/auth.service';
 import { ShowerrorComponent } from '../showerror/showerror.component';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-signin',
@@ -17,8 +18,15 @@ export class SigninComponent implements OnInit {
   siginForm!:FormGroup
   error!:string|{string:string}
   username!:string|null
+  signinerror = ''
 
-  constructor(private fb:FormBuilder, private authenticate:AuthenticateService, private auth:AuthService,private router:Router, @Inject(PLATFORM_ID) private platformId:object ) {}
+  constructor(
+    private store:Store, 
+    private fb:FormBuilder, 
+    private authenticate:AuthenticateService, 
+    private auth:AuthService,
+    private router:Router, 
+    @Inject(PLATFORM_ID) private platformId:object ) {}
 
   ngOnInit(): void {
     this.siginForm = this.fb.group({
@@ -38,6 +46,7 @@ export class SigninComponent implements OnInit {
           localStorage.setItem('role', res.token)
           localStorage.setItem('name', res.name)
           localStorage.setItem('token', res.token)
+          localStorage.setItem('email', res.email)
           
         }
         if (res.token) {
@@ -53,12 +62,10 @@ export class SigninComponent implements OnInit {
         // }
              
       }, (err) => {
-        console.log(err)
-        if(typeof(err) === 'object')   {
-          this.error = err.error.message
-        }else {
-          this.error = err.error
-        }  
+       
+         this.signinerror = err
+         console.log('myerror'+ this.signinerror);
+         
       })
       
       
@@ -68,6 +75,6 @@ export class SigninComponent implements OnInit {
     
   }
   
-  Close(){this.error=''}
+  Close(){this.signinerror=''}
   
 }

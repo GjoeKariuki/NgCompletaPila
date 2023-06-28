@@ -36,7 +36,8 @@ export const answerSchema = Joi.object({
 
 export const questionSchema = Joi.object({
     qtitle: Joi.string().required().min(2),
-    qbody: Joi.string().required().min(2)
+    qbody: Joi.string().required().min(2),
+    tname: Joi.string().required()
 })
 
 export const tagSchema = Joi.object({

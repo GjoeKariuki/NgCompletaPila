@@ -9,6 +9,8 @@ export interface TagsInterface {
     error: string
     addSuccess: string
     addError: string
+    tags_question:iTag[]
+    
 }
 
 const initialState:TagsInterface = {
@@ -16,7 +18,9 @@ const initialState:TagsInterface = {
     tagId: '',
     error: '',
     addSuccess: '',
-    addError: ''
+    addError: '',
+    tags_question:[],
+    
 }
 
 export const tagsReducer = createReducer<TagsInterface>(
@@ -26,6 +30,12 @@ export const tagsReducer = createReducer<TagsInterface>(
         return {...state,error:'',tags:action.tags}
     }),
 
+    on(tagactions.getTagsbyQSuccess, (state,action) => {
+        return {...state,error:'', tags_question:action.tags_question}
+    }),
+    on(tagactions.getTagsbyQFail, (state,action) => {
+        return {...state, tags_question:[], error:action.error}
+    }),
     on(tagactions.getTagsFail, (state,action) => {
         return {...state, tags:[], error:action.error}
     }),
