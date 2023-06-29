@@ -23,12 +23,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUserecords = exports.resetUserPassword = exports.updateUser = exports.getuserByemail = exports.getuserByid = exports.getallUsers = exports.registerUser = exports.signinUser = void 0;
+exports.sendUserNewPassword = exports.deleteUserecords = exports.resetUserPassword = exports.updateUser = exports.getuserByemail = exports.getuserByid = exports.getallUsers = exports.registerUser = exports.signinUser = void 0;
 const uuid_1 = require("uuid");
 const validations_1 = require("../helpers/validations");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const dbhelper_1 = require("../dbhelper");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const ejs_1 = __importDefault(require("ejs"));
+const confignodemailer_1 = require("../config/confignodemailer");
 const signinUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { uemail, upassword } = req.body;
@@ -174,3 +176,39 @@ const deleteUserecords = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.deleteUserecords = deleteUserecords;
+const sendUserNewPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { uzeremail } = req.query;
+        // console.log(uzeremail)
+        let user = yield (yield dbhelper_1.DbControllerHelpers.query(`SELECT * FROM USERS WHERE uemail=${uzeremail}`)).recordset;
+        // let user:iUSER = (await DbControllerHelpers.exec('getUserbyEmail', {uemail:email})).recordset[0]
+        if (!user[0]) {
+            return res.status(404).json({ message: "user not found" });
+        }
+        let hasheed = yield bcrypt_1.default.hash('@krakenJO32?', 10);
+        ejs_1.default.renderFile('dist/templates/pwdreseted.ejs', { name: user[0].uname }, (err, html) => __awaiter(void 0, void 0, void 0, function* () {
+            if (err) {
+                console.error("error rendering email template", err);
+                return;
+            }
+            try {
+                let messageoptons = {
+                    from: "githaigageorge12@gmail.com",
+                    to: user[0].uemail,
+                    subject: "New Password Reset ",
+                    html
+                };
+                yield (0, confignodemailer_1.sendMail)(messageoptons);
+                yield dbhelper_1.DbControllerHelpers.exec('senduserNewPassword', { email: uzeremail, newpassword: hasheed });
+                return res.status(200).json({ message: "password reseted successfully" });
+            }
+            catch (error) {
+                return res.status(500).json({ message: error.message });
+            }
+        }));
+    }
+    catch (erroor) {
+        console.error(erroor);
+    }
+});
+exports.sendUserNewPassword = sendUserNewPassword;

@@ -17,7 +17,7 @@
                     
 
                     <a *ngIf="auth.getAuthorizeStatus()" [routerLink]="['profile-info']" class=" text-xl py-4 px-2 dark:text-white  border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Profile</a>
-                    <a *ngIf="(userole == 'admin')"  [routerLink]="['dash-view']" class=" text-xl py-4 px-2 dark:text-white  border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Admin</a>
+                    <a *ngIf="(auth.getUserRole() == 'admin')"  [routerLink]="['dash-view']" class=" text-xl py-4 px-2 dark:text-white  border-b-4 border-green-500 font-bold hover:text-green-500 transition duration-200">Admin</a>
                 </div>
                 <div *ngIf="auth.getAuthorizeStatus()" class="hidden md:flex flex-col items-center text-white ml-20 space-x-3 rounded-full border-4 border-green-600 shadow-inner p-1">
                     <p class="p-3" >Welcome: {{username}}</p>

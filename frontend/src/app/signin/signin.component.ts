@@ -43,11 +43,12 @@ export class SigninComponent implements OnInit {
       (res) => {
         //console.log(res)
         if (res) {
-          localStorage.setItem('role', res.token)
-          localStorage.setItem('name', res.name)
-          localStorage.setItem('token', res.token)
-          localStorage.setItem('email', res.email)
-          
+          // localStorage.setItem('role', res.token)
+          // localStorage.setItem('name', res.name)
+          // localStorage.setItem('token', res.token)
+          // localStorage.setItem('email', res.email)
+          console.log(res)   
+          this.auth.loginUser(res)  
           
         } 
         if(res.token){

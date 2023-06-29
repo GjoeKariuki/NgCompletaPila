@@ -12,12 +12,14 @@ import { selectAdminLatestView, selectAdminPreviousView } from '../state/adminda
 import { AdminViewActions } from '../state/admindashstate/adminview.actions';
 import { selectUsers } from '../state/userstate/users.selector';
 import {UsersActionApI} from '../state/userstate/users.action'
+import { SearchfilterPipe } from '../services/searchfilter.pipe';
+import { AdminusersfilterPipe } from '../services/adminusersfilter.pipe';
 
 
 @Component({
   selector: 'app-dashadmin',
   standalone: true,
-  imports: [CommonModule,FormsModule,FontAwesomeModule,RouterModule],
+  imports: [CommonModule,FormsModule,FontAwesomeModule,RouterModule, SearchfilterPipe, AdminusersfilterPipe],
   templateUrl: './dashadmin.component.html',
   styleUrls: ['./dashadmin.component.css']
 })
@@ -30,6 +32,9 @@ export class DashadminComponent implements OnInit {
   faBars = faBars
   isNavopen= true
   iSmallScreen = false
+  searchquestionkeyword = ''
+  searchuserkeyword = ''
+
   
   constructor(private store:Store,private router:Router){
     this.store.subscribe((store) => console.log({store})

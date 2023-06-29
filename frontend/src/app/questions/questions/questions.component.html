@@ -1,4 +1,4 @@
-<div class="cont flex" [ngStyle]="{'backdrop-filter': (showModal$|async) ? 'blur(360px)':'none', 'pointer-events': (showModal$|async) ? 'none':''}">
+<div class="cont flex" [ngStyle]="{'backdrop-filter': (showModal) ? 'blur(360px)':'none', 'pointer-events': (showModal) ? 'none':''}">
    <div id="side-contbar" class="w-64 shadow-2xl shadow-inner">
       <div id="admin-nav" [ngClass]="{'hidden':iSmallScreen && !isNavopen, 'block':!iSmallScreen || isNavopen}"
          class=" w-64 transition-transform transform z-10 mt-10">
@@ -13,17 +13,16 @@
               </button>
          <div class="m-2">            
             <label for="" class="text-3xl text-white">Filter Questions</label>
-            <select name="" id="" class="mt-4 h-14 border-4 border-green-700">
-               <option value="" class="m-1">My Questions</option>
-               <option value="" class="m-1">All Questions</option>
-               <option value="" class="m-1">Most Answers</option>
+            <select name="" id="" class="mt-4 h-14 border-4 border-green-700" [(ngModel)]="selectedFilter">
+               <option value="myQuestions" class="m-1">My Questions</option>
+               <option value="allQuestions" class="m-1">All Questions</option>
             </select>
          </div>
 
          <div class="relative mt-3 mb-4 mr-3">
             <label for="search" class="sr-only">Search Questions</label>
             <input type="text" id="search" placeholder="Search Questions" class="leading-6 py-3 border-4 border-green-700 rounded-md 
-                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-900 pl-8">
+                   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-900 pl-8" [(ngModel)]="searchkeyword">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute top-2 left-2"
                viewBox="0 0 20 20" fill="currentColor">
                <path fill-rule="evenodd"
@@ -57,12 +56,15 @@
       <div class="mb-40">
          <div class="text-xl" [ngStyle]="{'color':'red'}" *ngIf="(errorMessage$ |async) !== ''">Error: {{errorMessage$|async}}</div>
          <div *ngIf="(questions$|async); else loadingElement">
-            <app-questions-list [questions]="questions$|async">
-            </app-questions-list>
+            <div *ngIf="(questions$|async) as questions">
+               <app-questions-list [questions]="questions | searchfilter:searchkeyword ">
+               </app-questions-list>
+            </div>
+            
          </div>
          <ng-template #loadingElement>Loading...</ng-template>
       </div>      
    </div>
 </div>
-<app-updatequestion *ngIf="showModal$|async"></app-updatequestion>
+<app-updatequestion *ngIf="showModal"></app-updatequestion>
 

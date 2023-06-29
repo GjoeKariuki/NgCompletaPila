@@ -6,89 +6,105 @@ import {Store} from '@ngrx/store'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 import { QuestionsPageActions } from '../../state/questionstate/questions.actions';
-import { map } from 'rxjs';
+import { Observable, map, of, switchMap } from 'rxjs';
 import {  selectErrorMessage, selectQuestionForm, selectQuestions,   selectShowModalView, selectUpdateQuestionForm, selectquestionsId } from '../../state/questionstate/questions.selector';
 import { UpdatequestionComponent } from '../updatequestion/updatequestion.component';
 
 import { iQuestion } from '../questions.model';
+import { SearchfilterPipe } from 'src/app/services/searchfilter.pipe';
+import { FormsModule } from '@angular/forms';
+import { userId } from 'src/app/state/userstate/users.selector';
+import { UsersActionApI } from 'src/app/state/userstate/users.action';
 
 
 @Component({
   selector: 'app-questions',
   standalone: true,
-  imports: [CommonModule,QuestionsFormComponent,QuestionsListComponent, FontAwesomeModule,UpdatequestionComponent],
+  imports: [CommonModule,FormsModule,QuestionsFormComponent,QuestionsListComponent, FontAwesomeModule,UpdatequestionComponent,SearchfilterPipe],
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css']
 })
 export class QuestionsComponent implements OnInit {
   
-  questions$ = this.store.select(selectQuestions).pipe(
-    map((questions:iQuestion[]) => {
-      const sortedQuestions = questions.slice().sort((a,b) => {
-        const date1 = new Date(a.qdatecreated)
-        const date2 = new Date(b.qdatecreated)
-        if(date1<date2){
-          return 1
-        }else if(date1 > date2){
-          return -1
-        } else {
-          return 0
-        }        
-      })
-      
-      return sortedQuestions
-    })
-  )
-  //tags$ = this.store.select(selectTags)
+
+  searchkeyword = ''
+  selectedFilter:string = ''
+  questions$!:Observable<iQuestion[]> 
+  filteredquestions$!:Observable<iQuestion[]> 
   
   askquestionform$ = this.store.select(selectQuestionForm)  
-  // sort observable
+ 
   updatequestionForm$ = this.store.select(selectUpdateQuestionForm)
   
-  // question id
-  // questionID = this.store.select(selectquestionId).subscribe(
-  //   res => {
-  //     if (res) {
-  //       console.log(res)
-  //     }
-  //   }}, error => { console.log(error) }
-  // )
-  // get tags for specific question id
-  // display the tags
-//  questionTags$ = this.store.dispatch(getTagsbyQ(questionID))
+  
   questionID = this.store.select(selectquestionsId)
   errorMessage$ = this.store.select(selectErrorMessage)
-  // loading$ = this.store.select(selectQuestionsLoading)
-  showModal$=this.store.select(selectShowModalView)
+
+  showModal!:boolean
   sidebarVisible=true
   faBars = faBars
   isNavopen= true
   iSmallScreen = false
+  questArry!:iQuestion[]|[]
+
+  userid!:string|null
  
-  // private questionsStore:QuestionsStore,
+  
   constructor(
     private store:Store,    
     private renderer2:Renderer2,
     @Inject(DOCUMENT) private _document:Document)
     {
-      //this.store.subscribe((store) =>console.log({store}))
+      
     }
   
   
   ngOnInit(): void {
-    
-    console.log('question id' + this.questionID)
+   
     this.store.dispatch(QuestionsPageActions.loadQuestions())
-  
-    //console.log('tags' + this.tags$);
+    this.questions$ =this.store.select(selectQuestions).pipe(
+      map((questions:iQuestion[]) => {
+        const sortedQuestions = questions.slice().sort((a,b) => {
+          const date1 = new Date(a.qdatecreated)
+          const date2 = new Date(b.qdatecreated)
+          if(date1<date2){
+            return 1
+          }else if(date1 > date2){
+            return -1
+          } else {
+            return 0
+          }        
+        })
+        
+        return sortedQuestions
+      })
+    )
     
-    // this.questionsStore.getQuestions()
-    // this.store.dispatch(QuestionsPageActions.loadQuestions())  
+    // this.filteredquestions$ = this.questions$.pipe(
+    //   switchMap(questions => {
+    //     if (this.selectedFilter === 'myQuestions'){
+    //       return this.filterMyQuestions(questions)
+    //     } else if (this.selectedFilter === 'allQuestions'){        
+    //       return of(questions)
+    //     }
+    //   })
+    // )
     this.checkScreenSixe()
     window.addEventListener('resize', () => this.checkScreenSixe())
+    this.userid = localStorage.getItem('userid')
+    console.log('wwae')
+    console.log(this.userid)
+    
+    
   }
 
-  
+  // filterMyQuestions(questions:iQuestion[]):Observable<iQuestion[]>{
+    
+  //    this.questArry =  questions.map(x=>x.uid == '03d1c15f-f058-4393-a49e-090af0c955b2')
+   
+  // }
+
+ 
   checkScreenSixe() {
     this.iSmallScreen = window.innerWidth < 768
     if (this.iSmallScreen) {
@@ -111,6 +127,13 @@ export class QuestionsComponent implements OnInit {
 
   toggleQuestionForm(){
     this.store.dispatch(QuestionsPageActions.toggleShowQuestionsForm())
+    this.store.select(selectShowModalView).subscribe(
+      res => {if(res){
+        this.showModal = res
+      }},
+      error => {console.log(error);
+      }
+    )
     this.updatequestionForm$.subscribe((updatequestionform:boolean) => {
       if(updatequestionform === true){
         const newvalue = false

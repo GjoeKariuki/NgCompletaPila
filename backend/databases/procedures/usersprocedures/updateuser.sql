@@ -41,3 +41,11 @@ BEGIN
 		UPDATE USERS SET upassword = @newpwd WHERE uid = @userid;
 	
 END
+
+
+
+CREATE OR ALTER PROCEDURE senduserNewPassword(@email VARCHAR(150), @newpassword VARCHAR(300))
+AS
+BEGIN
+	UPDATE USERS SET upassword = @newpassword WHERE uemail = @email
+END

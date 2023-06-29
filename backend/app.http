@@ -10,6 +10,9 @@ Content-Type: application/json
 }
 
 
+#########
+GET http://localhost:8080/email/reseted?uzeremail='githaigageorge12@gmail.com'
+
 ######
 POST http://localhost:8080/users
 Content-Type: application/json
@@ -39,14 +42,14 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMt
 
 
 #####
-PUT http://localhost:8080/users/6f45a55b-602a-41f8-9f66-808a02c21f32
+PUT http://localhost:8080/users/03d1c15f-f058-4393-a49e-090af0c955b2
 Content-Type: application/json
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJjMTE0YjlmYS0wYzFiLTQ0YzMtODgxMS0yNDYyZjExNTgwMzAiLCJ1bmFtZSI6IlNlbmlvciBEZXYiLCJ1ZW1haWwiOiJzZW5pb3JkZXZAZ21haWwuY29tIiwidXJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg4MDQ1Nzc4LCJleHAiOjE2ODgwNzQ1Nzh9.YG-N4g84kb1XG6iKT2nle4gaOMAeJ44Z3Lowx609B90
 
 {    
-    "uname": "Mr John Wick",
-    "uemail": "seniordev@gmail.com",
-    "upassword": "@Ji_tU33",
+    "uname": "Smart Farmer",
+    "uemail": "smartFarmer@gmail.com",
+    "upassword": "@krakenJO32?",
     "urole": "admin",
     "uprofPic": "personavatar.jpg"
     

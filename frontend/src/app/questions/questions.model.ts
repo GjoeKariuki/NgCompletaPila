@@ -64,6 +64,7 @@ export interface iLoginSuccess {
     role:string
     name:string
     email:string
+    
 }
 export interface iAnswer {
     aid:string

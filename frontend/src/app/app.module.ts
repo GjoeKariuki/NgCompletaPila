@@ -29,6 +29,8 @@ import { CommentsReducer } from './state/commentstate/comments.reducer';
 import { CommentsEffects } from './state/commentstate/comments.effects';
 import { AnswerVotesReducer } from './state/answervotes/answervotes.reducer';
 import { AnswerVotesEffects } from './state/answervotes/answervotes.effects';
+import { SearchfilterPipe } from './services/searchfilter.pipe';
+import { AdminusersfilterPipe } from './services/adminusersfilter.pipe';
 
 
 
@@ -42,9 +44,10 @@ import { AnswerVotesEffects } from './state/answervotes/answervotes.effects';
     AppRoutingModule,
     // InMemoryWebApiModule.forRoot(IndbMemoryService),
     NavigationComponent,
+    AdminusersfilterPipe,
     FooterComponent,
     FontAwesomeModule,
-    
+    SearchfilterPipe,
     HttpClientModule,
     // HttpClientInMemoryWebApiModule.forRoot(IndbMemoryService),
     StoreModule.forRoot({

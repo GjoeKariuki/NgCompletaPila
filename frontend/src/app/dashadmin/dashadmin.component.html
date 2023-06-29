@@ -10,7 +10,8 @@
             <div class="relative mt-4 mr-3">
                 <label for="search" class="sr-only">Search Users</label>
                 <input type="text" id="search" placeholder="Search Users" class="leading-8 w-full px-4 py-2 border-4 border-gray-300 rounded-md 
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pl-8">
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pl-8" [(ngModel)]="searchuserkeyword"> 
+                  
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute top-2 left-2" viewBox="0 0 20 20"
                   fill="currentColor">
                   <path fill-rule="evenodd"
@@ -22,7 +23,7 @@
             <div class="relative mt-3 mb-4 mr-3">
                 <label for="search" class="sr-only">Search Questions</label>
                 <input type="text" id="search" placeholder="Search Questions" class="leading-8 w-full px-4 py-2 border-4 border-gray-300 rounded-md 
-                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pl-8">
+                  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pl-8" [(ngModel)]="searchquestionkeyword">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 absolute top-2 left-2" viewBox="0 0 20 20"
                   fill="currentColor">
                   <path fill-rule="evenodd"
@@ -39,8 +40,8 @@
     </div>
     <div id="panel" class="flex justify-center items-center">
         <div *ngIf="(chk1$|async)"  id="user-content" class="flex flex-col">
-            <div *ngIf="(users$ |async ); else nousers">
-                <div *ngFor="let user of (users$|async)">
+            <div *ngIf="(users$|async) as users ; else nousers">
+                <div *ngFor="let user of users| adminusersfilter:searchuserkeyword">
                     <div class="w-3/4 mb-4 border p-4 bg-teal-50/90 rounded-md" id="inneruser">
                         <div><img src="../../assets/personavatar.jpg" alt="" id="person-avatar"></div>
                         <div class="flex justify-between">
@@ -58,19 +59,22 @@
         </div>
         <div *ngIf="(chk2$|async)" id="question-content" class="flex flex-col">
             <div *ngIf="(questions$|async); else noquestions">
-                <div *ngFor="let ones of (questions$|async)">
-                    <div class="mb-4  border p-4 bg-zinc-200 rounded-md m-3">
-                        <div class="flex justify-between">
-                            <!-- <p class="text-bold ">Question:</p> -->
-                            <p class="font-mediumbold text-2xl">{{ones.qtitle}}</p>
-                        </div>
-                        <div class="flex justify-between">
-                            <!-- <p>Sender</p> -->
-                            <p class="py-5 italic text-[20px] font-[400]">Theraus Bllooc</p>
-                        </div>
-                        <button type="button" class="border py-2 px-4 rounded-lg bg-green-500" (click)="deleteQuestion(ones)">Delete</button>
-                    </div> 
+                <div *ngIf="(questions$|async) as questions ">
+                    <div *ngFor="let ones of (questions | searchfilter: searchquestionkeyword)">
+                        <div class="mb-4  border p-4 bg-zinc-200 rounded-md m-3">
+                            <div class="flex justify-between">
+                                <!-- <p class="text-bold ">Question:</p> -->
+                                <p class="font-mediumbold text-2xl">{{ones.qtitle}}</p>
+                            </div>
+                            <div class="flex justify-between">
+                                <!-- <p>Sender</p> -->
+                                <p class="py-5 italic text-[20px] font-[400]">Theraus Bllooc</p>
+                            </div>
+                            <button type="button" class="border py-2 px-4 rounded-lg bg-green-500" (click)="deleteQuestion(ones)">Delete</button>
+                        </div> 
+                    </div>
                 </div>
+                
             </div>
             <ng-template #noquestions>no questions!!!</ng-template>  
 

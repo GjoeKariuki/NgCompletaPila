@@ -48,7 +48,7 @@ const initialState:QuestionsState = {
     loading:false,
     errorMessage:'',
     updateQuestion: [],
-    showModal:true,
+    showModal:false,
     error:'',
     addSuccess: '',
     addError: '',
