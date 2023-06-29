@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { addQuestion, iMessage, iQuestion } from './questions.model';
+import { addQuestion, iMessage, iQuestion, updateQuestion } from './questions.model';
 import { Observable, Subject, catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -63,7 +63,7 @@ export class QuestionService {
     )
   }
 
-  updateQuestion(id:string, question:addQuestion):Observable<iQuestion> {
+  updateQuestion(id:string, question:updateQuestion):Observable<iQuestion> {
     let token = localStorage.getItem('token') as string
     return this._httpclient.put<iQuestion>(`${this.questionsdburl}/${id}`, question,
     {

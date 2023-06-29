@@ -1,7 +1,7 @@
 <div class="fixed inset-0 flex items-center justify-center bg-opacity-50 bg-gray-500">
     <div class="bg-white p-8 rounded-lg shadow-lg">
         <div>
-            <form action="" [formGroup]="updateForm">
+            <form action="" [formGroup]="updateForm" (ngSubmit)="submitupdateForm()">
                 <h2 class="text-2xl font-bold mb-4">Update Question</h2>
                 <div class="m-3">
                     <label for="" class=" text-xl font-mono font-bold uppercase">Question Title</label>
@@ -10,7 +10,7 @@
                 <div  class="m-3">
                     <label for="" class=" text-xl font-mono font-bold uppercase">Question Body</label>
                     <div class="border-4 border-lime-400 shadow-inner">
-                        <ckeditor [editor]="Editor" tagName="textarea" formControlName="qbody"></ckeditor>
+                        <textarea cols="50" formControlName="qbody"></textarea>
                     </div>
                 </div>
                 <div class="m-3">

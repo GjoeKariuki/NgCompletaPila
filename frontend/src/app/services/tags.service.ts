@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { addTag, iMessage, iTag } from '../questions/questions.model';
+import { addTag, iMessage, iTag, updateTag } from '../questions/questions.model';
 import { Observable, Subject, catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -46,6 +46,26 @@ export class TagsService {
     }).pipe(
       catchError(this.handlError)
     )
+  }
+
+  updatetag(updatetag:updateTag):Observable<iTag>{
+    let token = localStorage.getItem('token') as string
+    return this._httpClient.put<iTag>('http://localhost:8080/tags',updatetag,
+    {
+      headers:new HttpHeaders().set('token',token)
+    }).pipe(
+      catchError(this.handlError)
+    )
+  }
+
+  deleteQuestionTag(id:string):Observable<iMessage> {
+    let token = localStorage.getItem('token') as string  
+    return this._httpClient.delete<iMessage>(`${this.tagsdburl}/${id}`,
+    {
+      headers:new HttpHeaders().set('token',token)
+    }).pipe(catchError(this.handlError))
+    
+    
   }
 
   private handlError({ status }: HttpErrorResponse) {

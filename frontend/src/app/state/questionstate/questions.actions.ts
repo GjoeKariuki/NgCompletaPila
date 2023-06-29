@@ -32,6 +32,7 @@ export const QuestionsAPIActions = createActionGroup (
                     'Questions Loaded Fail' : props<{error:string}>(),
                     'Question Added Success' : props<{message:iMessage}>(),//
                     'Question Added Fail' : props<{error:string}>(),
+                    'Question update': props<{updatequestion:addQuestion, id:string}>(),
                     'Question Updated Success': props<{question:iQuestion}>(),
                     'Question Updated Fail' : props<{error:string}>(),
                     'Question Deleted Success' : props<{message:iMessage}>(), //

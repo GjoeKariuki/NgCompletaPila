@@ -25,7 +25,7 @@ Content-Type: application/json
 
 #####
 GET http://localhost:8080/users
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjcwNTY3LCJleHAiOjE2ODc2NzQxNjd9.51Ee3LNGsdq1IGDVNpVuT86IBEhfP_ZFrzK1LWSrAWI
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3OTgwNTg3LCJleHAiOjE2ODgwMDkzODd9.H4BoaDCf81HK5Nhd2VRQyII3OWPWdGdeV6pAhfkoZDM
 
 #####
 GET http://localhost:8080/users/id/8c132c4e-b238-481c-9eb5-26c8d578d751
@@ -75,7 +75,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4NjAyOTE1NS1iYmFiLTQ2N2Yt
 
 #####
 GET http://localhost:8080/questions
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NjcwNTY3LCJleHAiOjE2ODc2NzQxNjd9.51Ee3LNGsdq1IGDVNpVuT86IBEhfP_ZFrzK1LWSrAWI
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3OTgwNTg3LCJleHAiOjE2ODgwMDkzODd9.H4BoaDCf81HK5Nhd2VRQyII3OWPWdGdeV6pAhfkoZDM
 
 
 
@@ -264,4 +264,34 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxZGMyZWMxYi1mMWZkLTQ2ZjQt
     "aupvotes": 5, 
     "adownvotes": 2,
     "apreffered": 1
+}
+
+######
+PUT http://localhost:8080/tags
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MDI0Nzk0LCJleHAiOjE2ODgwNTM1OTR9.I6o7iQiOPQIWteK8oSvgytHNuXbRzzoLvLEzYVUpj-A
+
+
+{
+    "qid":"077d2c39-5c79-466a-bb2e-f7c5bbfba0a8",
+    "tid":"5addb2f4-b4be-4b88-aee9-325190f8d2a4",
+    "tname": "afternext"
+
+}
+
+
+#########
+DELETE http://localhost:8080/tags/b34d98dd-4e14-4348-a41c-2364ad568f77
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MDI0Nzk0LCJleHAiOjE2ODgwNTM1OTR9.I6o7iQiOPQIWteK8oSvgytHNuXbRzzoLvLEzYVUpj-A
+
+########
+POST http://localhost:8080/tags
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MDI0Nzk0LCJleHAiOjE2ODgwNTM1OTR9.I6o7iQiOPQIWteK8oSvgytHNuXbRzzoLvLEzYVUpj-A
+
+
+{
+
+    "qid":"05d9fb08-c4b8-47a4-b27b-b0a2fbce7983",
+    "tname": "make your tags now"
 }

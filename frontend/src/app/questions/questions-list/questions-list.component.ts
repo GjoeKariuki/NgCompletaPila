@@ -1,15 +1,17 @@
-import { Component, Input, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit,  QueryList,  Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { iQuestion, iTag } from '../questions.model';
 import { Store } from '@ngrx/store';
 import { QuestionsFormComponent } from '../questions-form/questions-form.component';
-import { selectQuestionForm, selectUpdateQuestionForm } from '../../state/questionstate/questions.selector';
+import { selectQuestionForm, selectSingleQuestion, selectUpdateQuestionForm } from '../../state/questionstate/questions.selector';
 import { QuestionsAPIActions, QuestionsPageActions } from '../../state/questionstate/questions.actions';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UpdatequestionComponent } from '../updatequestion/updatequestion.component';
 import { getTags } from 'src/app/state/tagstate/tags.action';
 import { selectTags } from 'src/app/state/tagstate/tags.selector';
+
+
 
 @Component({
   selector: 'app-questions-list',
@@ -18,16 +20,24 @@ import { selectTags } from 'src/app/state/tagstate/tags.selector';
   templateUrl: './questions-list.component.html',
   styleUrls: ['./questions-list.component.css']
 })
-export class QuestionsListComponent implements OnInit{
+export class QuestionsListComponent implements OnInit, AfterViewInit{
   @Input() questions:iQuestion[]|null = []
+  @ViewChildren(UpdatequestionComponent) updatecomment?:QueryList<UpdatequestionComponent>
 
   askquestionForm$ = this.store.select(selectQuestionForm)
   updatequestionForm$ = this.store.select(selectUpdateQuestionForm)
   questiontags:iTag[] = []
   tags$!:iTag[]
+  specificanswerid!:string
+  questionsobject!:iQuestion[]
+  
 
   
   constructor(private store:Store, private renderer:Renderer2){}
+
+  ngAfterViewInit(): void {
+    this.editQuestion(this.specificanswerid)
+  }
 
   ngOnInit(): void {
     this.store.dispatch(getTags())
@@ -39,22 +49,12 @@ export class QuestionsListComponent implements OnInit{
     }, error => {console.log(error);
     })
   }
-  editQuestion(){
-    this.store.dispatch(QuestionsPageActions.toggleShowModalView())
-    // const newvalue = true
-    // this.store.dispatch(QuestionsPageActions.toggleShowUpdateQuestionsForm({newvalue}))
-    // app-questions-form
+  editQuestion(id:string){  
+    console.log(id);    
+   this.store.dispatch(QuestionsAPIActions.loadSingleQuestionId({id}))
+    this.store.dispatch(QuestionsPageActions.toggleShowModalView())    
+    
    
-    // access ask question form set to true
-    //this.store.dispatch(QuestionsPageActions.toggleShowQuestionsForm())
-    //console.log(qt)
-    // sending the data to the form
-    //this.store.dispatch(QuestionsAPIActions.passUpdateData({updateQuestion:qt}))
-
-    // open form na ku populate fields
-
-    // redirect to top of page of forms page
-    //this.scrollToTop()
   }
 
     scrollToTop(){

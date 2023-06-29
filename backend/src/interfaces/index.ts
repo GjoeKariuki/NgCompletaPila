@@ -92,7 +92,11 @@ export interface iTag {
 }
 
 export interface iTagExtended extends Request {
-    body: {tname:string[]}
+    body: {
+        tname:string[]|string
+        tid:string
+        qid:string
+    }
     params: {id:string}
 }
 

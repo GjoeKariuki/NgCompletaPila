@@ -81,6 +81,7 @@ export class QuestionsFormComponent implements OnInit {
     //this.store.dispatch(getTags())  
     this.closequestionModal()  
     this.store.dispatch(QuestionsPageActions.loadQuestions()) 
+    this.store.dispatch(QuestionsAPIActions.loadQuestions())
   }
   // populateform(){
   //   this.updatequestionForm$.subscribe((val: boolean) => {

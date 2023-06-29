@@ -35,6 +35,7 @@ export class QuestionsComponent implements OnInit {
           return 0
         }        
       })
+      
       return sortedQuestions
     })
   )
@@ -76,8 +77,9 @@ export class QuestionsComponent implements OnInit {
   
   ngOnInit(): void {
     
-    console.log('question id' + this.questionID);
-    
+    console.log('question id' + this.questionID)
+    this.store.dispatch(QuestionsPageActions.loadQuestions())
+  
     //console.log('tags' + this.tags$);
     
     // this.questionsStore.getQuestions()
@@ -87,7 +89,6 @@ export class QuestionsComponent implements OnInit {
   }
 
   
-
   checkScreenSixe() {
     this.iSmallScreen = window.innerWidth < 768
     if (this.iSmallScreen) {

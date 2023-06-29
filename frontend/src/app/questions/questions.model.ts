@@ -10,9 +10,19 @@ export interface iQuestion {
 export interface addQuestion {
     qtitle:string
     qbody:string
-    tname:string|string[]
+    tname:string[]|string
 }
 
+export interface updateQuestion {
+    qtitle:string
+    qbody:string
+}
+
+export interface updateTag {
+    tname:string
+    qid:string
+    tid:string
+}
 export interface iUser {
     uid:string
     uname:string
@@ -73,6 +83,7 @@ export interface iTag {
     qid:string
 }
 export interface addTag {
+    qid:string
     tname:string|string[]
 }
 
