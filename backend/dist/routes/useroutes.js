@@ -11,4 +11,5 @@ userOutes.get('/id/:id', tokenizing_1.tokenize, usercontroller_1.getuserByid);
 userOutes.get('/barittos', tokenizing_1.tokenize, usercontroller_1.getuserByemail);
 userOutes.put('/:id', tokenizing_1.tokenize, usercontroller_1.updateUser);
 userOutes.delete('/:email', tokenizing_1.tokenize, usercontroller_1.deleteUserecords);
+userOutes.put('/pwd/:id', tokenizing_1.tokenize, usercontroller_1.resetUserPassword);
 exports.default = userOutes;

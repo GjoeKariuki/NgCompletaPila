@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import {registerUser, getallUsers, getuserByemail, getuserByid, updateUser, signinUser, deleteUserecords} from '../controllers/usercontroller'
+import {registerUser, getallUsers, getuserByemail, getuserByid, updateUser, signinUser, deleteUserecords, resetUserPassword} from '../controllers/usercontroller'
 import {tokenize} from '../middlewares/tokenizing'
 
 
@@ -14,6 +14,6 @@ userOutes.get('/barittos', tokenize,getuserByemail)
 userOutes.put('/:id', tokenize,updateUser)
 userOutes.delete('/:email', tokenize,deleteUserecords)
 
-
+userOutes.put('/pwd/:id', tokenize, resetUserPassword)
 
 export default userOutes

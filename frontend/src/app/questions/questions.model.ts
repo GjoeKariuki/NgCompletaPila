@@ -48,6 +48,11 @@ export interface iMessage {
     message:string
 }
 
+export interface changePwd {
+    oldpwd:string
+    newpwd:string
+}
+
 export interface iLoginUser {
     uemail:string
     upassword:string

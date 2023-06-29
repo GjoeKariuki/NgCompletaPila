@@ -48,18 +48,11 @@ export class SigninComponent implements OnInit {
           localStorage.setItem('token', res.token)
           localStorage.setItem('email', res.email)
           
-        }
-        if (res.token) {
+          
+        } 
+        if(res.token){
           this.router.navigate(['questioneos'])
         }
-
-        
-        // if (isPlatformBrowser(this.platformId)) {
-        //   localStorage.setItem('role', res.token)
-        //   localStorage.setItem('name', res.name)
-        //   localStorage.setItem('token', res.token)
-          
-        // }
              
       }, (err) => {
        

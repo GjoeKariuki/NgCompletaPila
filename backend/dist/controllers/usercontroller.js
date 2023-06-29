@@ -23,7 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUserecords = exports.updateUser = exports.getuserByemail = exports.getuserByid = exports.getallUsers = exports.registerUser = exports.signinUser = void 0;
+exports.deleteUserecords = exports.resetUserPassword = exports.updateUser = exports.getuserByemail = exports.getuserByid = exports.getallUsers = exports.registerUser = exports.signinUser = void 0;
 const uuid_1 = require("uuid");
 const validations_1 = require("../helpers/validations");
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -132,6 +132,27 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.updateUser = updateUser;
+const resetUserPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { oldpwd, newpwd } = req.body;
+        let user = yield (yield dbhelper_1.DbControllerHelpers.exec('getUserbyId', { uid: id })).recordset;
+        if (!user[0]) {
+            return res.status(404).json({ message: "user not found" });
+        }
+        let validatedpwd = yield bcrypt_1.default.compare(oldpwd, user[0].upassword);
+        if (!validatedpwd) {
+            return res.status(404).json({ message: "passwords do not match" });
+        }
+        let hashedpwd = yield bcrypt_1.default.hash(newpwd, 10);
+        yield dbhelper_1.DbControllerHelpers.exec('resetUserPassword', { userid: id, newpwd: hashedpwd });
+        return res.status(200).json({ message: "password successfully changed" });
+    }
+    catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
+exports.resetUserPassword = resetUserPassword;
 //  only admin can delete
 const deleteUserecords = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

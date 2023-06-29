@@ -31,6 +31,8 @@ export interface iUserExtended extends Request {
         upassword:string
         urole:string
         uprofPic:string
+        oldpwd:string
+        newpwd:string
     }
     info?: iDecodedData
     params: {

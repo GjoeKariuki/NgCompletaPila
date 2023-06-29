@@ -20,16 +20,21 @@ export class SignupComponent implements OnInit {
       uname: ['', [Validators.required]],
       uemail: ['', [Validators.email,Validators.required]],
       upassword: ['', [Validators.required,Validators.pattern(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$`)]],
-      uconfirmpassword: ['', [Validators.required,Validators.pattern(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$`)]]
+      confirmpassword: ['', [Validators.required,Validators.pattern(`^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$`)]]
     })
   }
 
   submitForm(){
+    //console.log(this.signupForm.value);    
     this.authentication.register(this.signupForm.value).subscribe(response => {
-      console.log(response);
-      this.router.navigate(['signin'])      
+      if(response) {
+        console.log(response);
+        this.router.navigate(['signin']) 
+      }           
+    },
+    error => {console.log(error);
     })
   }
-  
+
 
 }

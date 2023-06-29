@@ -119,6 +119,27 @@ export const updateUser = async(req:iUserExtended,res:Response) => {
     }
 }
 
+    export const resetUserPassword = async(req:iUserExtended, res:Response) => {
+        try {
+            
+            const { id } = req.params
+            const { oldpwd, newpwd } = req.body
+            let user: iUSER[] = await (await DbControllerHelpers.exec('getUserbyId', { uid: id })).recordset
+            if (!user[0]) {
+                return res.status(404).json({message: "user not found"})
+            }            
+            let validatedpwd = await bcrypt.compare(oldpwd, user[0].upassword)
+            if (!validatedpwd) {
+                return res.status(404).json({ message: "passwords do not match" })
+            }
+            let hashedpwd = await bcrypt.hash(newpwd, 10)
+            await DbControllerHelpers.exec('resetUserPassword', { userid: id, newpwd: hashedpwd })
+            return res.status(200).json({ message: "password successfully changed" })
+        } catch (error:any) {
+            return res.status(500).json({message:error.message})
+        }
+    }
+
 //  only admin can delete
 export const deleteUserecords = async(req:iUserExtended, res:Response) => {
     try {

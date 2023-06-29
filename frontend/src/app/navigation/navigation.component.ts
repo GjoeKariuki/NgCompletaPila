@@ -18,6 +18,7 @@ import { AuthService } from '../services/auth.service';
 export class NavigationComponent implements OnInit {
 
   username!:string|null
+  userole!:string|null
   navscripts!:HTMLScriptElement
  
   constructor(private renderer2:Renderer2, private router:Router,
@@ -31,6 +32,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = this.auth.getUserName()
+    this.userole = this.auth.role
     console.log(this.username);
     
     const btn = this._document.querySelector("button.mobile-menu-button") as HTMLButtonElement

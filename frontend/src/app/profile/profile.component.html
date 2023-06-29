@@ -4,17 +4,21 @@
       <form action="" >
         <div *ngIf="myuser$" class="m-5 w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5">
           <label class="mb-3 font-mono text-2xl" for="username">Username</label>
-          <div class="flex items-center">
-            <input class="p-3 flex-1 " type="text" placeholder="{{myuser$.uname}}">
-            <fa-icon class="px-3" [icon]="faPenToSquare"></fa-icon>
+          <div class="w-full flex items-center">
+            <input class="p-3 flex-1 " type="text" value="{{myuser$.uname}}" [disabled]="ablename" #newname>
+            
+            <fa-icon *ngIf="!ablename" class="px-3 text-4xl text-blue-800" [icon]="faArrowAltCircleDown" (click)="updateName(newname.value)"></fa-icon>
+            <fa-icon *ngIf="ablename" class="px-3 text-4xl text-green-500" [icon]="faPenToSquare" (click)="disablename()"></fa-icon>
+
           </div>
         </div>
   
         <div class="m-5 w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/5">
           <label class="mb-3 font-mono text-2xl" for="email">Email</label>
-          <div class="flex items-center">
-            <input class="p-3 flex-1" type="email" placeholder="{{myuser$.uemail}}">
-            <fa-icon class="px-3" [icon]="faPenToSquare"></fa-icon>
+          <div class="w-full flex items-center">
+            <input class="p-3 flex-1" type="email" value="{{myuser$.uemail}}" [disabled]="ableemail" #newemail>
+            <fa-icon *ngIf="!ableemail" class="px-3 text-4xl text-blue-800" [icon]="faArrowAltCircleDown" (click)="updateEmail(newemail.value)"></fa-icon>
+            <fa-icon *ngIf="ableemail" class="px-3 text-4xl text-green-500" [icon]="faPenToSquare" (click)="disableemail()"></fa-icon>
           </div>
         </div>
   
@@ -23,16 +27,19 @@
           <div *ngIf="changepwd">
             <div class="m-2 p-3">
               <label class="mb-3 font-mono text-2xl">Old Password</label>
-              <input class="p-3" type="password" placeholder="old password">
+              <input class="p-3" type="password" placeholder="old password" #oldpassword>
             </div>
             <div class="m-2 p-3">
               <label class="mb-3 font-mono text-2xl">New Password</label>
-              <input class="p-3" type="password" placeholder="new password">
+              <input class="p-3" type="password" placeholder="new password" #newpassword>
             </div>
-            <div class="m-2 p-3">
+            <div class="m-2">
+              <button type="button" (click)="changeuserPassword(oldpassword.value,newpassword.value)" class="border border-zinc-800 rounded bg-brown-800 text-xl text-white p-3 rounded-lg bg-green-800">Change Password</button>
+            </div>
+            <!-- <div class="m-2 p-3">
               <label class="mb-3 font-mono text-2xl">Confirm Password</label>
               <input class="p-3" type="password" placeholder="new password">
-            </div>
+            </div> -->
             
           </div>
         </div>
@@ -42,9 +49,7 @@
             <input class="leading-8"  type="file" name="pict" id="">
           </div>
         </div>
-        <div class="m-2">
-          <button type="button" class="border border-zinc-800 rounded bg-brown-800 text-2xl text-white p-3 rounded-lg bg-green-800">Update Details</button>
-        </div>
+       
       </form>
     </div>
   </div>

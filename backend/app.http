@@ -16,8 +16,8 @@ Content-Type: application/json
 
 
 {
-    "uname": "Lionel Messi",
-    "uemail": "jonathanndambuki16@gmail.com",
+    "uname": "Jack Sparrow",
+    "uemail": "jacckyRow@gmail.com",
     "upassword": "@krakenJO32?",
     "confirmpassword": "@krakenJO32?"
 }
@@ -35,18 +35,18 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxZGMyZWMxYi1mMWZkLTQ2ZjQt
 
 ####
 GET  http://localhost:8080/users/barittos?uzeremail='barca10@gmail.com'
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxZGMyZWMxYi1mMWZkLTQ2ZjQtOThhYi1hMTZhNjcyMGZkNzUiLCJ1bmFtZSI6IkNwdCBCYXJib3NhIiwidWVtYWlsIjoiY2FyaWJlYW40QGdtYWlsLmNvbSIsInVyb2xlIjoidXNlciIsImlhdCI6MTY4NzUxNzQ5NCwiZXhwIjoxNjg3NTE3NDk2fQ.Pdiq5UWkopq1fk1f2YA50ET1kV9s-m0-UIN-2_XJLVw
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MDI0Nzk0LCJleHAiOjE2ODgwNTM1OTR9.I6o7iQiOPQIWteK8oSvgytHNuXbRzzoLvLEzYVUpj-A
 
 
 #####
-PUT http://localhost:8080/users/7ad0e4c2-cefd-4415-a145-61bbb49e635c
+PUT http://localhost:8080/users/6f45a55b-602a-41f8-9f66-808a02c21f32
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxZGMyZWMxYi1mMWZkLTQ2ZjQtOThhYi1hMTZhNjcyMGZkNzUiLCJ1bmFtZSI6IkNwdCBCYXJib3NhIiwidWVtYWlsIjoiY2FyaWJlYW40QGdtYWlsLmNvbSIsInVyb2xlIjoidXNlciIsImlhdCI6MTY4NzQyODUyNCwiZXhwIjoxNjg3NDMyMTI0fQ.mAitK4e2bZlGAWLhMQnn8fSxNS87kSkMMLORlhobluU
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJjMTE0YjlmYS0wYzFiLTQ0YzMtODgxMS0yNDYyZjExNTgwMzAiLCJ1bmFtZSI6IlNlbmlvciBEZXYiLCJ1ZW1haWwiOiJzZW5pb3JkZXZAZ21haWwuY29tIiwidXJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg4MDQ1Nzc4LCJleHAiOjE2ODgwNzQ1Nzh9.YG-N4g84kb1XG6iKT2nle4gaOMAeJ44Z3Lowx609B90
 
 {    
-    "uname": "Lionel Messi",
-    "uemail": "barca10@gmail.com",
-    "upassword": "@krakenJO32?",
+    "uname": "Mr John Wick",
+    "uemail": "seniordev@gmail.com",
+    "upassword": "@Ji_tU33",
     "urole": "admin",
     "uprofPic": "personavatar.jpg"
     
@@ -283,6 +283,7 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMt
 #########
 DELETE http://localhost:8080/tags/b34d98dd-4e14-4348-a41c-2364ad568f77
 token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMtOWViNS0yNmM4ZDU3OGQ3NTEiLCJ1bmFtZSI6IkpvaGhueSBEZWVwIiwidWVtYWlsIjoiZ2l0aGFpZ2FnZW9yZ2UxMkBnbWFpbC5jb20iLCJ1cm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MDI0Nzk0LCJleHAiOjE2ODgwNTM1OTR9.I6o7iQiOPQIWteK8oSvgytHNuXbRzzoLvLEzYVUpj-A
+jcx
 
 ########
 POST http://localhost:8080/tags
@@ -294,4 +295,15 @@ token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4YzEzMmM0ZS1iMjM4LTQ4MWMt
 
     "qid":"05d9fb08-c4b8-47a4-b27b-b0a2fbce7983",
     "tname": "make your tags now"
+}
+
+####
+PUT http://localhost:8080/users/pwd/c114b9fa-0c1b-44c3-8811-2462f1158030 
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJjMTE0YjlmYS0wYzFiLTQ0YzMtODgxMS0yNDYyZjExNTgwMzAiLCJ1bmFtZSI6IlNlbmlvciBEZXYiLCJ1ZW1haWwiOiJzZW5pb3JkZXZAZ21haWwuY29tIiwidXJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg4MDQ1Nzc4LCJleHAiOjE2ODgwNzQ1Nzh9.YG-N4g84kb1XG6iKT2nle4gaOMAeJ44Z3Lowx609B90
+
+
+{
+    "oldpwd": "@Ji_tU33",
+    "newpwd": "@Ji_tU33"
 }

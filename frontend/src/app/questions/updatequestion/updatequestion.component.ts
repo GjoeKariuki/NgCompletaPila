@@ -103,14 +103,7 @@ export class UpdatequestionComponent implements OnInit{
   
   
   
-  updatequest(val:updateQuestion){
-    this.questionservice.updateQuestion(this.questionid,val).subscribe(
-      res => {if(res){console.log(res);
-      }},
-      error => {console.log(error);
-      }
-    )  
-  }
+  
   submitupdateForm(){
     
     const { qtitle, qbody, qtags } = this.updateForm.value
@@ -136,6 +129,12 @@ export class UpdatequestionComponent implements OnInit{
   
         }
       ) 
+      this.questionservice.updateQuestion(this.questionid,updatevalues ).subscribe(
+        res => {if(res){console.log(res);
+        }},
+        error => {console.log(error);
+        }
+      )  
     
    
     //console.log(tagupdates);
