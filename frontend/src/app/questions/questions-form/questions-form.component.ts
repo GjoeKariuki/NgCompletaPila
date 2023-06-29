@@ -59,7 +59,6 @@ export class QuestionsFormComponent implements OnInit {
     console.log(this.questionsForm.value);
     const { qtitle, qbody, tname } = this.questionsForm.value
     this.store.dispatch(QuestionsPageActions.addQuestion({ question: { qtitle, qbody, tname } }))
-    this.store.dispatch(QuestionsAPIActions.loadQuestions())
     this.closequestionModal()
     this.store.dispatch(QuestionsPageActions.loadQuestions())
     this.store.dispatch(QuestionsAPIActions.loadQuestions())

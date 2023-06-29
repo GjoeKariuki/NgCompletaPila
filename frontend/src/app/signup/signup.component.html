@@ -3,29 +3,32 @@
       <div class="flex">
         <label for="username" class="font-mono  w-1/4 md:w-1/6 text-2xl font-bold mr-6">USERNAME:</label>
         <input type="text" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="uname">
-        <div *ngIf="!signupForm.get('username')?.valid && signupForm.get('username')?.touched">
-          <span class="ml-2 font-bold text-red-500" *ngIf="signupForm.get('username')!.errors!['required']" >*user name is required</span>
+        <div *ngIf="!signupForm.get('uname')?.valid && signupForm.get('uname')?.touched">
+          <span class="ml-2 font-bold text-red-500" *ngIf="signupForm.get('uname')!.errors!['required']" >*user name is required</span>
         </div>
         
       </div>
       <div class="flex">
         <label for="email" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">EMAIL:</label>
         <input type="email" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="uemail">
-        <div class="ml-2" *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">
-            <span class="font-mono font-bold text-red-500 " *ngIf="signupForm.get('email')!.errors!['required']">*email is required</span>
+        <div class="ml-2 " *ngIf="!signupForm.get('uemail')?.valid && signupForm.get('uemail')?.touched" >
+          <span *ngIf="signupForm.get('uemail')!.errors!['required']" class="font-mono  font-bold text-red-500">*email is required</span>
+          <span *ngIf="signupForm.get('uemail')!.errors!['uemail']" class="font-mono  font-bold text-red-500">*this is not a valid email</span>
         </div>
       </div>
       <div class="flex">
         <label for="password" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">PASSWORD:</label>
         <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="upassword">
-        <div *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')?.touched">
-          <span class="font-mono  ml-2 font-bold text-red-500" *ngIf="signupForm.get('password')!.errors!['required']">*password is required</span>        </div>
+        <div *ngIf="!signupForm.get('upassword')?.valid && signupForm.get('upassword')?.touched">
+          <span class="font-mono  ml-2 font-bold text-red-500" *ngIf="signupForm.get('upassword')!.errors!['required']">*password is required</span>        </div>
       </div>
       <div class="flex">
         <label for="confirmpassword" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">CONFIRM PASSWORD:</label>
         <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="confirmpassword">
         <div *ngIf="!signupForm.get('confirmpassword')?.valid && signupForm.get('confirmpassword')?.touched">
-          <span class="font-mono ml-2 font-bold text-red-500" *ngIf="signupForm.get('password')!.errors!['required']">*password is required</span>
+          <span class="font-mono ml-2 font-bold text-red-500" *ngIf="signupForm.get('confirmpassword')!.errors!['required']">*password is required</span>
+          <span class="font-mono ml-2 font-bold text-red-500" *ngIf="signupForm.get('confirmpassword')!.errors!['error']">*password is required</span>
+
         </div>
       </div>
       <div class="flex justify-start items-center">
