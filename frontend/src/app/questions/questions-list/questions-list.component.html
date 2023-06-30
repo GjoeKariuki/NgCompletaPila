@@ -1,6 +1,6 @@
 
 
-<div *ngIf="questions">
+<div *ngIf="questions; else noquestions">
     <div *ngFor="let qt of questions" id="questions-div"   class="p-6 border border-gray-200 
     rounded-lg shadow-xl hover:shadow-slate-950 shadow-inner bg-indigo-100/30 dark:border-gray-700 m-3 mb-5">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-800 ">{{qt.qtitle}}</h5>
@@ -26,6 +26,8 @@
         
     </div>
 </div>
+
+<ng-template #noquestions><div>no questions made yet......</div></ng-template>
 
 
 

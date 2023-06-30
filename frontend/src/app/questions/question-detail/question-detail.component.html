@@ -35,7 +35,8 @@
 
   <div class="w-full lg:w-2/3 xl:w-3/4 bg-blue-50/40 ml-auto" id="main-content">
     <div class="mt-7 ml-12">
-      <app-answerform *ngIf="(answerform$|async)" [questionID]="id"></app-answerform>
+      <app-answerform *ngIf="(answerform$|async); else noanswers" [questionID]="id"></app-answerform>
+      <ng-template #noanswers><div>no answers made yet...</div></ng-template>
       <app-answerslist [answersID]="id"></app-answerslist>
     </div>
   </div>
