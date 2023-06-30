@@ -47,7 +47,11 @@ export class UsersService {
         catchError(this.handlError)
       )
   }
-
+  sendUserNewPassword(email: string):Observable<iMessage>{
+    return this._httpclient.get<iMessage>(`${this.usersdburl + '/email/reseted'}?uzeremail='${email}'`).pipe(
+      catchError(this.handlError)
+    )
+  }
   updateUser(id: string, user: addUser): Observable<iUser> {
     let token = localStorage.getItem('token') as string
     return this._httpclient.put<iUser>(`${this.usersdburl}/${id}`, user,
@@ -80,6 +84,8 @@ export class UsersService {
         catchError(this.handlError)
       )
   }
+
+ 
 
   private handlError({ status }: HttpErrorResponse) {
     return throwError(() => `${status}: something happend with users db`)
