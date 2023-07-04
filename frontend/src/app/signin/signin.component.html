@@ -1,4 +1,7 @@
 <div id="bd-div" class="flex justify-center items-center bg-center bg-no-repeat bg-blend-multiply "> 
+  <div *ngIf="signinerror" (close)="Close()">
+    {{signinerror }}
+  </div>
   <form class="flex flex-col space-y-4 w-full md:w-1/2 p-8 border border-black rounded-lg shadow-inner shadow-2xl" [formGroup]="siginForm" (ngSubmit)="submitForm()">
     <!-- <div class="bg-red-500 p-2 text-center text-white">
       <span>{{errorMessage}}</span>
@@ -37,4 +40,4 @@
   </form>
 </div>
 
-<app-showerror *ngIf="signinerror" [errorMessage]="signinerror" (close)="Close()"></app-showerror>
+<!-- <app-showerror *ngIf="signinerror" [errorMessage]="signinerror" (close)="Close()"></app-showerror> -->

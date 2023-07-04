@@ -16,7 +16,6 @@ import { Store } from '@ngrx/store';
 })
 export class SigninComponent implements OnInit {
   siginForm!:FormGroup
-  error!:string|{string:string}
   username!:string|null
   signinerror = ''
 
