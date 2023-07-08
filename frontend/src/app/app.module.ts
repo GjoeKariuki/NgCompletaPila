@@ -7,9 +7,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FooterComponent } from './footer/footer.component';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { IndbMemoryService } from './indb-mem.service';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -31,8 +30,10 @@ import { AnswerVotesReducer } from './state/answervotes/answervotes.reducer';
 import { AnswerVotesEffects } from './state/answervotes/answervotes.effects';
 import { SearchfilterPipe } from './services/searchfilter.pipe';
 import { AdminusersfilterPipe } from './services/adminusersfilter.pipe';
+import { ToastuiComponent } from './toastui/toastui.component';
 
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { ToastuiService } from './services/toastui.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,8 @@ import { AdminusersfilterPipe } from './services/adminusersfilter.pipe';
     AppRoutingModule,
     // InMemoryWebApiModule.forRoot(IndbMemoryService),
     NavigationComponent,
+    ToastuiComponent,
+    BrowserAnimationsModule,
     AdminusersfilterPipe,
     FooterComponent,
     FontAwesomeModule,
@@ -61,7 +64,7 @@ import { AdminusersfilterPipe } from './services/adminusersfilter.pipe';
     StoreRouterConnectingModule.forRoot(),
     
   ],
-  providers: [],
+  providers: [ToastuiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

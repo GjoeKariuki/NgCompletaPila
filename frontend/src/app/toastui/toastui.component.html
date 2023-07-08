@@ -1,0 +1,8 @@
+<div   
+[@toastTrigger]="(toastservice.showsToast$ | async)?'open':'close'"
+[ngClass]="toastservice.toastState$ | async " >
+    <div style="max-width: 160px;">{{toastservice.toastMessage$ | async }}</div>
+    <a class="close-btn" (click)="dismiss()">
+        <small class="italic" style="cursor: pointer;">DISMISS</small>
+    </a>
+</div>

@@ -2,3 +2,11 @@
     margin-top: 15rem;
     /* background-image: url("../../assets/Mobilelogin.gif"); */
 }
+
+.ng-valid {
+    border-left: 15px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+    border-left: 15px solid rgb(43, 119, 226);
+}

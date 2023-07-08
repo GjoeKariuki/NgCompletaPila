@@ -1,40 +1,65 @@
 <div id="sign-up" class="flex w-full items-center justify-center mt-10  bg-center bg-no-repeat bg-blend-multiply">
-    <form class="flex flex-col space-y-4 md:w-1/2 p-8 border border-black rounded-lg shadow-inner shadow-2xl" [formGroup]="signupForm" (ngSubmit)="submitForm()" >
-      <div class="flex">
-        <label for="username" class="font-mono  w-1/4 md:w-1/6 text-2xl font-bold mr-6">USERNAME:</label>
-        <input type="text" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="uname">
-        <div *ngIf="!signupForm.get('uname')?.valid && signupForm.get('uname')?.touched">
-          <span class="ml-2 font-bold text-red-500" *ngIf="signupForm.get('uname')!.errors!['required']" >*user name is required</span>
-        </div>
-        
+  <form class="flex flex-col space-y-4 md:w-1/2 p-8 border border-black rounded-lg shadow-inner shadow-2xl"
+    [formGroup]="signupForm" (ngSubmit)="submitForm()">
+    <div class="flex">
+      <label for="username" class="font-mono  w-1/4 md:w-1/6 text-2xl font-bold mr-6">USERNAME:</label>
+      <input type="text" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="uname">
+      <div
+        *ngIf="!signupForm.get('uname')?.valid && (signupForm.get('uname')?.dirty || signupForm.get('uname')?.touched)">
+        <span class="ml-2 font-bold text-red-500" *ngIf="signupForm.get('uname')!.errors!['required']">*user name is
+          required</span>
+        <span class="ml-2 font-bold text-red-500" *ngIf="signupForm.get('uname')!.errors!['minlength']">Name must be
+          atleast 4 characters long</span>
       </div>
-      <div class="flex">
-        <label for="email" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">EMAIL:</label>
-        <input type="email" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="uemail">
-        <div class="ml-2 " *ngIf="!signupForm.get('uemail')?.valid && signupForm.get('uemail')?.touched" >
-          <span *ngIf="signupForm.get('uemail')!.errors!['required']" class="font-mono  font-bold text-red-500">*email is required</span>
-          <span *ngIf="signupForm.get('uemail')!.errors!['uemail']" class="font-mono  font-bold text-red-500">*this is not a valid email</span>
-        </div>
-      </div>
-      <div class="flex">
-        <label for="password" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">PASSWORD:</label>
-        <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="upassword">
-        <div *ngIf="!signupForm.get('upassword')?.valid && signupForm.get('upassword')?.touched">
-          <span class="font-mono  ml-2 font-bold text-red-500" *ngIf="signupForm.get('upassword')!.errors!['required']">*password is required</span>        </div>
-      </div>
-      <div class="flex">
-        <label for="confirmpassword" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">CONFIRM PASSWORD:</label>
-        <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="confirmpassword">
-        <div *ngIf="!signupForm.get('confirmpassword')?.valid && signupForm.get('confirmpassword')?.touched">
-          <span class="font-mono ml-2 font-bold text-red-500" *ngIf="signupForm.get('confirmpassword')!.errors!['required']">*password is required</span>
-          <span class="font-mono ml-2 font-bold text-red-500" *ngIf="signupForm.get('confirmpassword')!.errors!['error']">*password is required</span>
 
-        </div>
+    </div>
+    <div class="flex">
+      <label for="email" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">EMAIL:</label>
+      <input type="email" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="uemail">
+      <div class="ml-2 "
+        *ngIf="!signupForm.get('uemail')?.valid && (signupForm.get('uemail')?.dirty  || signupForm.get('uemail')?.touched)">
+        <span *ngIf="signupForm.get('uemail')!.errors!['required']" class="font-mono  font-bold text-red-500">*email is
+          required</span>
+        <span *ngIf="signupForm.get('uemail')!.errors!['email']" class="font-mono  font-bold text-red-500">*this is not
+          a valid email</span>
       </div>
-      <div class="flex justify-start items-center">
-        <button  type="submit" [disabled]="!this.signupForm.valid" class="font-mono bg-blue-500 hover:bg-blue-700 text-xl text-white font-bold py-2 px-4 rounded-lg shadow-sm focus:outline-none focus:shadow-outline">Sign Up</button>
+    </div>
+    <div class="flex">
+      <label for="password" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">PASSWORD:</label>
+      <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded" formControlName="upassword">
+      <div
+        *ngIf="!signupForm.get('upassword')?.valid && (signupForm.get('upassword')?.dirty || signupForm.get('upassword')?.touched)">
+        <span class="font-mono  ml-2 font-bold text-red-500"
+          *ngIf="signupForm.get('upassword')!.errors!['required']">*password is required</span>
+        <span class="font-mono  ml-2 font-bold text-red-500"
+          *ngIf="signupForm.get('upassword')!.errors!['minlength']">*password is not long</span>
+        <span class="font-mono  ml-2 font-bold text-red-500"
+          *ngIf="signupForm.get('upassword')!.errors!['pattern']">*password must satisfy the pattern</span>
       </div>
-      <p class="italic"><a [routerLink]="['/signin']" class="font-mono text-green-700 italic text-xl">Already registered??? Login</a></p>
-    </form>
-  </div>
-  
+    </div>
+    <div class="flex">
+      <label for="confirmpassword" class="font-mono w-1/4 md:w-1/6 text-2xl font-bold mr-6">CONFIRM PASSWORD:</label>
+      <input type="password" class="w-3/4 leading-8 border-2 border-black p-2 rounded"
+        formControlName="confirmpassword">
+      <div
+        *ngIf="!signupForm.get('confirmpassword')?.valid && (signupForm.get('confirmpassword')?.dirty  || signupForm.get('confirmpassword')?.touched)">
+        <span class="font-mono ml-2 font-bold text-red-500"
+          *ngIf="signupForm.get('confirmpassword')!.errors!['required']">*password is required</span>
+        <span class="font-mono ml-2 font-bold text-red-500"
+          *ngIf="signupForm.get('confirmpassword')!.errors!['minlength']">*password is not long</span>
+        <span class="font-mono  ml-2 font-bold text-red-500"
+          *ngIf="signupForm.get('confirmpassword')!.errors!['pattern']">*password must satisfy the pattern</span>
+        <span class="font-mono  ml-2 font-bold text-red-500" *ngIf="signupForm!.hasError('match_error')">*password do
+          not match</span>
+
+      </div>
+    </div>
+    <div class="flex justify-start items-center">
+      <button type="submit"
+        class="font-mono bg-blue-500 hover:bg-blue-700 text-xl text-white font-bold py-2 px-4 rounded-lg shadow-sm focus:outline-none focus:shadow-outline">Sign
+        Up</button>
+    </div>
+    <p class="italic"><a [routerLink]="['/signin']" class="font-mono text-green-700 italic text-xl">Already
+        registered??? Login</a></p>
+  </form>
+</div>
